@@ -9,16 +9,20 @@ export default function teachers() {
     fetch("http://localhost:8000/api/teachers")
       .then((res) => res.json())
       .then((json) => {
-        console.log(json.data);
         setTeachers(json.data);
       });
   }, []);
 
-  const [isVisible , setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   return (
     <>
-    <AddTeacherModal isVisible={isVisible} closeHandler={() => {setIsVisible(false)}}/>
+      <AddTeacherModal
+        isVisible={isVisible}
+        closeHandler={() => {
+          setIsVisible(false);
+        }}
+      />
       <h2>Teachers</h2>
       <p>Here is a list of all teachers</p>
       {teachers && <TeachersList teachers={teachers} />}

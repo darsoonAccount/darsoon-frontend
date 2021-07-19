@@ -7,7 +7,7 @@ import TextInput from "../../components/TextInput";
 export default function AddTeacherModal(props) {
 
   const submitTeacherHandler = (event) => {
-
+    console.log('fake submiting');
   }
 
   return (
@@ -17,8 +17,8 @@ export default function AddTeacherModal(props) {
         <TextInput label="Firstname"  />
         <TextInput label="Lastname" />
         <TextInput label="Password" type="password" />
-        <TextInput label="Email" type="email" />
-        <button type='submit'>Submit</button>
+        <TextInput label="Email" type="email" className="green-outline"/>
+        <button type='submit' className="green-outline">Submit</button>
       </Form>
     </Modal>
   );
