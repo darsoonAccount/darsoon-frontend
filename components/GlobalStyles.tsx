@@ -15,7 +15,6 @@ export const themeVars = {
 };
 
 export default createGlobalStyle`
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700;900&display=swap'); */
 //Resrt Styles ***********************
 
 *,

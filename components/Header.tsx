@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Link from "next/link";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 // import ProfileInHeader from "./auth/ProfileInHeader";
@@ -31,34 +31,33 @@ const Header = () => {
 
 export default Header;
 
-const StyledHeader = Styled.header`
-flex: 0;
+const StyledHeader = styled.header`
+  flex: 0;
 
-display: flex;
-justify-content: space-between;
-align-items: center;
-background: ${themeVars.primaryColor};
-/* padding: 1rem; */
-min-height: 6rem;
-padding-inline: 1rem ;
-font-weight: 900;
-
-.site-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: ${themeVars.primaryColor};
+  /* padding: 1rem; */
+  min-height: 6rem;
+  padding-inline: 1rem;
   font-weight: 900;
-  font-size: 1.5em;
-}
 
-nav {
+  .site-title {
+    font-weight: 900;
+    font-size: 1.5em;
+  }
+
+  nav {
     padding: 1rem;
     color: white;
     display: flex;
-align-items: center;
+    align-items: center;
     gap: 2rem;
-     
-     a {
-       color: white;
-       text-decoration: none;
 
-     }
-}
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
 `;

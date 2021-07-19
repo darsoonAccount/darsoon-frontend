@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import Styled from "styled-components";
+import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const Footer = () => {
@@ -38,7 +37,7 @@ const Footer = () => {
 
 export default Footer;
 
-const StyledFooter = Styled.footer`
+const StyledFooter = styled.footer`
 flex: 0;
 padding-top: 1rem;
 background: ${themeVars.darkColor};
