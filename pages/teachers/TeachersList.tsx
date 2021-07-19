@@ -28,11 +28,17 @@ export default function TeachersList({ teachers }: propsInterface) {
       <TeacherListItem teacher={teacherHeader} isHeader={true} />
       {teachers &&
         teachers.length > 0 &&
-        teachers.map((teacher) => {
-          return <TeacherListItem teacher={teacher} isHeader={false}/>;
+        teachers.map((teacher, index) => {
+          return (
+            <TeacherListItem
+              key={"teacherListItem-" + index}
+              teacher={teacher}
+              isHeader={false}
+            />
+          );
         })}
     </Div>
-  );
+  );  
 }
 
 const Div = styled.div`
