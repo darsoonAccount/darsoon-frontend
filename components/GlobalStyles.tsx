@@ -6,6 +6,7 @@ export const themeVars = {
   accent2Color: "#fbe4b1",
   accent3Color: "#f7ca65",
   darkColor: "#291b3d",
+  lightGray: "#636f79",
   borderRadius: "10px",
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   boxShadowHover: "rgba(100, 100, 111, 0.8) 0px 7px 29px 0px",
@@ -140,8 +141,9 @@ h2 {
 button, .button, .primary-button, .cta-button , .big-button {
   border: none;
   border-radius: 600px;
-  padding-inline: 1em;
+  padding-inline: 2rem; 
   padding-block: 0.5em;
+  min-width: 10rem;
   font-weight: 700;
   text-decoration: none;
   box-shadow: ${themeVars.boxShadow};
