@@ -1,58 +1,70 @@
 import React, { useState } from "react";
 import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
+import Loading from "./Loading";
 
 interface Iprops {
   children?: any;
-  submitHandler: (event: object) => void;
+  url: string;
+  method: string;
 }
 
-export default function Form({ children, submitHandler }: Iprops) {
-  const [formData, setFormData] = useState(null);
+export default function Form({ children, url, method }: Iprops) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState(null);
 
-  const formDataChangeHandler = (event) => {
-    console.log("here?");
+  const submitHandler = (event) => {
+    event.preventDefault();
+    setIsLoading(true);
+    setMessage(null);
 
-    const key = event.target.name;
-    const value = event.target.value;
-    setFormData(() => {
-      return {
-        ...formData,
-        [key]: value,
-      };
+    //put form data inside a Object:
+    const formData = {};
+    const formElement = event.target;
+    const formInputs = Array.from(
+      formElement.querySelectorAll("input, textarea")
+    );
+    formInputs.forEach((inputElement) => {
+      formData[inputElement.name] = inputElement.value;
     });
+
+    fetch("http://localhost:8000" + url, {
+      method: method,
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        if (!res.ok) setMessage(res.statusText);
+        return res;
+      })
+      .then((res) => res.json())
+      .then((json) => setMessage(json.message));
+    setIsLoading(false);
   };
 
-  let elements = React.Children.toArray(children);
-  elements = elements.map((element) => {
-    if (
-      element.type === "input" ||
-      element.type.name?.toLowerCase().includes("input")
-    ) {
-      return React.cloneElement(element, { onChange: formDataChangeHandler });
-    }
-    return element;
-  });
-
-  console.log("Form DAtaAAAA:", formData);
-
-  return <StyledFrom onSubmit={submitHandler}>{elements}</StyledFrom>;
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : message ? (
+        <p>{message}</p>
+      ) : (
+        <StyledFrom onSubmit={submitHandler}>{children}</StyledFrom>
+      )}
+    </>
+  );
 }
 
 const StyledFrom = Styled.form`
-
-
-/* background: green; */
 padding: 2rem;
 border-radius: 1rem;
-
-/* max-width: 50ch; */
 margin: 0 auto;
-
 display: flex;
 flex-direction: column;
 align-items: center;
 gap: 2rem;
 }
-
 `;
