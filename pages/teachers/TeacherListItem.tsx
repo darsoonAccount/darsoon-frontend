@@ -4,23 +4,22 @@ interface porpsInterface {
   teacher: {
     userId: "string";
     teacherId: "string";
-    firstName: "string";
-    lastName: "string";
+    firstname: "string";
+    lastname: "string";
     email: "string";
     role: "string";
   };
   isHeader?: "boolean";
 }
 export default function TeacherListItem({ teacher, isHeader }: porpsInterface) {
-  const { userId, teacherId, firstName, lastName, email, role } = teacher;
+  const { userId, teacherId, firstname, lastname, email, role } = teacher;
   return (
     <Div>
       <p>{userId}</p>
       <p>{teacherId}</p>
-      <p>{firstName}</p>
-      <p>{lastName}</p>
+      <p>{firstname}</p>
+      <p>{lastname}</p>
       <p>{email}</p>
-      <p>{role}</p>
     </Div>
   );
 }
