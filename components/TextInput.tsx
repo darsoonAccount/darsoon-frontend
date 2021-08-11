@@ -34,13 +34,14 @@ input	{
   font-size: 1.2em;
   padding: 1rem;
   display:block;
-  border:none;
+  border: none;
+  outline: 2px solid ${themeVars.lightGray};
   border-radius: 0.5rem;
   background: ghostwhite;
   overflow: hidden;
 }
 
-input:focus { outline: 2px solid ${themeVars.accent2Color}; }
+input:focus { outline: 2px solid ${themeVars.primaryColor}; }
 
 input::placeholder {
   color: transparent;
@@ -66,5 +67,5 @@ label {
 input:not(:placeholder-shown) + label {
   top:-20px;
   font-size:1em;
-  color: ${themeVars.accent2Color};}
+  color: ${themeVars.accentColor};}
 `;
