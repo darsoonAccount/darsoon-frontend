@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
+import ProfileInHeader from "./ProfileInHeader";
 
 // import ProfileInHeader from "./auth/ProfileInHeader";
 // import { AppContext } from "./AppProvider";
@@ -23,7 +24,7 @@ const Header = () => {
           <Link href="/contact">Contact</Link>
         </nav>
 
-        {/* <ProfileInHeader /> */}
+        <ProfileInHeader />
       </StyledHeader>
     </>
   );
