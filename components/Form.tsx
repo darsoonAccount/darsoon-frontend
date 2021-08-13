@@ -1,17 +1,28 @@
 import React, { useState } from "react";
+import { useContext } from "react";
 import Styled from "styled-components";
+import { AppContext } from "../contexts/AppProvider";
+import { useAuth } from "../contexts/AuthProvider";
 import { themeVars } from "./GlobalStyles";
 import Loading from "./Loading";
+import fetchAndHandleResponse from "../utils/fetchAndHandleResponse";
 
 interface Iprops {
   children?: any;
   url: string;
   method: string;
+  handleDataAfterSuccess: (data: any) => void;
 }
 
-export default function Form({ children, url, method }: Iprops) {
+export default function Form({
+  children,
+  url,
+  method,
+  handleDataAfterSuccess,
+}: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
+  const { token } = useAuth();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -28,32 +39,27 @@ export default function Form({ children, url, method }: Iprops) {
       formData[inputElement.name] = inputElement.value;
     });
 
-    fetch("http://localhost:8000" + url, {
-      method: method,
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => {
-        if (!res.ok) setMessage(res.statusText);
-        return res;
-      })
-      .then((res) => res.json())
-      .then((json) => setMessage(json.message));
+    fetchAndHandleResponse({
+      url,
+      method,
+      body: formData,
+      token,
+      handleMessage: (message) => setMessage(message),
+      handleData: (data) => {
+        console.log('here!', data); 
+         handleDataAfterSuccess(data)},
+    });
+
     setIsLoading(false);
   };
 
   return (
     <>
-      {isLoading ? (
-        <Loading />
-      ) : message ? (
-        <p>{message}</p>
-      ) : (
-        <StyledFrom onSubmit={submitHandler}>{children}</StyledFrom>
-      )}
+      <StyledFrom onSubmit={submitHandler}>
+        {children}
+        {isLoading && <Loading />}
+        {message && <p className="message">{message}</p>}
+      </StyledFrom>
     </>
   );
 }
@@ -66,5 +72,11 @@ display: flex;
 flex-direction: column;
 align-items: center;
 gap: 2rem;
+
+.message {
+  border: 3px solid ${themeVars.accentColor};
+  border-radius: ${themeVars.borderRadius};
+  padding: 1rem;
+  }
 }
 `;
