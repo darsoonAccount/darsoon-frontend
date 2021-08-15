@@ -51,11 +51,12 @@ background: ${themeVars.darkColor};
 }
 
 .links-in-footer {
-padding: 2rem;
+padding-block: 1rem;
+padding-inline: 2rem;
 }
 
 h3 {
-  padding:2rem;
+  padding:1rem;
   }
 
 div {
