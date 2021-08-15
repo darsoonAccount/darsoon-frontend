@@ -11,13 +11,15 @@ interface Iprops {
   children?: any;
   url: string;
   method: string;
-  handleDataAfterSuccess: (data: any) => void;
+  buttonText?: string;
+  handleDataAfterSuccess?: (data: any) => void;
 }
 
 export default function Form({
   children,
   url,
   method,
+  buttonText,
   handleDataAfterSuccess,
 }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,8 +48,9 @@ export default function Form({
       token,
       handleMessage: (message) => setMessage(message),
       handleData: (data) => {
-        console.log('here!', data); 
-         handleDataAfterSuccess(data)},
+        console.log("here!", data);
+        handleDataAfterSuccess(data);
+      },
     });
 
     setIsLoading(false);
@@ -59,6 +62,7 @@ export default function Form({
         {children}
         {isLoading && <Loading />}
         {message && <p className="message">{message}</p>}
+        <button type="submit">{buttonText ?? "Submit"}</button>
       </StyledFrom>
     </>
   );
