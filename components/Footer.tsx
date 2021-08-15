@@ -42,6 +42,12 @@ flex: 0;
 padding-top: 1rem;
 background: ${themeVars.darkColor};
 
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+width: 100%;
+
 .site-title {
   font-weight: 900;
   font-size: 1.5em;
@@ -51,6 +57,7 @@ background: ${themeVars.darkColor};
 }
 
 .links-in-footer {
+  width: 100%;
 padding-block: 1rem;
 padding-inline: 2rem;
 }
