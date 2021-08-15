@@ -12,7 +12,7 @@ export default function BecomeATeacherPage() {
       {!loggedInUser ? (
         <>
           <p>
-            لطفا ابتدا از <a href="/login">این لینک</a>وارد حساب خوب شوید.
+            لطفا ابتدا از <a href="/login">این لینک </a>وارد حساب خوب شوید.
           </p>
         </>
       ) : (
@@ -36,8 +36,14 @@ export default function BecomeATeacherPage() {
             <TextInput label="linkedin" placeholder="صفحه لینکدین" />
             <TextInput label="website" placeholder="وبسایت شخصی" />
             <TextInput label="refrence" placeholder="نام معرف" />
-            <TextInput label="price" placeholder="هزینه هر جلسه (به دلار کانادا)" />
-            <TextInput label="sessionDuration" placeholder="طول زمانی هر جلسه (به دقیقه)" />
+            <TextInput
+              label="price"
+              placeholder="هزینه هر جلسه (به دلار کانادا)"
+            />
+            <TextInput
+              label="sessionDuration"
+              placeholder="طول زمانی هر جلسه (به دقیقه)"
+            />
             <TextInput label="ageGroup" placeholder="گروه سنی مناسب" />
             <TextInput label="country" placeholder="کشور محل سکونت" />
             <TextInput label="city" placeholder="شهر محل سکونت" />
@@ -64,6 +70,7 @@ export default function BecomeATeacherPage() {
   );
 }
 const Div = styled.div`
+  direction: rtl;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
