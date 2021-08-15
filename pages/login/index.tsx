@@ -55,7 +55,7 @@ const LoginPage = () => {
               placeholder="Password"
               type="password"
             />
-            <button type="submit">Log In</button>
+            
           </Form>
         </>
       )}
@@ -80,7 +80,6 @@ It was a dark and stormy night...
               placeholder="Password"
               type="password"
             />
-            <button type="submit">Sign Up</button>
           </Form>
         </>
       )}
