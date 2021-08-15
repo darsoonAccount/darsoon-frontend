@@ -52,15 +52,17 @@ const ProfileInHeader = () => {
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
-              <a href="/my-classes">Profile</a>
-              <button className="log-out-button" onClick={handleLogOut}>
+              <a href="/teacher-dashboard">Teacher Dashboard</a>
+              <a href="" onClick={handleLogOut}>
                 Log Out
-              </button>
+              </a>
             </div>
           )}
         </>
       ) : (
-        <a href="/login">Login</a>
+        <a className="login" href="/login">
+          Login
+        </a>
       )}
     </Div>
   );
@@ -124,6 +126,7 @@ gap: 1rem;
 
 }
   .log-out-button {
+    text-align: right;
   background: none;
   box-shadow: none;
   color: white;
@@ -132,4 +135,9 @@ gap: 1rem;
   cursor: pointer;
   font-weight: 700;
 }
+
+.login {
+  color: white;
+}
+
 `;
