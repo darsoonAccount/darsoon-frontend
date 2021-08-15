@@ -34,9 +34,22 @@ export default createGlobalStyle`
 
   html, body {
       max-width: 100vw;
-      height: 100%;
   }
 
+  //making website height at least 100% screen size.
+  html,
+  body,
+  body > div:first-child,
+  div#__next,
+  div#__next > div {
+    height: 100%;
+  }
+
+  div#__next {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+  
   /* http://meyerweb.com/eric/tools/css/reset/
       v2.0 | 20110126
       License: none (public domain)
@@ -70,7 +83,10 @@ export default createGlobalStyle`
       line-height: 1;
       margin: 0;
   }
-  p {line-height: 1.4;}
+  p {
+    line-height: 1.4;
+    font-size: 1.2em;
+  }
   ol, ul {
       list-style: none;
   }
@@ -120,7 +136,7 @@ textarea {
 }
 
 a {
-  color: white;
+  color: ${themeVars.primaryColor};
   text-decoration: none;
   
 }
