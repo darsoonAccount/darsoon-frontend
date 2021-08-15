@@ -13,5 +13,5 @@ export default function Layout({ children }) {
 }
 
 const Main = styled.main`
-  background: yellow;
+  background: ghostwhite;
 `;
