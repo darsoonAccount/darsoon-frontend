@@ -3,6 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import ProfileInHeader from "./ProfileInHeader";
+import LanguageInHeader from "./LanguageInHeader";
 
 // import ProfileInHeader from "./auth/ProfileInHeader";
 // import { AppContext } from "./AppProvider";
@@ -23,7 +24,10 @@ const Header = () => {
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
         </nav>
-        <ProfileInHeader />
+        <div className="langAndProfile">
+          <LanguageInHeader />
+          <ProfileInHeader />
+        </div>
       </StyledHeader>
     </>
   );
@@ -46,6 +50,7 @@ const StyledHeader = styled.header`
   .site-title {
     font-weight: 900;
     font-size: 1.5em;
+    margin-bottom: 0;
   }
 
   nav {
@@ -59,5 +64,12 @@ const StyledHeader = styled.header`
       color: white;
       text-decoration: none;
     }
+  }
+
+  .langAndProfile {
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center;
   }
 `;

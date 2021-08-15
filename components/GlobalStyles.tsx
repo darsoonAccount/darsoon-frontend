@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { useLang } from "../contexts/LangProvider";
 
 export const themeVars = {
   primaryColor: "#ff7648",
@@ -11,8 +12,9 @@ export const themeVars = {
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   boxShadowHover: "rgba(100, 100, 111, 0.8) 0px 7px 29px 0px",
 
-  headingFont: "Poppins,'Permanent Marker', Arial, Helvetica, sans-serif",
-  contentFont: "Poppins,'Kosugi', Arial, Helvetica, sans-serif",
+  headingFont:
+    "Poppins, iransans,'Permanent Marker', Arial, Helvetica, sans-serif",
+  contentFont: "Poppins, iransans,'Kosugi', Arial, Helvetica, sans-serif",
 };
 
 export default createGlobalStyle`
@@ -30,6 +32,10 @@ export default createGlobalStyle`
   h1, h2, h3, h4, h5, h6, p,
   text {
       /* font-family: sans-serif; */
+  }
+
+  html {
+    /* direction: ltr; */
   }
 
   html, body {
@@ -125,13 +131,15 @@ button {
   color: ${themeVars.accentColor};
   font-family: ${themeVars.headingFont};
   text-align: center;
+  max-width: 20ch;
 }
 p,
 a,
 li,
 blockquote,
 input,
-textarea {
+textarea,
+select, option {
   font-family: ${themeVars.contentFont};
 }
 
@@ -139,6 +147,11 @@ a {
   color: ${themeVars.primaryColor};
   text-decoration: none;
   
+}
+
+h1 {
+  font-size: 4em;
+  margin-bottom: 1em;
 }
 
 h2 {
@@ -181,4 +194,22 @@ button, .button, .primary-button, .cta-button , .big-button {
   font-size: 2rem;
 }
 
+select {
+  padding-block: 0.2rem;
+  padding-inline: 0.4rem;
+  border: none;
+  border-radius: 1rem;
+}
+
+option {
+  border-radius: 1rem;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center {
+  margin: 0 auto;
+}
 `;
