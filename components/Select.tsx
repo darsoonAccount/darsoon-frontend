@@ -2,17 +2,19 @@ import React from "react";
 import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
-const TextInput = (props) => {
-  const { label, placeholder } = props;
+const Select = (props) => {
+  const { label, placeholder, children } = props;
   return (
     <Div>
-      <input
+      <select
         className="input"
         type="text"
         {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
         name={label.toLowerCase()}
         placeholder={placeholder ? placeholder : label}
-      />
+      >
+        {children}
+      </select>
       <label className="label" htmlFor={label.toLowerCase()}>
         {placeholder ? placeholder : label}
       </label>
@@ -20,7 +22,7 @@ const TextInput = (props) => {
   );
 };
 
-export default TextInput;
+export default Select;
 
 const Div = Styled.div`
 
@@ -50,7 +52,7 @@ const Div = Styled.div`
 
 
 label {
-  line-height: 1.2;
+    line-height: 1.4;
   text-align: start;
   pointer-events: none;
   color:#999; 
@@ -68,7 +70,7 @@ label {
   top:-20px;
   font-size:1em;
   color: ${themeVars.accentColor};
-
+  
   overflow: hidden;
   max-width: 35ch;
   text-overflow: ellipsis;

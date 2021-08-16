@@ -32,6 +32,7 @@ const Div = Styled.div`
 
 .input	{
     resize:vertical;
+    overflow-y: auto: ;;
   font-size: 1.2em;
   padding: 1rem;
   display:block;
@@ -39,7 +40,7 @@ const Div = Styled.div`
   outline: 2px solid ${themeVars.lightGray};
   border-radius: 0.5rem;
   background: ghostwhite;
-  overflow: hidden;
+  
 }
 
 .input:focus { outline: 2px solid ${themeVars.primaryColor}; }
@@ -51,12 +52,14 @@ const Div = Styled.div`
 
 
 label {
-  text-align: left;
+  width: 100%;
+  line-height: 1.4;
+  text-align: start;
   pointer-events: none;
   color:#999; 
   font-size:1.2em;
   position:absolute;
-  left: 1rem;
+  inset-inline-start: 1rem;
   top: 1.25rem;
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
@@ -68,5 +71,13 @@ label {
 .input:not(:placeholder-shown) + label {
   top:-20px;
   font-size:1em;
-  color: ${themeVars.accentColor};}
+  color: ${themeVars.accentColor};
+
+  overflow: hidden;
+  max-width: 35ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
 `;
