@@ -69,23 +69,38 @@ export default function Form({
 }
 
 const StyledFrom = Styled.form`
-max-width: 1000px;
-width: 100%;
+max-width: 1200px;
 padding: 2rem;
 border-radius: 1rem;
 margin: 0 auto;
 
+
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
-gap: 2rem;
+align-items:center;  
+width: 100%; 
+ gap: 2rem;
 
 .inputs {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
+
+  p {
+    font-weight: 700;
+    color: ${themeVars.primaryColor};
+  }
+  
+  p + div {
+    grid-column-start: 1;
+  }
+  
+  div + p {
+    grid-column-start: 1;
+    
+  }
 }
 
 .message {
