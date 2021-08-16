@@ -11,16 +11,33 @@ export default function BecomeATeacherPage() {
 
   return (
     <Div>
-      {!loggedInUser ? (
-        <>
-          <p>
-            لطفا ابتدا از <a href="/login">این لینک </a>وارد حساب خود شوید.
-          </p>
-        </>
-      ) : (
+      {!loggedInUser && (
+        <p>
+          لطفا ابتدا از <a href="/login">این لینک </a>وارد حساب خود شوید.
+        </p>
+      )}
+      {loggedInUser && (
         <>
           <p>لطفا فرم زیر را پر نمایید</p>
           <Form url="/api/teacherApplications/add" method="POST">
+            <p>اطلاعات کاربری</p>
+            <TextInput label="firtname" placeholder="نام" />
+            <TextInput label="firtname" placeholder="نام به انگلیسی" />
+            <TextInput label="lastname" placeholder="نام خانوادگی" />
+            <TextInput
+              label="lastname"
+              placeholder=" نام خانوادگی به انگلیسی"
+            />
+            <TextInput label="email" placeholder=" ایمیل" />
+            <TextInput label="country" placeholder="کشور محل سکونت" />
+            <TextInput label="city" placeholder="شهر محل سکونت" />
+
+            <TextInput label="instagram" placeholder="صفحه کاری اینستاکرام" />
+            <TextInput label="linkedin" placeholder="صفحه لینکدین" />
+            <TextInput label="website" placeholder="وبسایت شخصی" />
+            <TextInput label="refrence" placeholder="نام معرف" />
+            <p>کلاسی که می‌خواهید درس بدهید</p>
+
             <Select label="شاخه تخصصی">
               <option>هنر</option>
               <option>موسیقی</option>
@@ -31,12 +48,7 @@ export default function BecomeATeacherPage() {
               <option>کامپیوتر</option>
               <option>سایر</option>
             </Select>
-            <TextInput label="education" placeholder="مدرک تحصیلی" />
-            <TextInput label="university" placeholder=" دانشگاه محل تحصیل" />
-            <TextInput label="instagram" placeholder="صفحه کاری اینستاکرام" />
-            <TextInput label="linkedin" placeholder="صفحه لینکدین" />
-            <TextInput label="website" placeholder="وبسایت شخصی" />
-            <TextInput label="refrence" placeholder="نام معرف" />
+
             <TextInput
               label="price"
               placeholder="هزینه هر جلسه (به دلار کانادا)"
@@ -46,8 +58,10 @@ export default function BecomeATeacherPage() {
               placeholder="طول زمانی هر جلسه (به دقیقه)"
             />
             <TextInput label="ageGroup" placeholder="گروه سنی مناسب" />
-            <TextInput label="country" placeholder="کشور محل سکونت" />
-            <TextInput label="city" placeholder="شهر محل سکونت" />
+
+            <p>سابقه کاری و تحصیلی شما</p>
+            <TextInput label="education" placeholder="مدرک تحصیلی" />
+            <TextInput label="university" placeholder=" دانشگاه محل تحصیل" />
             <TextArea
               label="notes"
               placeholder="تجربه تدریس حضوری (مثلا پنج سال تدرس در آموزشگاه خوارزمی)"
@@ -60,18 +74,7 @@ export default function BecomeATeacherPage() {
               label="notes"
               placeholder="تجربه تدریس به ایرانیان خارج از کش ور (مثلا شش ماه تدریس گیتار به سه بچه دوزبانه در کانادا)"
             />
-             <TextArea
-              label="aboutMe"
-              placeholder="درباره من"
-            />
-             <TextArea
-              label="teachingMethod"
-              placeholder="شیوه تدریس"
-            />
-             <TextArea
-              label="teachingMethod"
-              placeholder="سابقه تحصیلی یا کاری"
-            />
+
             <TextArea
               label="notes"
               placeholder="هر مطلب دیگری که دانستن آن برای ما مفید است"
