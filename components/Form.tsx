@@ -5,7 +5,6 @@ import { AppContext } from "../contexts/AppProvider";
 import { useAuth } from "../contexts/AuthProvider";
 import { themeVars } from "./GlobalStyles";
 import Loading from "./Loading";
-import fetchAndHandleResponse from "../utils/fetchAndHandleResponse";
 
 interface Iprops {
   children?: any;
@@ -24,7 +23,7 @@ export default function Form({
 }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const { token } = useAuth();
+  const { fetchNHandle } = useFetch();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -41,16 +40,12 @@ export default function Form({
       formData[inputElement.name] = inputElement.value;
     });
 
-    fetchAndHandleResponse({
+    fetchNHandle({
       url,
       method,
       body: formData,
-      token,
-      handleMessage: (message) => setMessage(message),
-      handleData: (data) => {
-        console.log("here!", data);
-        handleDataAfterSuccess(data);
-      },
+      handleMessage: setMessage,
+      handleData: handleDataAfterSuccess,
     });
 
     setIsLoading(false);

@@ -1,28 +1,19 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { useFetch } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
-import fetchAndHandleResponse from "../../utils/fetchAndHandleResponse";
 import AddTeacherModal from "./AddTeacherModal";
 import TeacherCard from "./TeacherCard";
 
 export default function teachers() {
   const [teachers, setTeachers] = useState(null);
 
-  const { token } = useAuth();
+  const { fetchNHandle } = useFetch();
 
   useEffect(() => {
-    // fetch("http://localhost:8000/api/p/teachers")
-    //   .then((res) => res.json())
-    //   .then((json) => {
-    //     setTeachers(json.data);
-    //   });
-    fetchAndHandleResponse({
+    fetchNHandle({
       url: "/api/p/teachers",
-      method: "GET",
-      token: token,
       handleData: setTeachers,
-      body: undefined,
-      handleMessage: (msg) => alert(msg),
     });
   }, []);
 
@@ -32,8 +23,8 @@ export default function teachers() {
       <p>Here are all teachers</p>
       {teachers && teachers.length && (
         <div className="card-grid">
-          {teachers.map((teacher) => {
-            return <TeacherCard teacher={teacher} />;
+          {teachers.map((teacher, index) => {
+            return <TeacherCard key={"teacher-" + index} teacher={teacher} />;
           })}
         </div>
       )}
@@ -43,6 +34,7 @@ export default function teachers() {
 
 const Page = styled.div`
   width: 100%;
+
   max-width: 70rem;
   .card-grid {
     width: 100%;

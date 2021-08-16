@@ -2,16 +2,17 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import fetchAndHandleResponse from "../../../utils/fetchAndHandleResponse";
+import { useFetch } from "../../../contexts/AppProvider";
 
 export default function ClassPage() {
   const router = useRouter();
   const { classId } = router.query;
+  const { fetchNHandle } = useFetch();
 
   const [classData, setClassData] = useState(null);
 
   useEffect(() => {
-    fetchAndHandleResponse({url: `/api/classes/${classId}` method: "GET" , handleData: setClassData});
+    fetchNHandle({ url: `/api/classes/${classId}`, handleData: setClassData });
   }, []);
 
   return <Div>'I'm a placeholder'</Div>;

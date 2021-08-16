@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8000";
 
 interface Ifetch {
   url: string;
-  method: string;
+  method?: string;
   token: string;
   body?: object;
   handleMessage?: (message: string) => void;
@@ -18,12 +18,25 @@ const fetchAndHandleResponse = async ({
   token,
   handleData,
   handleMessage,
-}) => {
+}: Ifetch) => {
+  if (!method) {
+    method = "GET";
+  }
+
   const handleNetworkErrors = (res) => {
     if (!res.ok) {
       alert(res.statusText);
     }
     return res;
+  };
+
+  const done = ({ message, data }) => {
+    if (handleMessage) {
+      handleMessage(message);
+    }
+    if (handleData) {
+      handleData(data);
+    }
   };
 
   let status = null;
@@ -46,15 +59,13 @@ const fetchAndHandleResponse = async ({
       console.log("json", json);
       switch (true) {
         case status >= 400 && status <= 499:
-          handleMessage(json.message);
+          done({ message: json.message });
           break;
         case status >= 500 && status <= 599:
-          handleMessage(json.message);
+          done({ message: json.message });
           break;
         case status >= 200 && status <= 299:
-          handleMessage(json.message);
-          console.log("HHERRRER?", json.data);
-          handleData(json.data);
+          done({ message: json.message, data: json.data });
           break;
       }
     })
