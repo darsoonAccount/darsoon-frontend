@@ -2,6 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { useLang } from "../contexts/LangProvider";
+import { themeVars } from "./GlobalStyles";
 export default function LanguageInHeader() {
   const { lang, setLangToEnglish, setLangToPersian } = useLang();
 
@@ -21,20 +22,15 @@ export default function LanguageInHeader() {
   };
 
   return (
-    <select onChange={handleChange}>
+    <Select onChange={handleChange}>
       <option value="en">English</option>
       <option value="fa">فارسی</option>
-    </select>
+    </Select>
   );
 }
-const Div = styled.div`
-  padding: 1.5rem;
-  border-radius: 1.5rem;
-  background: ghostwhite;
-  border: 1px solid gray;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+const Select = styled.select`
+  padding: 0.3rem 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: ${themeVars.boxShadow};
 `;

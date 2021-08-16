@@ -1,4 +1,5 @@
 import Head from "next/head";
+import styled from "styled-components";
 
 export default function Home() {
   return (
@@ -14,10 +15,24 @@ export default function Home() {
           rel="stylesheet"
         ></link>
       </Head>
-      <div>
+      <Div>
         <h1>Welcome to the new Darsoon Website.</h1>
         <p className="center-text">Corrently under development.</p>
-      </div>
+        <a href="/become-a-teacher" className="center-item">
+          Join us as a teacher
+        </a>
+      </Div>
     </>
   );
 }
+
+
+const Div = styled.div`
+  
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+width: 100%;
+  
+`

@@ -3,7 +3,9 @@ import styled from "styled-components";
 import Form from "../../components/Form";
 import TextArea from "../../components/TextArea";
 import TextInput from "../../components/TextInput";
+import Select from "../../components/Select";
 import { useAuth } from "../../contexts/AuthProvider";
+
 export default function BecomeATeacherPage() {
   const { loggedInUser } = useAuth();
 
@@ -12,15 +14,14 @@ export default function BecomeATeacherPage() {
       {!loggedInUser ? (
         <>
           <p>
-            لطفا ابتدا از <a href="/login">این لینک </a>وارد حساب خوب شوید.
+            لطفا ابتدا از <a href="/login">این لینک </a>وارد حساب خود شوید.
           </p>
         </>
       ) : (
         <>
           <p>لطفا فرم زیر را پر نمایید</p>
-          <Form url="/api/changeRequests/add" method="POST">
-            <labe>شاخه تخصصی</labe>
-            <select>
+          <Form url="/api/teacherApplications/add" method="POST">
+            <Select label="شاخه تخصصی">
               <option>هنر</option>
               <option>موسیقی</option>
               <option>فارسی</option>
@@ -29,7 +30,7 @@ export default function BecomeATeacherPage() {
               <option>علوم و ریاضی</option>
               <option>کامپیوتر</option>
               <option>سایر</option>
-            </select>
+            </Select>
             <TextInput label="education" placeholder="مدرک تحصیلی" />
             <TextInput label="university" placeholder=" دانشگاه محل تحصیل" />
             <TextInput label="instagram" placeholder="صفحه کاری اینستاکرام" />
@@ -59,6 +60,18 @@ export default function BecomeATeacherPage() {
               label="notes"
               placeholder="تجربه تدریس به ایرانیان خارج از کش ور (مثلا شش ماه تدریس گیتار به سه بچه دوزبانه در کانادا)"
             />
+             <TextArea
+              label="aboutMe"
+              placeholder="درباره من"
+            />
+             <TextArea
+              label="teachingMethod"
+              placeholder="شیوه تدریس"
+            />
+             <TextArea
+              label="teachingMethod"
+              placeholder="سابقه تحصیلی یا کاری"
+            />
             <TextArea
               label="notes"
               placeholder="هر مطلب دیگری که دانستن آن برای ما مفید است"
@@ -70,10 +83,10 @@ export default function BecomeATeacherPage() {
   );
 }
 const Div = styled.div`
-  direction: rtl;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;

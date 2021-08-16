@@ -125,13 +125,18 @@ h2,
 h3,
 h4,
 h5,
-h6,
+h6 {
+  color: ${themeVars.accentColor};
+  font-family: ${themeVars.headingFont};
+  text-align: center;
+  max-width: 20ch;
+}
+
 label,
 button {
   color: ${themeVars.accentColor};
   font-family: ${themeVars.headingFont};
   text-align: center;
-  max-width: 20ch;
 }
 p,
 a,
@@ -139,9 +144,11 @@ li,
 blockquote,
 input,
 textarea,
-select, option {
+select, option, label {
   font-family: ${themeVars.contentFont};
 }
+
+
 
 a {
   color: ${themeVars.primaryColor};
@@ -194,12 +201,7 @@ button, .button, .primary-button, .cta-button , .big-button {
   font-size: 2rem;
 }
 
-select {
-  padding-block: 0.2rem;
-  padding-inline: 0.4rem;
-  border: none;
-  border-radius: 1rem;
-}
+
 
 option {
   border-radius: 1rem;
@@ -209,7 +211,7 @@ option {
   text-align: center;
 }
 
-.center {
+.center-item {
   margin: 0 auto;
 }
 `;

@@ -106,6 +106,7 @@ gap: 1rem;
 }
 
 .profile-menu {
+  min-width: 14rem;
   position: absolute;
   border-radius: 0.5rem;
   display: flex;
@@ -117,11 +118,12 @@ gap: 1rem;
   top: 4rem;
   right: 1rem;
   z-index: 1;
-  box-shadow: ${themeVars.boxShadow};
+  box-shadow: ${themeVars.boxShadowHover};
 
   
   a {
     font-weight: 700;
+    color: white;
   }
 
 }

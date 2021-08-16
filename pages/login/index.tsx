@@ -55,7 +55,6 @@ const LoginPage = () => {
               placeholder="Password"
               type="password"
             />
-            
           </Form>
         </>
       )}
@@ -66,11 +65,6 @@ const LoginPage = () => {
             method="POST"
             handleDataAfterSuccess={handleDataAfterSuccessfulSignup}
           >
-            {/* <textarea id="story" name="story"
-          rows="5" cols="33">
-It was a dark and stormy night...
-</textarea> */}
-            {/* <input type="radio" id="html" name="fav_language" value="HTML" /> */}
             <TextInput label="firstname" placeholder="Firstname" />
             <TextInput label="Lastname" placeholder="Lastname" />
             <TextInput label="username" placeholder="username" />
