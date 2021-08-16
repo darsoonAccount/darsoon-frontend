@@ -59,7 +59,7 @@ export default function Form({
   return (
     <>
       <StyledFrom onSubmit={submitHandler}>
-        {children}
+        <div className="inputs">{children}</div>
         {isLoading && <Loading />}
         {message && <p className="message">{message}</p>}
         <button type="submit">{buttonText ?? "Submit"}</button>
@@ -69,13 +69,24 @@ export default function Form({
 }
 
 const StyledFrom = Styled.form`
+max-width: 1000px;
+width: 100%;
 padding: 2rem;
 border-radius: 1rem;
 margin: 0 auto;
-display: flex;
-flex-direction: column;
-align-items: center;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 gap: 2rem;
+
+.inputs {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+}
 
 .message {
   border: 3px solid ${themeVars.accentColor};
