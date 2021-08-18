@@ -17,7 +17,7 @@ interface Iprops {
 export default function Form({ children, url, method, buttonText, handleDataAfterSuccess }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const { api } = useApi);
+  const { api } = useApi();
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -31,7 +31,6 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
     formInputs.forEach((inputElement) => {
       formData[inputElement.name] = inputElement.value;
     });
-
 
     api
       .post(url, formData)
