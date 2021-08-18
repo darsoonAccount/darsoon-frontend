@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { useFetch } from "../../contexts/AppProvider";
+import { useApi } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import AddTeacherModal from "./AddTeacherModal";
 import TeacherCard from "./TeacherCard";
@@ -8,13 +8,13 @@ import TeacherCard from "./TeacherCard";
 export default function teachers() {
   const [teachers, setTeachers] = useState(null);
 
-  const { fetchNHandle } = useFetch();
+  const { api } = useApi();
 
   useEffect(() => {
-    fetchNHandle({
-      url: "/api/p/teachers",
-      handleData: setTeachers,
-    });
+    api
+      .get("api/p/teachers")
+      .then((res) => setTeachers(res.data.data))
+      .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);
 
   return (

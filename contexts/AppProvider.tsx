@@ -1,46 +1,26 @@
 import React, { useState, createContext, useContext } from "react";
-import fetchAndHandleResponse from "../utils/fetchAndHandleResponse";
 import { useAuth } from "./AuthProvider";
-
-interface Ifetch {
-  url: string;
-  method?: string;
-  body?: object;
-  handleMessage?: (message: string) => void;
-  handleData?: (data: object) => void;
-}
+import axios from "axios";
 
 export const AppContext = createContext(null);
 
-export const useFetch = () => {
+export const useApi = () => {
   return useContext(AppContext);
 };
 
 const AppProvider = ({ children }) => {
   const { token } = useAuth();
 
-  const fetchNHandle = ({
-    url,
-    method,
-    body,
-    handleData,
-    handleMessage,
-  }: Ifetch) => {
-    fetchAndHandleResponse({
-      url,
-      method,
-      body,
-      token: token,
-      handleData,
-      handleMessage,
-    });
-  };
+  const api = axios.create({
+    baseURL: "http://localhost:8000",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: token,
+    },
+  });
 
-  return (
-    <AppContext.Provider value={{ fetchNHandle }}>
-      {children}
-    </AppContext.Provider>
-  );
+  return <AppContext.Provider value={{ api }}>{children}</AppContext.Provider>;
 };
 
 export default AppProvider;

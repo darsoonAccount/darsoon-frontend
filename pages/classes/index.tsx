@@ -4,27 +4,16 @@ import styled from "styled-components";
 import { themeVars } from "../../components/GlobalStyles";
 import FilterProvider from "./FilterContex";
 import ClassCard from "./ClassCard";
+import { useApi } from "../../contexts/AppProvider";
 export default function ClassesPage() {
   const [classes, setClasses] = useState(null);
+  const { api } = useApi();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/products")
-      .then((res) => {
-        console.log(res);
-        return res.json();
-      })
-      .then((json) => {
-        switch (true) {
-          case json.status >= 200 && json.status <= 299:
-            //do this
-            setClasses(json.data);
-          case json.status >= 400 && json.status <= 499:
-          //alert about bad request
-          case json.status >= 500 && json.status <= 599:
-          //alert about something went wrong
-          default:
-        }
-      });
+    api
+      .get("/api/products")
+      .then((res) => setClasses(res.data.data))
+      .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);
 
   return (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import Styled from "styled-components";
-import { AppContext } from "../contexts/AppProvider";
+import { AppContext, useApi } from "../contexts/AppProvider";
 import { useAuth } from "../contexts/AuthProvider";
 import { themeVars } from "./GlobalStyles";
 import Loading from "./Loading";
@@ -14,16 +14,10 @@ interface Iprops {
   handleDataAfterSuccess?: (data: any) => void;
 }
 
-export default function Form({
-  children,
-  url,
-  method,
-  buttonText,
-  handleDataAfterSuccess,
-}: Iprops) {
+export default function Form({ children, url, method, buttonText, handleDataAfterSuccess }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
-  const { fetchNHandle } = useFetch();
+  const { api } = useApi);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -33,21 +27,21 @@ export default function Form({
     //put form data inside a Object:
     const formData = {};
     const formElement = event.target;
-    const formInputs = Array.from(
-      formElement.querySelectorAll("input, textarea")
-    );
+    const formInputs = Array.from(formElement.querySelectorAll("input, textarea"));
     formInputs.forEach((inputElement) => {
       formData[inputElement.name] = inputElement.value;
     });
 
-    fetchNHandle({
-      url,
-      method,
-      body: formData,
-      handleMessage: setMessage,
-      handleData: handleDataAfterSuccess,
-    });
 
+    api
+      .post(url, formData)
+      .then((res) => {
+        handleDataAfterSuccess(res.data.data);
+      })
+      .catch((error) => {
+        setMessage(error.response.data.message);
+        console.log("Error Request!!!", error.request, "Error Response!!!", error.response);
+      });
     setIsLoading(false);
   };
 

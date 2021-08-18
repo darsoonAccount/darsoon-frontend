@@ -20,10 +20,14 @@ export default function Layout({ children }) {
 }
 
 const Main = styled.main`
+padding-bottom: 5rem;
   background: ghostwhite;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  & > * {
+  width: 100%;
+  }
   width: 100%;
 `;

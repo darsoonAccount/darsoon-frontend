@@ -2,17 +2,20 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
-import { useFetch } from "../../../contexts/AppProvider";
+import { useApi } from "../../../contexts/AppProvider";
 
 export default function ClassPage() {
   const router = useRouter();
   const { classId } = router.query;
-  const { fetchNHandle } = useFetch();
+  const { api } = useApi();
 
   const [classData, setClassData] = useState(null);
 
   useEffect(() => {
-    fetchNHandle({ url: `/api/classes/${classId}`, handleData: setClassData });
+    api
+      .get(`/api/classes/${classId}`)
+      .then((res) => setClassData(res.data.data))
+      .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);
 
   return <Div>'I'm a placeholder'</Div>;
