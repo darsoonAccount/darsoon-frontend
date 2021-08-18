@@ -151,9 +151,12 @@ select, option, label {
 
 
 a {
-  color: ${themeVars.primaryColor};
+  color: inherit;
   text-decoration: none;
-  
+}
+
+p a {
+  color: ${themeVars.primaryColor};
 }
 
 h1 {
