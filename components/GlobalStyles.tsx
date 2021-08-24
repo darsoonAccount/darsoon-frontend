@@ -12,8 +12,7 @@ export const themeVars = {
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   boxShadowHover: "rgba(100, 100, 111, 0.8) 0px 7px 29px 0px",
 
-  headingFont:
-    "Poppins, iransans,'Permanent Marker', Arial, Helvetica, sans-serif",
+  headingFont: "Poppins, iransans,'Permanent Marker', Arial, Helvetica, sans-serif",
   contentFont: "Poppins, iransans,'Kosugi', Arial, Helvetica, sans-serif",
 };
 
@@ -53,7 +52,7 @@ export default createGlobalStyle`
 
   div#__next {
     display: grid;
-    grid-template-rows: auto 1fr auto;
+    grid-template-rows: 1fr auto;
   }
   
   /* http://meyerweb.com/eric/tools/css/reset/
@@ -90,8 +89,9 @@ export default createGlobalStyle`
       margin: 0;
   }
   p {
-    line-height: 1.4;
+    line-height: 1.6;
     font-size: 1.2em;
+    max-width: 50ch;
   }
   ol, ul {
       list-style: none;
@@ -138,13 +138,15 @@ button {
   font-family: ${themeVars.headingFont};
   text-align: center;
 }
+
+span,
 p,
 a,
 li,
 blockquote,
 input,
 textarea,
-select, option, label {
+select, option, label, table, th, td {
   font-family: ${themeVars.contentFont};
 }
 
@@ -177,7 +179,14 @@ h2 {
   margin-bottom: 1rem;
 }
 
-button, .button, .primary-button, .cta-button , .big-button {
+button {
+  border: none;
+  display:grid;
+  place-items: center;
+  gap: 1rem;
+}
+
+button , .button, .primary-button, .cta-button , .big-button, .small-button {
   border: none;
   border-radius: 600px;
   padding-inline: 2rem; 
@@ -196,7 +205,7 @@ button, .button, .primary-button, .cta-button , .big-button {
   }
 }
 
-.primary-button, .cta-button , .big-button {
+.primary-button, .cta-button , .big-button , .small-button {
   background-color: ${themeVars.primaryColor};
   color: white;
 }
@@ -204,7 +213,11 @@ button, .button, .primary-button, .cta-button , .big-button {
   font-size: 2rem;
 }
 
-
+.small-button {
+  font-size: 1rem;
+  font-weight: 400;
+  padding-inline: 1rem; 
+}
 
 option {
   border-radius: 1rem;
@@ -216,5 +229,9 @@ option {
 
 .center-item {
   margin: 0 auto;
+}
+//vertical-aligning react-icons
+.react-icons {
+  vertical-align: middle;  
 }
 `;
