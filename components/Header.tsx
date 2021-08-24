@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 import ProfileInHeader from "./ProfileInHeader";
 import LanguageInHeader from "./LanguageInHeader";
+import { FiMenu } from "react-icons/fi";
 
 // import ProfileInHeader from "./auth/ProfileInHeader";
 // import { AppContext } from "./AppProvider";
@@ -11,23 +12,23 @@ import LanguageInHeader from "./LanguageInHeader";
 
 const Header = () => {
   // const { currentUser } = useAuth();
-
+  const [isMobileMenuVisible, setIsMobileMenuVisible] = useState(false);
   return (
     <>
       <StyledHeader>
-        <nav>
-          <h1 className="site-title">
-            <Link href="/">Darsoon</Link>
-          </h1>
+        <input className="checkbox" id="checkbox" type="checkbox" />
+        <span className="logo">
+          <Link href="/">Darsoon</Link>
+        </span>
+        <nav className="nav">
           <Link href="/teachers">Teachers</Link>
           <Link href="/classes">Classes</Link>
           <Link href="/about">About</Link>
           <Link href="/contact">Contact</Link>
-        </nav>
-        <div className="langAndProfile">
           <LanguageInHeader />
           <ProfileInHeader />
-        </div>
+        </nav>
+        <label htmlFor="checkbox" className="icon-burger"></label>
       </StyledHeader>
     </>
   );
@@ -36,40 +37,109 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
-  flex: 0;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  top: 0;
+  font-family: "Montserrat", sans-serif;
+  padding: 0 5%;
+  height: 100px;
+  background-color: ${themeVars.primaryColor};
 
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: ${themeVars.primaryColor};
-  /* padding: 1rem; */
-  min-height: 6rem;
-  padding-inline: 1rem;
-  font-weight: 900;
-
-  .site-title {
+  .logo {
+    float: inline-start;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
     font-weight: 900;
-    font-size: 1.5em;
-    margin-bottom: 0;
+    color: #fff;
+  }
+  .nav {
+    float: inline-end;
+    padding: 0;
+    margin: 0;
+    width: 60%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
 
-  nav {
-    padding: 1rem;
-    color: white;
-    display: flex;
-    align-items: center;
-    gap: 2rem;
+  .nav a {
+    display: block;
+    padding: 1em;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+  }
+  .checkbox {
+    position: absolute;
+    top: -100px;
+  }
+  .icon-burger {
+    display: none;
+    position: absolute;
+    inset-inline-end: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 
-    a {
-      color: white;
-      text-decoration: none;
+  .icon-burger::before,
+  .icon-burger::after {
+    content: "";
+    position: "absolute";
+    display: block;
+    width: 30px;
+    height: 5px;
+    background-color: #fff;
+    margin: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  @media screen and (max-width: 768px) {
+    .logo {
+      float: none;
+      width: auto;
+      justify-content: center;
     }
-  }
+    .nav {
+      float: none;
+      position: fixed;
+      z-index: 9;
+      left: 0;
+      right: 0;
+      top: 100px;
+      bottom: 100%;
+      width: auto;
+      height: auto;
+      flex-direction: column;
+      justify-content: space-evenly;
+      background-color: rgba(0, 0, 0, 0.8);
+      overflow: hidden;
+      box-sizing: border-box;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav a {
+      font-size: 20px;
+    }
+    .checkbox:checked ~ .nav {
+      bottom: 0;
+    }
+    .icon-burger {
+      display: block;
+      height: 25px;
+    }
 
-  .langAndProfile {
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-items: center;
+    .checkbox:checked ~ .icon-burger::before {
+      transform: translateY(5px) rotate(225deg);
+    }
+    .checkbox:checked ~ .icon-burger::after {
+      transform: translateY(-5px) rotate(-225deg);
+    }
   }
 `;
