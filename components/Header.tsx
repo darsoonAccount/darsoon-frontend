@@ -37,15 +37,16 @@ const Header = () => {
 export default Header;
 
 const StyledHeader = styled.header`
-  position: fixed;
+  position: sticky;
   z-index: 10;
   left: 0;
   right: 0;
   top: 0;
   font-family: "Montserrat", sans-serif;
-  padding: 0 5%;
+  padding: 0 2rem;
   height: 100px;
   background-color: ${themeVars.primaryColor};
+  box-shadow: ${themeVars.boxShadow};
 
   .logo {
     float: inline-start;

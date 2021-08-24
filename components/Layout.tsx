@@ -13,21 +13,16 @@ export default function Layout({ children }) {
       <GlobalStyles />
       {lang === "fa" && <RTLStyles />}
       <Header />
-      <Main>{children}</Main>
+      <Main> {children}</Main>
       <Footer />
     </>
   );
 }
 
 const Main = styled.main`
-padding-bottom: 5rem;
+
   background: ghostwhite;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  & > * {
-  width: 100%;
-  }
-  width: 100%;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
 `;

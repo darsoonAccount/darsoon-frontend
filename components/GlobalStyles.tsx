@@ -52,7 +52,7 @@ export default createGlobalStyle`
 
   div#__next {
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: auto 1fr auto;
   }
   
   /* http://meyerweb.com/eric/tools/css/reset/
