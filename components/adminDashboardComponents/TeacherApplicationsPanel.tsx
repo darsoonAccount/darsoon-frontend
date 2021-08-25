@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { useApi } from "../../contexts/AppProvider";
-import TeacherApplicationRow from "./teacherApplicationRow";
+import TeacherApplicationRow from "./TeacherApplicationRow";
 export default function TeacherApplicationsPanel() {
   const { api } = useApi();
   const [teacherApplications, setTeacherAppliacions] = useState(null);

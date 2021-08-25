@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useApi } from "../../contexts/AppProvider";
 import { useState } from "react";
-import Table from "../../components/Table";
+import Table from "../../components/adminDashboardComponents/Table";
 export default function TeacherApplicationPage() {
   const router = useRouter();
   const { teacherApplicationId } = router.query;
