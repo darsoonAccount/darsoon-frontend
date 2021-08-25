@@ -3,14 +3,14 @@ import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const TextArea = (props) => {
-  const { label, placeholder } = props;
+  const { label, placeholder, name } = props;
   return (
     <Div>
       <textarea
         rows="4"
         className="input"
         {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
-        name={label.toLowerCase()}
+        name={name || label.toLowerCase()}
         placeholder={placeholder ? placeholder : label}
       />
       <label className="label" htmlFor={label.toLowerCase()}>

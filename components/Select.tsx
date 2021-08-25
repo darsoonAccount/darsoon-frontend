@@ -3,14 +3,14 @@ import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const Select = (props) => {
-  const { label, placeholder, children } = props;
+  const { label, name placeholder, children } = props;
   return (
     <Div>
       <select
         className="input"
         type="text"
         {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
-        name={label.toLowerCase()}
+        name={name || label.toLowerCase()}
         placeholder={placeholder ? placeholder : label}
       >
         {children}

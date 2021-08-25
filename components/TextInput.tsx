@@ -3,14 +3,14 @@ import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const TextInput = (props) => {
-  const { label, placeholder } = props;
+  const { name, label, placeholder } = props;
   return (
     <Div>
       <input
         className="input"
         type="text"
         {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
-        name={label.toLowerCase()}
+        name={name || label.toLowerCase()}
         placeholder={placeholder ? placeholder : label}
       />
       <label className="label" htmlFor={label.toLowerCase()}>
