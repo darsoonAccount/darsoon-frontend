@@ -21,7 +21,9 @@ const Modal = ({ isVisible, closeHandler, children }) => {
 export default Modal;
 
 const Div = Styled.div`
-
+z-index: 100;
+/* max-height: 80vh; */
+overflow-y: auto;
 position: fixed;
 z-index: 100;
 
