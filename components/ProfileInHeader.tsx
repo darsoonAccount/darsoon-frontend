@@ -43,16 +43,14 @@ const ProfileInHeader = () => {
             <p>Hi, {loggedInUser.firstname}</p>
           </div>
           <button className="profile-button" onClick={showProfileMenu}>
-            <img
-              className="profile-picture"
-              src="avatar.png"
-              alt="Profile Picture"
-              width="40px"
-            ></img>
+            <img className="profile-picture" src="avatar.png" alt="Profile Picture" width="40px"></img>
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
               <a href="/teacher-dashboard">Teacher Dashboard</a>
+              <a href="/admin-dashboard">Admin Dashboard</a>
+              <a href="/payer-dashboard">Payer Dashboard</a>
+              <a href="/student-dashboard">Student Dashboard</a>
               <a href="" onClick={handleLogOut}>
                 Log Out
               </a>
@@ -73,7 +71,7 @@ export default ProfileInHeader;
 const Div = Styled.div`
 
 position: relative;
-padding: 1rem;
+/* padding: 1rem; */
 color: white;
 display: flex;
 align-items: center;
@@ -116,7 +114,7 @@ gap: 1rem;
   padding: 1rem;
   background: ${themeVars.darkColor};
   top: 4rem;
-  right: 1rem;
+  inset-inline-end: 0;
   z-index: 1;
   box-shadow: ${themeVars.boxShadowHover};
 
