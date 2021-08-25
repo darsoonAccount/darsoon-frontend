@@ -3,7 +3,7 @@ import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const Select = (props) => {
-  const { label, name placeholder, children } = props;
+  const { label, name, placeholder, children } = props;
   return (
     <Div>
       <select
