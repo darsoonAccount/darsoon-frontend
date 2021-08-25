@@ -10,29 +10,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700;900&display=swap"
-          rel="stylesheet"
-        ></link>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700;900&display=swap" rel="stylesheet"></link>
       </Head>
       <Div>
         <h1>Welcome to the new Darsoon Website.</h1>
         <p className="center-text">Corrently under development.</p>
-        <a href="/become-a-teacher" className="center-item">
-          Join us as a teacher
-        </a>
+        <p>
+          <a href="/become-a-teacher" className="center-item">
+            Join us as a teacher
+          </a>
+        </p>
       </Div>
     </>
   );
 }
 
-
 const Div = styled.div`
-  
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-width: 100%;
-  
-`
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+`;

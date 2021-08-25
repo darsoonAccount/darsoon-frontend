@@ -33,7 +33,11 @@ export default function teachers() {
 }
 
 const Page = styled.div`
+  padding: 2em 2em;
   width: 100%;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
 
   max-width: 70rem;
   .card-grid {
