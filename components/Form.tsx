@@ -29,9 +29,16 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
     const formElement = event.target;
     const formInputs = Array.from(formElement.querySelectorAll("input, textarea"));
     formInputs.forEach((inputElement) => {
-      formData[inputElement.name] = inputElement.value;
+      console.log(inputElement.type);
+      if (inputElement.type === "number") {
+        
+        formData[inputElement.name] = Number(inputElement.value);
+      } else {
+        formData[inputElement.name] = inputElement.value;
+      }
     });
 
+    console.log("Form Data", formData);
     api
       .post(url, formData)
       .then((res) => {
