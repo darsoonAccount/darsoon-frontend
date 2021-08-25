@@ -139,6 +139,7 @@ button {
   text-align: center;
 }
 
+div,
 span,
 p,
 a,
