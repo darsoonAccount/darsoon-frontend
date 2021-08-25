@@ -1,30 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import TeacherApplicationsPanel from "./TeacherApplicationsPanel";
+import TeacherApplicationsPanel from "../../components/adminDashboardComponents/TeacherApplicationsPanel";
+import AdminDashNav from "../../layouts/AdminDashNav";
+import { themeVars } from "../../components/GlobalStyles";
+import AdminDashLayout from "../../layouts/adminDashLayout";
+
 export default function AdminDashboard() {
   return (
     <Div>
-      <p>Welecom to Admin Dashboard!</p>
-      <TeacherApplicationsPanel />
+      <h1>Admin Dashboard!</h1>
     </Div>
   );
 }
-const Div = styled.div`
-  padding: 1.5rem;
-  border-radius: 1.5rem;
-  background: ghostwhite;
-  border: 1px solid gray;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+AdminDashboard.Layout = AdminDashLayout;
 
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  & > * {
-  width: 100%;
-  }
-`;
+const Div = styled.div``;

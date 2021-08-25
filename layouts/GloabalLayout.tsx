@@ -1,11 +1,11 @@
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 import styled from "styled-components";
-import RTLStyles from "./RTLStyles";
+import RTLStyles from "../components/RTLStyles";
 import { useLang } from "../contexts/LangProvider";
-import GlobalStyles from "./GlobalStyles";
+import GlobalStyles from "../components/GlobalStyles";
 
-export default function Layout({ children }) {
+export default function GloabalLayout({ children }) {
   const { lang } = useLang();
 
   return (
@@ -20,9 +20,11 @@ export default function Layout({ children }) {
 }
 
 const Main = styled.main`
-
   background: ghostwhite;
   display: grid;
-  place-items: center;
-  gap: 1rem;
+  /* place-items: center; */
+  grid-template: 1fr / 1fr;
+  /* & > * {
+    width: 100% ;
+  } */
 `;
