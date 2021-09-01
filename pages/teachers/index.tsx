@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Loading from "../../components/Loading";
 import { useApi } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import AddTeacherModal from "./AddTeacherModal";
@@ -21,6 +22,7 @@ export default function teachers() {
     <Page>
       <h2>Teachers</h2>
       <p>Here are all teachers</p>
+      {!teachers && <Loading />}
       {teachers && teachers.length && (
         <div className="card-grid">
           {teachers.map((teacher, index) => {
@@ -33,6 +35,7 @@ export default function teachers() {
 }
 
 const Page = styled.div`
+  margin: 0 auto;
   padding: 2em 2em;
   width: 100%;
   display: grid;
