@@ -3,9 +3,10 @@ import Styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
 
 const TextInput = (props) => {
-  const { name, label, placeholder } = props;
+  const { name, label, placeholder, isHidden } = props;
+
   return (
-    <Div>
+    <Div className={isHidden && "hidden"}>
       <input
         className="input"
         type="text"
@@ -24,11 +25,12 @@ export default TextInput;
 
 const Div = Styled.div`
 
-
   position:relative; 
   display: flex;
   flex-direction: column;
   /* overflow: hidden; */
+  
+
 
 .input	{
   font-size: 1.2em;
@@ -74,4 +76,9 @@ label {
   text-overflow: ellipsis;
   white-space: nowrap;
   }
+
+  &.hidden {
+  display: none;
+  background: yellow;
+}
 `;
