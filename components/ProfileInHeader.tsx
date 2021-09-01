@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Styled from "styled-components";
-import { AppContext } from "../contexts/AppProvider";
+import { AppContext, useNotif } from "../contexts/AppProvider";
 import { themeVars } from "./GlobalStyles";
 import { useAuth } from "../contexts/AuthProvider";
+import Link from "next/link";
 
 const ProfileInHeader = () => {
   const { loggedInUser, logOut } = useAuth();
+  const { notify } = useNotif();
 
   const [isProfileMenuVisible, setIsProfileMenuVisible] = useState(false);
 
@@ -15,6 +17,7 @@ const ProfileInHeader = () => {
 
   const handleLogOut = () => {
     logOut();
+    notify("You are logged out.");
   };
 
   const showProfileMenu = () => {
@@ -42,25 +45,25 @@ const ProfileInHeader = () => {
           <div>
             <p>Hi, {loggedInUser.firstname}</p>
           </div>
-          <button className="profile-button" onClick={showProfileMenu}>
+          <button className="button profile-button" onClick={showProfileMenu}>
             <img className="profile-picture" src="avatar.png" alt="Profile Picture" width="40px"></img>
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
-              <a href="/teacher-dashboard">Teacher Dashboard</a>
-              <a href="/admin-dashboard">Admin Dashboard</a>
-              <a href="/payer-dashboard">Payer Dashboard</a>
-              <a href="/student-dashboard">Student Dashboard</a>
-              <a href="" onClick={handleLogOut}>
+              <Link href="/teacher-dashboard">Teacher Dashboard</Link>
+              <Link href="/admin-dashboard">Admin Dashboard</Link>
+              <Link href="/payer-dashboard">Payer Dashboard</Link>
+              <Link href="/student-dashboard">Student Dashboard</Link>
+              <button className='log-out-button' onClick={handleLogOut}>
                 Log Out
-              </a>
+              </button>
             </div>
           )}
         </>
       ) : (
-        <a className="login" href="/login">
+        <Link className="login" href="/login">
           Login
-        </a>
+        </Link>
       )}
     </Div>
   );
@@ -69,23 +72,17 @@ const ProfileInHeader = () => {
 export default ProfileInHeader;
 
 const Div = Styled.div`
-
 position: relative;
-/* padding: 1rem; */
 color: white;
 display: flex;
+justify-content: flex-end;
 align-items: center;
 gap: 1rem;
 
-.role {
-  font-size: 0.8em;
-  font-weight: 300;
-  text-align: right;
 
-}
 
 .profile-button {
-    min-width: 0;
+  min-width: 0;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -104,14 +101,15 @@ gap: 1rem;
 }
 
 .profile-menu {
-  min-width: 14rem;
+  min-width: 17rem;
   position: absolute;
   border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
   align-items: flex-end;
-  padding: 1rem;
+  gap: 2rem;
+  text-align: end;
+  padding: 1.5rem;
   background: ${themeVars.darkColor};
   top: 4rem;
   inset-inline-end: 0;
@@ -122,18 +120,18 @@ gap: 1rem;
   a {
     font-weight: 700;
     color: white;
+    padding: 0;
   }
 
-}
   .log-out-button {
+    padding: 0;
     text-align: right;
-  background: none;
-  box-shadow: none;
-  color: white;
-  font-size: 1em;
-  padding: 0;
-  cursor: pointer;
-  font-weight: 700;
+    background: none;
+    box-shadow: none;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+  }
 }
 
 .login {
