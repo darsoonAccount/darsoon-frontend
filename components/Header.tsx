@@ -44,7 +44,7 @@ const StyledHeader = styled.header`
   top: 0;
   font-family: "Montserrat", sans-serif;
   padding: 0 2rem;
-  height: 100px;
+  height: 6rem;
   background-color: ${themeVars.primaryColor};
   box-shadow: ${themeVars.boxShadow};
 
@@ -54,7 +54,7 @@ const StyledHeader = styled.header`
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 900;
     color: #fff;
   }
@@ -71,8 +71,8 @@ const StyledHeader = styled.header`
 
   .nav a {
     display: block;
-    padding: 1em;
-    font-size: 16px;
+    padding: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
     text-decoration: none;
@@ -94,15 +94,15 @@ const StyledHeader = styled.header`
     content: "";
     position: "absolute";
     display: block;
-    width: 30px;
-    height: 5px;
+    width: 1.8rem;
+    height: 0.4rem;
     background-color: #fff;
-    margin: 5px;
-    border-radius: 3px;
+    margin: 0.4rem;
+    border-radius: 0.25rem;
     transition: all 0.3s ease-in-out;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 800px) {
     .logo {
       float: none;
       width: auto;
@@ -114,7 +114,7 @@ const StyledHeader = styled.header`
       z-index: 9;
       left: 0;
       right: 0;
-      top: 100px;
+      top: 6rem;
       bottom: 100%;
       width: auto;
       height: auto;
@@ -126,21 +126,21 @@ const StyledHeader = styled.header`
       transition: all 0.3s ease-in-out;
     }
     .nav a {
-      font-size: 20px;
+      font-size: 1.5rem;
     }
     .checkbox:checked ~ .nav {
       bottom: 0;
     }
     .icon-burger {
       display: block;
-      height: 25px;
+      height: 1.5rem;
     }
 
     .checkbox:checked ~ .icon-burger::before {
-      transform: translateY(5px) rotate(225deg);
+      transform: translateY(0.4rem) rotate(225deg);
     }
     .checkbox:checked ~ .icon-burger::after {
-      transform: translateY(-5px) rotate(-225deg);
+      transform: translateY(-0.4rem) rotate(-225deg);
     }
   }
 `;
