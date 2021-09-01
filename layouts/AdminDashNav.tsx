@@ -26,23 +26,21 @@ export default function AdminDashNav() {
 }
 const Nav = styled.nav`
   max-width: 30ch;
-  background: white;
+  background: ${themeVars.darkColor};
 
   a {
-    flex: 1;
+    /* flex: 1; */
     display: block;
-    background: ${themeVars.darkColor};
     color: white;
     display: grid;
     place-items: center start;
-    padding: 1em 2em;
+    padding: 2em;
     line-height: 1.4;
     font-weight: 700;
+    border-bottom: 1px solid white;
   }
 
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  gap: 1px;
 `;
