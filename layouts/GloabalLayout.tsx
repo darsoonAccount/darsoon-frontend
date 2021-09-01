@@ -4,6 +4,8 @@ import styled from "styled-components";
 import RTLStyles from "../components/RTLStyles";
 import { useLang } from "../contexts/LangProvider";
 import GlobalStyles from "../components/GlobalStyles";
+import ToastNotification from "../components/ToastNotification";
+import ToastNotifications from "../components/ToastNotifications";
 
 export default function GloabalLayout({ children }) {
   const { lang } = useLang();
@@ -15,6 +17,7 @@ export default function GloabalLayout({ children }) {
       <Header />
       <Main> {children}</Main>
       <Footer />
+      <ToastNotifications />
     </>
   );
 }
@@ -22,9 +25,5 @@ export default function GloabalLayout({ children }) {
 const Main = styled.main`
   background: ghostwhite;
   display: grid;
-  /* place-items: center; */
   grid-template: 1fr / 1fr;
-  /* & > * {
-    width: 100% ;
-  } */
 `;
