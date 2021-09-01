@@ -32,7 +32,7 @@ const Div = Styled.div`
 
 .input	{
     resize:vertical;
-    overflow-y: auto: ;;
+    overflow-y: auto;
   font-size: 1.2em;
   padding: 1rem;
   display:block;
