@@ -36,7 +36,7 @@ export default createGlobalStyle`
   html {
     /* direction: ltr; */
   }
-
+  
   html, body {
       max-width: 100vw;
   }
@@ -45,8 +45,7 @@ export default createGlobalStyle`
   html,
   body,
   body > div:first-child,
-  div#__next,
-  div#__next > div {
+  div#__next {
     height: 100%;
   }
 
@@ -78,6 +77,10 @@ export default createGlobalStyle`
       border: 0;
       font-size: 100%;
       vertical-align: baseline;
+  }
+
+  html {
+    font-size: 80%;
   }
   /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure,
@@ -130,6 +133,7 @@ h6 {
   font-family: ${themeVars.headingFont};
   text-align: center;
   max-width: 20ch;
+  line-height: 1.3;
 }
 
 label,
@@ -164,7 +168,6 @@ p a {
 
 h1 {
   font-size: 4em;
-  margin-bottom: 1em;
 }
 
 h2 {
@@ -187,7 +190,7 @@ button {
   gap: 1rem;
 }
 
-button , .button, .primary-button, .cta-button , .big-button, .small-button {
+ .button, .primary-button, .cta-button , .big-button, .small-button {
   border: none;
   border-radius: 600px;
   padding-inline: 2rem; 
