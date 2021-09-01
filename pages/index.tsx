@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import styled from "styled-components";
 
 export default function Home() {
@@ -16,9 +17,9 @@ export default function Home() {
         <h1>Welcome to the new Darsoon Website.</h1>
         <p className="center-text">Corrently under development.</p>
         <p>
-          <a href="/become-a-teacher" className="center-item">
-            Join us as a teacher
-          </a>
+          <Link href="/become-a-teacher" className="center-item">
+            <a>Join us as a teacher</a>
+          </Link>
         </p>
       </Div>
     </>
