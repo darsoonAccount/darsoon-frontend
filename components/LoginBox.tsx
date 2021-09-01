@@ -4,6 +4,7 @@ import Form from "./Form";
 import TextInput from "./TextInput";
 import { AuthContext } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
+import { useNotif } from "../contexts/AppProvider";
 
 interface ILoginBox {
   redirectTo?: string;
@@ -13,24 +14,27 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
   const [tab, setTab] = useState("signup");
   const { login } = useContext(AuthContext);
   const router = useRouter();
+  const { notify } = useNotif();
 
   const handleDataAfterSuccessfulLogin = (data) => {
     const { user, token, expiresIn } = data;
     login({ user, token, expiresIn });
     router.push(redirectTo || "/");
+    notify("Your are logged in.", "success");
   };
 
   const handleDataAfterSuccessfulSignup = (data) => {
     const { user, token, expiresIn } = data;
     login({ user, token, expiresIn });
-    router.push("/");
+    router.push(redirectTo || "/");
+    notify("Your are successfully signed up.", "success");
   };
 
   return (
     <Div>
       <div className="tabs">
         <button
-          className={`tab ${tab === "login" ? "active" : ""}`}
+          className={`button tab ${tab === "login" ? "active" : ""}`}
           onClick={() => {
             setTab(() => "login");
           }}
@@ -38,7 +42,7 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
           Login
         </button>
         <button
-          className={`tab ${tab === "signup" ? "active" : ""}`}
+          className={`button tab ${tab === "signup" ? "active" : ""}`}
           onClick={() => {
             setTab(() => "signup");
           }}
