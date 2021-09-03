@@ -5,6 +5,7 @@ import TextInput from "./TextInput";
 import { AuthContext } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useNotif } from "../contexts/AppProvider";
+import { themeVars } from "./GlobalStyles";
 
 interface ILoginBox {
   redirectTo?: string;
@@ -91,9 +92,16 @@ const Div = styled.div`
   }
 
   .tab {
+    background: none;
+    box-shadow: none;
     border-radius: 1rem 1rem 0 0;
+    color: lightgray;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
   .active {
-    background: yellow;
+    color: ${themeVars.primaryColor};
   }
 `;
