@@ -37,7 +37,7 @@ const Div = Styled.div`
   padding: 1rem;
   display:block;
   border: none;
-  outline: 2px solid ${themeVars.lightGray};
+  outline: 2px solid lightgray;
   border-radius: 0.5rem;
   background: ghostwhite;
   overflow: hidden;
