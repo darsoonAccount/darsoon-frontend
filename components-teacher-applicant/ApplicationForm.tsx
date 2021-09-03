@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Form from "../components/Form";
 import TextArea from "../components/TextArea";
@@ -8,23 +8,26 @@ import { useAuth } from "../contexts/AuthProvider";
 import { useEffect } from "react";
 import { useApi, useNotif } from "../contexts/AppProvider";
 
-export default function ApplicationForm({ handleDataAfterSuccess }) {
+export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }) {
   const { loggedInUser } = useAuth();
-  const [topics, setTopics] = useEffect();
+  const [topics, setTopics] = useState(null);
   const { api } = useApi();
   const { notify } = useNotif();
 
   useEffect(() => {
     api
       .get("/api/topics")
-      .then((data) => setTopics(data.data))
+      .then((res) => {
+
+        setTopics(res.data.data);
+      })
       .catch((err) => {
         notify("Something went wrong. please reload the page", "error");
       });
   }, []);
 
   return (
-    <Form url="/api/teacherApplications/add" method="POST" handleDataAfterSuccess={handleDataAfterSuccess}>
+    <Form url="/api/teacherApplications/add" method="POST" handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={isTwoColumns}>
       <p>اطلاعات کاربری</p>
       <TextInput name="firstnameFa" label="firstnameFa" placeholder="نام" />
       <TextInput name="lastnameFa" label="lastnameFa" placeholder="نام خانوادگی" />
@@ -42,14 +45,13 @@ export default function ApplicationForm({ handleDataAfterSuccess }) {
 
       <Select name="topics" label="شاخه تخصصی">
         {topics && topics.length > 0 ? (
-          <option disabled>در حال بارگزاری... </option>
-        ) : (
           <>
             {topics.map((topic) => {
               return <option value={topic.topicId}>{topic.nameFa}</option>;
             })}
-            <option>سایر</option>
           </>
+        ) : (
+          <option disabled>در حال بارگزاری... </option>
         )}
       </Select>
       <TextInput name="expertiseName" label="expertiseName" placeholder="موضوع کلاس" />
@@ -70,6 +72,7 @@ export default function ApplicationForm({ handleDataAfterSuccess }) {
     </Form>
   );
 }
+
 const Div = styled.div`
   padding: 1.5rem;
   border-radius: 1.5rem;
