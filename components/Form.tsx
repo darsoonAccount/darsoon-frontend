@@ -12,9 +12,10 @@ interface Iprops {
   method: string;
   buttonText?: string;
   handleDataAfterSuccess?: (data: any) => void;
+  isTwoColumns?: boolean;
 }
 
-export default function Form({ children, url, method, buttonText, handleDataAfterSuccess }: Iprops) {
+export default function Form({ children, url, method, buttonText, handleDataAfterSuccess, isTwoColumns }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const { api } = useApi();
@@ -50,7 +51,7 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
 
   return (
     <>
-      <StyledFrom onSubmit={submitHandler}>
+      <StyledFrom onSubmit={submitHandler} className={isTwoColumns ? "two-columns" : "one-column"}>
         <div className="inputs">{children}</div>
         {isLoading && <Loading />}
         {message && <p className="message">{message}</p>}
@@ -63,7 +64,14 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
 }
 
 const StyledFrom = Styled.form`
-max-width: 1200px;
+ &.two-columns {
+  max-width: 1200px;
+}
+
+&.one-column {
+  max-width: 600px; 
+}
+
 padding: 2rem;
 border-radius: 1rem;
 margin: 0 auto;
@@ -81,6 +89,9 @@ width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
+}
+
+.inputs {
 
   p {
     font-weight: 700;
@@ -96,6 +107,8 @@ width: 100%;
     
   }
 }
+
+
 
 .message {
   border: 3px solid ${themeVars.accentColor};
