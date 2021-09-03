@@ -29,8 +29,16 @@ export default function LanguageInHeader() {
   );
 }
 const Select = styled.select`
-  padding: 0.3rem 0.5rem;
   border: none;
   border-radius: 1rem;
-  box-shadow: ${themeVars.boxShadow};
+  background: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.3rem;
+
+  option {
+    background: ${themeVars.darkColor};
+    font-weight: 400;
+    font-size: 1rem;
+  }
 `;
