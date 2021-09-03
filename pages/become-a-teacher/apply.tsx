@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ApplicationForm from "../../components-teacher-applicant/ApplicationForm";
 import ApplicationSubmittedBox from "../../components-teacher-applicant/ApplicationSubmittedBox";
