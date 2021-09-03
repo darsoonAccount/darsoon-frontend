@@ -5,7 +5,7 @@ import { themeVars } from "./GlobalStyles";
 const Loading = () => {
   return (
     <Div className="spinner-div">
-      <CgSpinner size="50" className="spinner" />
+      <CgSpinner size="40" className="spinner" />
     </Div>
   );
 };
@@ -23,6 +23,7 @@ const rotate = keyframes`
 `;
 
 const Div = styled.div`
+padding: 1rem;
   flex: 1;
   display: flex;
   justify-content: center;
