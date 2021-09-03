@@ -11,15 +11,27 @@ export default function AdminDashNav() {
     <Nav>
       <Link href="/admin-dashboard/teacher-applications">
         {/* <FaChalkboardTeacher /> */}
+        <a>
         Teacher Applications
+        </a>
       </Link>
-      <Link href="/admin-dashboard/teacher-change-requests">
+      <Link href="/admin-dashboard/teachers">
         {/* <FiEdit /> */}
-        Teacher change requests
+        <a>
+        Teachers
+        </a>
+      </Link>
+      <Link href="/admin-dashboard/teacher-profile-changes">
+        {/* <FiEdit /> */}
+        <a>
+        Teachers Profile Changes
+        </a>
       </Link>
       <Link href="/admin-dashboard/payments">
         {/* <MdPayment /> */}
+        <a>
         Payements
+        </a>
       </Link>
     </Nav>
   );
