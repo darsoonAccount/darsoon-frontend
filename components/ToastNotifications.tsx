@@ -18,13 +18,14 @@ export default function ToastNotifications() {
   );
 }
 const Div = styled.div`
+  pointer-events: none;
   z-index: 999;
   position: fixed;
-  inset-inline-start: 3rem;
-  inset-block-end: 3rem;
-  border-radius: 2rem;
-  width: auto;
+  inset-inline-start: min(10vw, 2rem);
+  inset-block-end: min(10vw, 2rem);
+  max-width: 80vw;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
 `;
