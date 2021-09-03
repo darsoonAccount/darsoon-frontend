@@ -1,6 +1,7 @@
 import React, { useState, useEffect, createContext } from "react";
 import { useContext } from "react";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 export const AuthContext = createContext(null);
 
@@ -9,6 +10,8 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }) => {
+  const router = useRouter();
+
   const [loggedInUser, setloggedInUser] = useState(null);
   const [loggedInUserPayerProfie, setloggedInUserPayerProfie] = useState(null);
   const [loggedInUserStudentProfie, setloggedInUserStudentProfie] = useState(null);
@@ -18,23 +21,37 @@ const AuthProvider = ({ children }) => {
   const [expiresIn, setExpiresIn] = useState(null);
 
   const logOut = () => {
-    console.log('here');
-    setloggedInUser(null);
-    setToken(null);
-    setExpiresIn(null);
+    //empty local storage
     localStorage.removeItem("loggedInUser");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresIn");
+
+    //set profiles to null
+
+    setloggedInUserPayerProfie(null);
+    setloggedInUserStudentProfie(null);
+    setloggedInUserTeacherProfie(null);
+    setloggedInUserAdminProfie(null);
+
+    //set the user to null
+
+    setloggedInUser(null);
+    setToken(null);
+    setExpiresIn(null);
+
+    //redirect to homepage
+
+    // router.push("/");
   };
 
   const login = ({ user, token, expiresIn }) => {
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+    localStorage.setItem("token", token);
+    localStorage.setItem("expiresIn", expiresIn);
 
     setloggedInUser(user);
     setToken(token);
     setExpiresIn(expiresIn);
-    localStorage.setItem("loggedInUser", JSON.stringify(user));
-    localStorage.setItem("token", token);
-    localStorage.setItem("expiresIn", expiresIn);
 
     //check if the user has other profiles and add them
 
