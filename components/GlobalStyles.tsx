@@ -132,7 +132,7 @@ h6 {
   color: ${themeVars.accentColor};
   font-family: ${themeVars.headingFont};
   text-align: center;
-  max-width: 20ch;
+  /* max-width: 20ch; */
   line-height: 1.3;
 }
 
