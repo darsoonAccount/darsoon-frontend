@@ -39,54 +39,49 @@ export default Header;
 const StyledHeader = styled.header`
   position: sticky;
   z-index: 10;
-  left: 0;
-  right: 0;
-  top: 0;
-  font-family: "Montserrat", sans-serif;
-  padding: 0 2rem;
-  height: 6rem;
-  background-color: ${themeVars.primaryColor};
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  inset-block-start: 0;
+  padding: 1.5rem 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(255, 118, 72, 0.9);
+  backdrop-filter: blur(0.3rem);
   box-shadow: ${themeVars.boxShadow};
 
   .logo {
-    float: inline-start;
-    width: 40%;
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 900;
     color: #fff;
   }
   .nav {
-    float: inline-end;
     padding: 0;
     margin: 0;
-    width: 60%;
     height: 100%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 2rem;
   }
 
   .nav a {
     display: block;
-    padding: 1rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: #fff;
     text-decoration: none;
   }
   .checkbox {
     position: absolute;
-    top: -100px;
+    top: -100px; /* to hide the chcekbox */
   }
   .icon-burger {
     display: none;
-    position: absolute;
-    inset-inline-end: 5%;
-    top: 50%;
-    transform: translateY(-50%);
   }
 
   .icon-burger::before,
@@ -94,27 +89,25 @@ const StyledHeader = styled.header`
     content: "";
     position: "absolute";
     display: block;
-    width: 1.8rem;
-    height: 0.4rem;
+    width: 30px;
+    height: 5px;
     background-color: #fff;
-    margin: 0.4rem;
-    border-radius: 0.25rem;
+    margin: 5px;
+    border-radius: 3px;
     transition: all 0.3s ease-in-out;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and (max-width: 850px) {
     .logo {
-      float: none;
       width: auto;
-      justify-content: center;
     }
     .nav {
       float: none;
       position: fixed;
       z-index: 9;
-      left: 0;
-      right: 0;
-      top: 6rem;
+      inset-inline-start: 0;
+      inset-inline-end: 0;
+      top: 100px;
       bottom: 100%;
       width: auto;
       height: auto;
@@ -126,21 +119,71 @@ const StyledHeader = styled.header`
       transition: all 0.3s ease-in-out;
     }
     .nav a {
-      font-size: 1.5rem;
+      font-size: 20px;
     }
     .checkbox:checked ~ .nav {
       bottom: 0;
     }
     .icon-burger {
       display: block;
-      height: 1.5rem;
+      height: 25px;
     }
 
     .checkbox:checked ~ .icon-burger::before {
-      transform: translateY(0.4rem) rotate(225deg);
+      transform: translateY(5px) rotate(225deg);
     }
     .checkbox:checked ~ .icon-burger::after {
-      transform: translateY(-0.4rem) rotate(-225deg);
+      transform: translateY(-5px) rotate(-225deg);
     }
+  }
+
+  /* End of styles for header */
+
+  /* Other styles */
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+
+  body {
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  main {
+    padding: 2em 2em;
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    background-color: ghostwhite;
+  }
+
+  p {
+    max-width: 60ch;
+  }
+
+  section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  footer {
+    padding: 2em 1em;
+    color: white;
+    display: grid;
+    place-items: center;
+    gap: 1rem;
+    background-color: darkslategrey;
   }
 `;
