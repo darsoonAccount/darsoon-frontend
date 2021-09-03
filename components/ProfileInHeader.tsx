@@ -43,7 +43,7 @@ const ProfileInHeader = () => {
       {loggedInUser ? (
         <>
           <div>
-            <p>Hi, {loggedInUser.firstname}</p>
+            <p className='greeting'>Hi, {loggedInUser.firstname}</p>
           </div>
           <button className="button profile-button" onClick={showProfileMenu}>
             <img className="profile-picture" src="avatar.png" alt="Profile Picture" width="40px"></img>
@@ -54,15 +54,15 @@ const ProfileInHeader = () => {
               <Link href="/admin-dashboard">Admin Dashboard</Link>
               <Link href="/payer-dashboard">Payer Dashboard</Link>
               <Link href="/student-dashboard">Student Dashboard</Link>
-              <button className='log-out-button' onClick={handleLogOut}>
+              <button className="log-out-button" onClick={handleLogOut}>
                 Log Out
               </button>
             </div>
           )}
         </>
       ) : (
-        <Link className="login" href="/login">
-          Login
+        <Link href="/login">
+          <a className="login">Login</a>
         </Link>
       )}
     </Div>
@@ -78,6 +78,10 @@ display: flex;
 justify-content: flex-end;
 align-items: center;
 gap: 1rem;
+
+.greeting {
+  font-weight: 700;
+}
 
 
 
@@ -136,6 +140,7 @@ gap: 1rem;
 
 .login {
   color: white;
+  padding: 0;
 }
 
 `;
