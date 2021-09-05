@@ -16,7 +16,7 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
 
   useEffect(() => {
     api
-      .get("/api/topics")
+      .get("/api/topic")
       .then((res) => {
 
         setTopics(res.data.data);
@@ -27,7 +27,7 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
   }, []);
 
   return (
-    <Form url="/api/teacherApplications/add" method="POST" handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={isTwoColumns}>
+    <Form url="/api/teacherApplication/add" method="POST" handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={isTwoColumns}>
       <p>اطلاعات کاربری</p>
       <TextInput name="firstnameFa" label="firstnameFa" placeholder="نام" />
       <TextInput name="lastnameFa" label="lastnameFa" placeholder="نام خانوادگی" />

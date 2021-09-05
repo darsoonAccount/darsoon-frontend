@@ -72,7 +72,7 @@ const AdminDahshProvider = (props) => {
 
   useEffect(() => {
     api
-      .get("http://localhost:8000/api/j/teacherApplications")
+      .get("http://localhost:8000/api/j/teacherApplication")
       .then((res) => {
         adminDashDispatch({ type: ADMIN_DASH_ACTIONS.SET_TEACHER_APPLICATIONS, payload: res.data.data });
       })

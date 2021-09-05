@@ -11,7 +11,7 @@ export default function ClassesPage() {
 
   useEffect(() => {
     api
-      .get("/api/products")
+      .get("/api/product")
       .then((res) => setClasses(res.data.data))
       .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);

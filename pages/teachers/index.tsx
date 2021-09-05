@@ -13,7 +13,7 @@ export default function teachers() {
 
   useEffect(() => {
     api
-      .get("api/p/teachers")
+      .get("api/p/teacher")
       .then((res) => setTeachers(res.data.data))
       .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);

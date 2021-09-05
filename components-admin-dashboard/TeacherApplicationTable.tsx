@@ -40,7 +40,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
 
     const id = teacherApplication.teacherApplicationId;
     api
-      .patch(`/api/teacherApplications/${id}/update`, body)
+      .patch(`/api/teacherApplication/${id}/update`, body)
       .then(() => {
         //if successfull => update state
         adminDashDispatch({
@@ -70,7 +70,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
       };
       delete teacherApplicationBody.applicantUser;
 
-      const res = await api.patch(`/api/teacherApplications/${id}/update`, teacherApplicationBody);
+      const res = await api.patch(`/api/teacherApplication/${id}/update`, teacherApplicationBody);
 
       notify("Application status in database changed to accepted", "success");
       //if successfull => update state
@@ -94,7 +94,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
       };
 
       //create a teacher profile for applicant user
-      const res2 = await api.post("/api/teachers/add", teacherBody);
+      const res2 = await api.post("/api/teacher/add", teacherBody);
       const newlyAddedTeacher = res2.data.data;
       notify("Teacher created in db.", "success");
       // get the teacher by username:
@@ -110,7 +110,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
       };
 
       //add the expertise for the teacher
-      const json2 = await api.post("/api/expertises/add", expertiseBody);
+      const json2 = await api.post("/api/expertise/add", expertiseBody);
       const newlyAddedExpertise = json2.data.data;
       notify("Expertise is created in db.", "success");
       console.log('nn', newlyAddedExpertise);
@@ -133,7 +133,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
         numberOfSessions: Number(editedTeacherApplication.productNumebrOfSessions),
       };
       //create products  (1 ,5 ,12 ,20 products) for the teacher
-      const json3 = await api.post("/api/products/add", productBody);
+      const json3 = await api.post("/api/product/add", productBody);
       const newlyAddedProduct = json3.data;
       notify("Product is created in db.", "success");
     } catch (error) {

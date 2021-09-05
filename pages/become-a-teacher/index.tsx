@@ -23,7 +23,7 @@ export default function BecomeATeacherPage() {
       setIsLoading(true);
       const userId = loggedInUser.userId;
       api
-        .get(`api/j/teacherApplications?applicantUserId=${userId}`)
+        .get(`api/j/teacherApplication?applicantUserId=${userId}`)
         .then((res) => {
           console.log("here res", res);
           setPreviousApplications(res.data.data);

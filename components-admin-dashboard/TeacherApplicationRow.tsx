@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 export default function TeacherApplicationRow({ teacherApplication }: any) {
   const { teacherApplicationId, status, applicantUser } = teacherApplication;
+  console.log(teacherApplication);
+  
 
   return (
     <Div>

@@ -13,7 +13,7 @@ export default function ClassPage() {
 
   useEffect(() => {
     api
-      .get(`/api/classes/${classId}`)
+      .get(`/api/class/${classId}`)
       .then((res) => setClassData(res.data.data))
       .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);

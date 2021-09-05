@@ -72,28 +72,28 @@ const AuthProvider = ({ children }) => {
     };
 
     api
-      .get(`/api/p/payers/${user.username}`)
+      .get(`/api/p/payer/${user.username}`)
       .then((res) => {
         setloggedInUserPayerProfie(res.data.data);
       })
       .catch(handleErrors);
 
     api
-      .get(`/api/p/students/${user.username}`)
+      .get(`/api/p/student/${user.username}`)
       .then((res) => {
         setloggedInUserStudentProfie(res.data.data);
       })
       .catch(handleErrors);
 
     api
-      .get(`/api/p/teachers/${user.username}`)
+      .get(`/api/p/teacher/${user.username}`)
       .then((res) => {
         setloggedInUserTeacherProfie(res.data.data);
       })
       .catch(handleErrors);
 
     api
-      .get(`/api/p/admins/${user.username}`)
+      .get(`/api/p/admin/${user.username}`)
       .then((res) => {
         setloggedInUserAdminProfie(res.data.data);
       })

@@ -21,7 +21,7 @@ export default TeachersPage;
 TeachersPage.Layout = AdminDashLayout;
 
 export const getServerSideProps = async () => {
-  const res = await fetch("http://localhost:8000/api/p/teachers");
+  const res = await fetch("http://localhost:8000/api/p/teacher");
   const json = await res.json();
   const teachers = json.data;
 

@@ -37,7 +37,7 @@ export default function TeacherApplicationPage({ teacherApplication }) {
 
 export async function getServerSideProps(context) {
   const { teacherApplicationId } = context.params;
-  const req = await fetch(`http://localhost:8000/api/j/teacherApplications/${teacherApplicationId}`);
+  const req = await fetch(`http://localhost:8000/api/j/teacherApplication/${teacherApplicationId}`);
   const json = await req.json();
 
   return {
