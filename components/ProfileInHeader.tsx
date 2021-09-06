@@ -4,6 +4,7 @@ import { AppContext, useNotif } from "../contexts/AppProvider";
 import { themeVars } from "./GlobalStyles";
 import { useAuth } from "../contexts/AuthProvider";
 import Link from "next/link";
+import Img from "./Img";
 
 const ProfileInHeader = () => {
   const { loggedInUser, logOut } = useAuth();
@@ -43,10 +44,10 @@ const ProfileInHeader = () => {
       {loggedInUser ? (
         <>
           <div>
-            <p className='greeting'>Hi, {loggedInUser.firstname}</p>
+            <p className="greeting">Hi, {loggedInUser.firstname}</p>
           </div>
           <button className="button profile-button" onClick={showProfileMenu}>
-            <img className="profile-picture" src="avatar.png" alt="Profile Picture" width="40px"></img>
+            <Img className="avatar" src="/avatar.png" alt="Profile Picture" />
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
@@ -93,15 +94,12 @@ gap: 1rem;
   align-items:center;
 }
 
-.profile-picture {
-  border-radius: 100px;
-  border: 3px solid white;
-  box-shadow: ${themeVars.boxShadow};
-  font-size: 7px;
+.avatar {
+  outline: 3px solid white;
+  width: 35px; 
   aspect-ratio: 1/1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  border-radius: 100px;
+  box-shadow: ${themeVars.boxShadow};
 }
 
 .profile-menu {
