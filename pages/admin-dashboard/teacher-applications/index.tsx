@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useContext } from "react";
 import styled from "styled-components";
-import TeacherApplicationsPanel from "../../../components-admin-dashboard/TeacherApplicationsPanel";
 import { AdminDashContext, ADMIN_DASH_ACTIONS } from "../../../contexts/AdminDashContext";
 import AdminDashLayout from "../../../layouts/adminDashLayout";
 import TeacherApplicationRow from "../../../components-admin-dashboard/TeacherApplicationRow";
 
-export default function teacehrApplications() {
+export default function TeacehrApplications() {
   const { adminDashDispatch, adminDashState } = useContext(AdminDashContext);
 
 
@@ -25,7 +24,7 @@ export default function teacehrApplications() {
   );
 }
 
-teacehrApplications.Layout = AdminDashLayout;
+TeacehrApplications.Layout = AdminDashLayout;
 
 const Div = styled.div`
   padding: 1.5rem;

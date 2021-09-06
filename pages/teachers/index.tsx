@@ -3,10 +3,9 @@ import styled from "styled-components";
 import Loading from "../../components/Loading";
 import { useApi } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
-import AddTeacherModal from "./AddTeacherModal";
-import TeacherCard from "./TeacherCard";
+import TeacherCard from "../../components/TeacherCard";
 
-export default function teachers() {
+export default function Teachers() {
   const [teachers, setTeachers] = useState(null);
 
   const { api } = useApi();
