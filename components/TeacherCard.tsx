@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import Img from "./Img";
 export default function TeacherCard({ teacher }) {
   const { username, firstname, lastname } = teacher;
   console.log("techer", teacher);
@@ -8,7 +9,7 @@ export default function TeacherCard({ teacher }) {
     <Div>
       <Link href={`/teachers/${username}`}>
         <a className="link-wrapper">
-          <img className="avatar" alt="teacher-profile" src="/avatar.png"></img>
+          <Img className="avatar" alt="teacher-profile" src="/avatar.png" />
           <p className="bold">
             {firstname} {lastname}
           </p>
@@ -39,6 +40,7 @@ const Div = styled.div`
   .avatar {
     background: none;
     max-width: 60%;
+    width: 10rem;
     border-radius: 30rem;
   }
 `;
