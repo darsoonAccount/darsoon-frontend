@@ -18,7 +18,6 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
     api
       .get("/api/topic")
       .then((res) => {
-
         setTopics(res.data.data);
       })
       .catch((err) => {
@@ -68,7 +67,7 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
       <TextArea name="onlineTeachingExperience" label="onlineTeachingExperience" placeholder="تجربه تدریس آنلاین (دو سال تدریس آنلاین به حدود 20 شاگرد)" />
       <TextArea name="abroadTeachingExperience" label="onlineTeachingExperience" placeholder="تجربه تدریس به ایرانیان خارج از کش ور (مثلا شش ماه تدریس گیتار به سه بچه دوزبانه در کانادا)" />
       <TextArea name="applicantNotes" label="applicantNotes" placeholder="هر مطلب دیگری که دانستن آن برای ما مفید است" />
-      <TextInput name="applicantUserId" label="applicantUserId" placeholder="applicantUserId" defaultValue={loggedInUser.userId} isHidden={true} />
+      <TextInput name="applicantUserId" label="applicantUserId" placeholder="applicantUserId" defaultValue={loggedInUser?.userId} isHidden={true} />
     </Form>
   );
 }
