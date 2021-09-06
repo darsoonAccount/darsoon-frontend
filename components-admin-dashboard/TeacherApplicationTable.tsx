@@ -5,13 +5,13 @@ import { useState } from "react";
 import { themeVars } from "../components/GlobalStyles";
 import { AdminDashContext, ADMIN_DASH_ACTIONS } from "../contexts/AdminDashContext";
 import Tr from "./Tr";
-import { useAuth } from "../contexts/AuthProvider";
+import { AuthContext, useAuth } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useApi, useNotif } from "../contexts/AppProvider";
 
-export default function TeacherApplicationTable({ teacherApplication }) {
+export default function TeacherApplicationTable({ teacherApplication }: any) {
   const { appliccantUser } = teacherApplication;
-  const { loggedInUserAdminProfie } = useAuth();
+  const { loggedInUserAdminProfile } = useContext(AuthContext);
   const { api } = useApi();
   const router = useRouter();
   const { notify } = useNotif();
@@ -33,7 +33,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
   const handleReject = () => {
     //prepare updates for rejected applications. (only fields that are supposed to be changed in body)
     const body = {
-      reviewerAdminId: loggedInUserAdminProfie.adminId,
+      reviewerAdminId: loggedInUserAdminProfile.adminId,
       reviewerComment: editedTeacherApplication?.reviewerComment,
       status: "rejected",
     };
@@ -45,7 +45,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
         //if successfull => update state
         adminDashDispatch({
           type: ADMIN_DASH_ACTIONS.REJECT_TEACHER_APPLICATION,
-          payload: { ...teacherApplication, reviewerAdminId: loggedInUserAdminProfie.adminId, status: "rejected" },
+          payload: { ...teacherApplication, reviewerAdminId: loggedInUserAdminProfile.adminId, status: "rejected" },
         });
         // router.reload();
       })
@@ -64,7 +64,7 @@ export default function TeacherApplicationTable({ teacherApplication }) {
         ...editedTeacherApplication,
         pricePerSession: Number(editedTeacherApplication.pricePerSession),
         sessionDuration: Number(editedTeacherApplication.sessionDuration),
-        reviewerAdminId: loggedInUserAdminProfie.adminId,
+        reviewerAdminId: loggedInUserAdminProfile.adminId,
         reviewerComment: editedTeacherApplication?.reviewerComment,
         status: "accepted",
       };
@@ -113,8 +113,8 @@ export default function TeacherApplicationTable({ teacherApplication }) {
       const json2 = await api.post("/api/expertise/add", expertiseBody);
       const newlyAddedExpertise = json2.data.data;
       notify("Expertise is created in db.", "success");
-      console.log('nn', newlyAddedExpertise);
-      
+      console.log("nn", newlyAddedExpertise);
+
       //prepare product object
 
       const productBody = {
