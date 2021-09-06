@@ -1,8 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import Img from "../../../components/Img";
 import { useApi } from "../../../contexts/AppProvider";
-export default function teacherPage({}) {
+export default function TeacherPage({}) {
   const router = useRouter();
   const { username } = router.query;
 
@@ -23,7 +24,7 @@ export default function teacherPage({}) {
     <Div>
       {teacher && (
         <>
-          <img className="avatar" alt="teacher-profile" src="/avatar.png" />
+          <Img className="avatar" alt="teacher-profile" src="/avatar.png" />
           <h1>
             {teacher.firstname} {teacher.lastname}
           </h1>
