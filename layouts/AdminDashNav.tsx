@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FaChalkboardTeacher from "react-icons/fa";
-import FiEdit from "react-icons/Fi";
+import FiEdit from "react-icons/fi";
 import MdPayment from "react-icons/md";
 import Link from "next/link";
 import { themeVars } from "../components/GlobalStyles";
@@ -11,27 +11,19 @@ export default function AdminDashNav() {
     <Nav>
       <Link href="/admin-dashboard/teacher-applications">
         {/* <FaChalkboardTeacher /> */}
-        <a>
-        Teacher Applications
-        </a>
+        <a>Teacher Applications</a>
       </Link>
       <Link href="/admin-dashboard/teachers">
         {/* <FiEdit /> */}
-        <a>
-        Teachers
-        </a>
+        <a>Teachers</a>
       </Link>
       <Link href="/admin-dashboard/teacher-profile-changes">
         {/* <FiEdit /> */}
-        <a>
-        Teachers Profile Changes
-        </a>
+        <a>Teachers Profile Changes</a>
       </Link>
       <Link href="/admin-dashboard/payments">
         {/* <MdPayment /> */}
-        <a>
-        Payements
-        </a>
+        <a>Payements</a>
       </Link>
     </Nav>
   );
