@@ -30,7 +30,8 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
     const formData = {};
     const formElement = event.target;
     const formInputs = Array.from(formElement.querySelectorAll("input, textarea"));
-    formInputs.forEach((inputElement) => {
+    type inputOrTextAreaHTMLElement = HTMLInputElement | HTMLTextAreaElement;
+    formInputs.forEach((inputElement: inputOrTextAreaHTMLElement) => {
       if (inputElement.type === "number") {
         formData[inputElement.name] = Number(inputElement.value);
       } else {
