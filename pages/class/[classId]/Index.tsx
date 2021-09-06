@@ -18,7 +18,7 @@ export default function ClassPage() {
       .catch((error) => console.log("Error Request!!!", error.request, "Error Response!!!", error.response));
   }, []);
 
-  return <Div>'I'm a placeholder'</Div>;
+  return <Div>I&apos;m a placeholder</Div>;
 }
 const Div = styled.div`
   padding: 1.5rem;
