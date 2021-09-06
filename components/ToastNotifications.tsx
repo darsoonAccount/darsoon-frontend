@@ -11,8 +11,8 @@ export default function ToastNotifications() {
     <Div>
       {notifs &&
         notifs.length > 0 &&
-        notifs.map((notif) => {
-          return <ToastNotification message={notif.message} type={notif.type} />;
+        notifs.map((notif, index) => {
+          return <ToastNotification key={`toastNotification-${index}`} message={notif.message} type={notif.type} />;
         })}
     </Div>
   );
