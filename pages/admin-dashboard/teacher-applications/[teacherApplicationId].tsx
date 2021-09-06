@@ -19,7 +19,7 @@ export default function TeacherApplicationPage({ teacherApplication }) {
   return (
     <Div>
       <h2>Teacher Application</h2>
-      <div className='table-panel'>
+      <div className="table-panel">
         <Table>
           <Tr name="Teacher Application Id" defaultValue={teacherApplication.teacherApplicationId} />
           <Tr name="Applicant firstname" defaultValue={applicantUser.lastname} />
@@ -37,7 +37,7 @@ export default function TeacherApplicationPage({ teacherApplication }) {
 
 export async function getServerSideProps(context) {
   const { teacherApplicationId } = context.params;
-  const req = await fetch(`http://localhost:8000/api/j/teacherApplication/${teacherApplicationId}`);
+  const req = await fetch(`https://darsoon.uc.r.appspot.com/api/j/teacherApplication/${teacherApplicationId}`);
   const json = await req.json();
 
   return {
@@ -57,7 +57,6 @@ const Div = styled.div`
   gap: 2rem;
 
   .table-panel {
-
     overflow: hidden;
     border-radius: 1.5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
