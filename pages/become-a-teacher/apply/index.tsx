@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import ApplicationForm from "../../components-teacher-applicant/ApplicationForm";
-import ApplicationSubmittedBox from "../../components-teacher-applicant/ApplicationSubmittedBox";
+import ApplicationForm from "../../../components-teacher-applicant/ApplicationForm";
+import ApplicationSubmittedBox from "../../../components-teacher-applicant/ApplicationSubmittedBox";
 
-export default function ApplyPage({ myProps }) {
+export default function ApplyPage() {
   const [isSubmitedSuccefully, setIsSubmitedSuccefully] = useState(false);
 
   const handleDataAfterSuccess = (data) => {
