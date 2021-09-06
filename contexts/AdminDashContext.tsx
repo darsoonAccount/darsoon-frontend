@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useApi, useNotif } from "./AppProvider";
 import { useAuth } from "./AuthProvider";
 
-export const AdminDashContext = createContext(null);
+export const AdminDashContext = createContext<any | null>(null);
 
 export const ADMIN_DASH_ACTIONS = {
   EDIT_TEACHER_APPLICATION: "editTeacherApplication",
@@ -15,7 +15,7 @@ export const ADMIN_DASH_ACTIONS = {
 
 const adminDashReducer = (state, action) => {
   const { api } = useApi();
-  const {notify} = useNotif();
+  const { notify } = useNotif();
 
   switch (action.type) {
     case ADMIN_DASH_ACTIONS.SET_STATE:
@@ -34,7 +34,7 @@ const adminDashReducer = (state, action) => {
       return {
         ...state,
         teacherApplications: state.teacherApplications.map((application) => {
-          if (item.teacherApplicationId === rejectedApplicaitonId) {
+          if (application.teacherApplicationId === rejectedApplicaitonId) {
             return rejectedApplication;
           }
           return application;
