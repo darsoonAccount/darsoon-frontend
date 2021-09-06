@@ -35,7 +35,7 @@ export default function BecomeATeacherPage() {
           setIsLoading(false);
         });
     }
-  }, [loggedInUser]);
+  }, [loggedInUser, api]);
 
   return (
     <Page>
@@ -54,12 +54,12 @@ export default function BecomeATeacherPage() {
               <>
                 {previousApplications && previousApplications.length > 0 ? (
                   <Rows>
-                    {previousApplications.map((app) => {
+                    {previousApplications.map((application, index) => {
                       return (
-                        <Row>
-                          <p>firstname: {app.firstname}</p>
-                          <p>lastname: {app.lastname}</p>
-                          <p>status: {app.status}</p>
+                        <Row key={`previousTeacherApplication-${index}`}>
+                          <p>firstname: {application.firstname}</p>
+                          <p>lastname: {application.lastname}</p>
+                          <p>status: {application.status}</p>
                         </Row>
                       );
                     })}
@@ -70,7 +70,7 @@ export default function BecomeATeacherPage() {
               </>
             )}
           </Panel>
-            <Link href="/become-a-teacher">
+            <Link href="/become-a-teacher/apply">
               <a className="primary-button">ایجاد درخواست جدید</a>
             </Link>
         </>
