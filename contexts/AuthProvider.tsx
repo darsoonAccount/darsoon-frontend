@@ -3,7 +3,7 @@ import { useContext } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-export const AuthContext = createContext(null);
+export const AuthContext = createContext<any | null>(null);
 
 export const useAuth = () => {
   return useContext(AuthContext);
@@ -13,10 +13,10 @@ const AuthProvider = ({ children }) => {
   const router = useRouter();
 
   const [loggedInUser, setloggedInUser] = useState(null);
-  const [loggedInUserPayerProfie, setloggedInUserPayerProfie] = useState(null);
-  const [loggedInUserStudentProfie, setloggedInUserStudentProfie] = useState(null);
-  const [loggedInUserTeacherProfie, setloggedInUserTeacherProfie] = useState(null);
-  const [loggedInUserAdminProfie, setloggedInUserAdminProfie] = useState(null);
+  const [loggedInUserPayerProfile, setloggedInUserPayerProfile] = useState(null);
+  const [loggedInUserStudentProfile, setloggedInUserStudentProfile] = useState(null);
+  const [loggedInUserTeacherProfile, setloggedInUserTeacherProfile] = useState(null);
+  const [loggedInUserAdminProfile, setloggedInUserAdminProfile] = useState(null);
   const [token, setToken] = useState(null);
   const [expiresIn, setExpiresIn] = useState(null);
 
@@ -28,10 +28,10 @@ const AuthProvider = ({ children }) => {
 
     //set profiles to null
 
-    setloggedInUserPayerProfie(null);
-    setloggedInUserStudentProfie(null);
-    setloggedInUserTeacherProfie(null);
-    setloggedInUserAdminProfie(null);
+    setloggedInUserPayerProfile(null);
+    setloggedInUserStudentProfile(null);
+    setloggedInUserTeacherProfile(null);
+    setloggedInUserAdminProfile(null);
 
     //set the user to null
 
@@ -74,28 +74,28 @@ const AuthProvider = ({ children }) => {
     api
       .get(`/api/p/payer/${user.username}`)
       .then((res) => {
-        setloggedInUserPayerProfie(res.data.data);
+        setloggedInUserPayerProfile(res.data.data);
       })
       .catch(handleErrors);
 
     api
       .get(`/api/p/student/${user.username}`)
       .then((res) => {
-        setloggedInUserStudentProfie(res.data.data);
+        setloggedInUserStudentProfile(res.data.data);
       })
       .catch(handleErrors);
 
     api
       .get(`/api/p/teacher/${user.username}`)
       .then((res) => {
-        setloggedInUserTeacherProfie(res.data.data);
+        setloggedInUserTeacherProfile(res.data.data);
       })
       .catch(handleErrors);
 
     api
       .get(`/api/p/admin/${user.username}`)
       .then((res) => {
-        setloggedInUserAdminProfie(res.data.data);
+        setloggedInUserAdminProfile(res.data.data);
       })
       .catch(handleErrors);
   };
@@ -120,10 +120,10 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         loggedInUser,
-        loggedInUserPayerProfie,
-        loggedInUserStudentProfie,
-        loggedInUserTeacherProfie,
-        loggedInUserAdminProfie,
+        loggedInUserPayerProfile,
+        loggedInUserStudentProfile,
+        loggedInUserTeacherProfile,
+        loggedInUserAdminProfile,
         token,
         expiresIn,
         login,
