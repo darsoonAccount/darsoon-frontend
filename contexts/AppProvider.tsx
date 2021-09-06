@@ -3,7 +3,7 @@ import { useAuth } from "./AuthProvider";
 import axios from "axios";
 import { useEffect } from "react";
 
-export const AppContext = createContext(null);
+export const AppContext = createContext<any | null>(null);
 
 export const useApi = () => {
   return useContext(AppContext);
