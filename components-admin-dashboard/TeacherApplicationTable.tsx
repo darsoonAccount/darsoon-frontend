@@ -159,8 +159,8 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
         <Tr name="country" defaultValue={editedTeacherApplication.country} onChange={handleChange} />
         <Tr name="englishFluency" defaultValue={editedTeacherApplication.englishFluency} onChange={handleChange} />
         <Tr name="classesToTeach" defaultValue={editedTeacherApplication.classesToTeach} onChange={handleChange} />
-        <Tr name="sessionDuration" type="number" step="1" min="0" defaultValue={editedTeacherApplication.sessionDuration} onChange={handleChange} />
-        <Tr name="pricePerSession" type="number" step="0.01" min="0" defaultValue={editedTeacherApplication.pricePerSession} onChange={handleChange} />
+        <Tr name="sessionDuration" type="number" step="5" min="0" defaultValue={editedTeacherApplication.sessionDuration} onChange={handleChange} />
+        <Tr name="pricePerSession" type="number" step="1" min="0" defaultValue={editedTeacherApplication.pricePerSession} onChange={handleChange} />
         <Tr name="ageGroup" defaultValue={editedTeacherApplication.ageGroup} onChange={handleChange} />
         <Tr name="levelOfEducation" defaultValue={editedTeacherApplication.levelOfEducation} onChange={handleChange} />
         <Tr name="university" defaultValue={editedTeacherApplication.university} onChange={handleChange} />
