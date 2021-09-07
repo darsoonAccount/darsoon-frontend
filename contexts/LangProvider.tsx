@@ -7,7 +7,7 @@ export const useLang = () => {
 };
 
 const langProvider = ({ children }) => {
-  const [lang, setLang] = useState("en");
+  const [lang, setLang] = useState("fa");
   const { loggedInUser } = useAuth();
 
   const setLangToEnglish = () => {
@@ -30,11 +30,7 @@ const langProvider = ({ children }) => {
     }
   }, [loggedInUser?.browsinglanguage]);
 
-  return (
-    <LangContext.Provider value={{ lang, setLangToEnglish, setLangToPersian }}>
-      {children}
-    </LangContext.Provider>
-  );
+  return <LangContext.Provider value={{ lang, setLangToEnglish, setLangToPersian }}>{children}</LangContext.Provider>;
 };
 
 export default langProvider;
