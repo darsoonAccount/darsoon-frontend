@@ -45,7 +45,12 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
         handleDataAfterSuccess(res.data.data);
       })
       .catch((error) => {
-        notify(error.message, "error");
+        if (error.response.data) {
+          notify(error.response.data.message, "error");
+        } else {
+          notify(error.message, "error");
+          console.log("Login Error:", error);
+        }
       });
     setIsLoading(false);
   };
