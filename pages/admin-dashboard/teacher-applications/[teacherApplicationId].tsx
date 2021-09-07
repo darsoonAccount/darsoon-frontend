@@ -22,8 +22,8 @@ export default function TeacherApplicationPage({ teacherApplication }) {
       <div className="table-panel">
         <Table>
           <Tr name="Teacher Application Id" defaultValue={teacherApplication.teacherApplicationId} />
-          <Tr name="Applicant firstname" defaultValue={applicantUser.lastname} />
-          <Tr name="Applicant lastame" defaultValue={applicantUser.firsname} />
+          <Tr name="Applicant firstname" defaultValue={applicantUser.firstname} />
+          <Tr name="Applicant lastame" defaultValue={applicantUser.lastname} />
           <Tr name="Application Status" defaultValue={teacherApplication.status} />
           <Tr name="Admin Reviewed" defaultValue={teacherApplication.adminReviewrId} />
           <Tr name="Admin Comments" defaultValue={teacherApplication.teacherApplicationId} />
