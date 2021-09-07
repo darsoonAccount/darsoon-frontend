@@ -71,8 +71,8 @@ const ProfileInHeader = () => {
 };
 
 export default ProfileInHeader;
-
 const Div = Styled.div`
+font-size: 1.3rem;
 position: relative;
 color: white;
 display: flex;
