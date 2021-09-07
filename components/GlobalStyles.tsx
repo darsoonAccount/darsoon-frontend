@@ -34,7 +34,7 @@ export default createGlobalStyle`
   }
 
   html {
-    /* direction: ltr; */
+    direction: ltr;
   }
   
   html, body {
