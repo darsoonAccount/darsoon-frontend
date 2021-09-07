@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import Styled from "styled-components";
-import { AppContext, useApi, useNotif } from "../contexts/AppProvider";
-import { useAuth } from "../contexts/AuthProvider";
+import { useApi, useNotif } from "../contexts/AppProvider";
 import { themeVars } from "./GlobalStyles";
 import Loading from "./Loading";
 
 interface Iprops {
   children?: any;
   url: string;
-  method: string;
-  buttonText?: string;
   handleDataAfterSuccess?: (data: any) => void;
   isTwoColumns?: boolean;
 }
 
-export default function Form({ children, url, method, buttonText, handleDataAfterSuccess, isTwoColumns }: Iprops) {
+export default function Form({ children, url, handleDataAfterSuccess, isTwoColumns }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const { api } = useApi();
@@ -61,9 +58,6 @@ export default function Form({ children, url, method, buttonText, handleDataAfte
         <div className="inputs">{children}</div>
         {isLoading && <Loading />}
         {message && <p className="message">{message}</p>}
-        <button className="button" type="submit">
-          {buttonText ?? "Submit"}
-        </button>
       </StyledFrom>
     </>
   );
