@@ -1,9 +1,35 @@
 import React from "react";
 import Styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { useLang } from "../../contexts/LangProvider";
+import { themeVars } from "../layout/GlobalStyles";
 
-const TextInput = (props) => {
-  const { name, label, placeholder, isHidden } = props;
+interface Iprops {
+  name: string;
+  labelEn: string;
+  isHidden?: boolean;
+  labelFa: string;
+  placeholderEn?: string;
+  placeholderFa?: string;
+  [key: string]: any;
+}
+
+const TextInput = (props: Iprops) => {
+  const { name, labelEn, labelFa, placeholderEn, placeholderFa, isHidden, required } = props;
+  const { lang } = useLang();
+
+  let placeholder = placeholderFa;
+  let label = labelFa;
+  if (lang === "en") {
+    placeholder = placeholderEn;
+    label = labelEn;
+  }
+
+  if (required) {
+    label = label + " *";
+    if (placeholder) {
+      placeholder = placeholder + " *";
+    }
+  }
 
   return (
     <Div className={isHidden && "hidden"}>
@@ -30,15 +56,15 @@ const Div = Styled.div`
   flex-direction: column;
   /* overflow: hidden; */
   
-
-
-.input	{
+  
+  
+  .input	{
+  border-radius: 0.5rem;
   font-size: 1.2em;
   padding: 1rem;
   display:block;
   border: none;
   outline: 2px solid lightgray;
-  border-radius: 0.5rem;
   background: ghostwhite;
   overflow: hidden;
 }
