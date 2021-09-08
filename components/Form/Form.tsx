@@ -11,10 +11,11 @@ interface Iprops {
   children?: any;
   url: string;
   handleDataAfterSuccess?: (data: any) => void;
+  handleFail?: (error: any) => void;
   isTwoColumns?: boolean;
 }
 
-export default function Form({ children, url, handleDataAfterSuccess, isTwoColumns }: Iprops) {
+export default function Form({ children, url, handleDataAfterSuccess, handleFail, isTwoColumns }: Iprops) {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState(null);
   const { api } = useApi();
@@ -50,13 +51,14 @@ export default function Form({ children, url, handleDataAfterSuccess, isTwoColum
         handleDataAfterSuccess(res.data.data);
       })
       .catch((error) => {
-        if (error.response.data) {
-          console.log("EE", error.response.data);
-
-          notify({ en: error.response.data.message, fa: error.response.data.message, type: "error" });
+        if (handleFail) {
+          handleFail(error);
         } else {
-          notify({en: error.message, fa: error.message, type: "error"});
-          console.log("Login Error:", error);
+          if (error.response.data) {
+            notify({ en: error.response.data.message, fa: error.response.data.messageFa, type: "error" });
+          } else {
+            notify({ en: error.message, fa: error.message, type: "error" });
+          }
         }
       });
     setIsLoading(false);
