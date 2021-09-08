@@ -1,18 +1,14 @@
 import React, { useContext, useState } from "react";
 import LoginBox from "../../components/LoginBox";
 import styled from "styled-components";
+import PageWrapper from "../../components/layout/PageWrapper";
 
 const LoginPage = () => {
   return (
-    <Div>
+    <PageWrapper>
       <LoginBox />
-    </Div>
+    </PageWrapper>
   );
 };
 export default LoginPage;
 
-const Div = styled.div`
-
-display:grid;
-place-items: center;
-`
