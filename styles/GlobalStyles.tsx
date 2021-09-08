@@ -17,6 +17,50 @@ export const themeVars = {
 };
 
 export default createGlobalStyle`
+// Define local fonts ********************
+
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../public/fonts/woff2/IRANSansWeb_Black.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: bold;
+	src: url('../public/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+		 
+		 
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../public/fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../public/fonts/woff2/IRANSansWeb_Light.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: 200;
+	src: url('../public/fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+}
+@font-face {
+	font-family: IRANSans;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../public/fonts/eot/IRANSansWeb.eot');
+	src: url('../public/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
+		 url('../public/fonts/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
+		 url('../public/fonts/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
+		 url('../public/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+}
 
 
 
