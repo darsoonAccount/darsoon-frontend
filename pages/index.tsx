@@ -37,7 +37,7 @@ export default function Home() {
           <Link href="/become-a-teacher">
             <a className="center-item">
               <En>Join us as a teacher</En>
-              <Fa>در معلم‌های درسون بپیوندید!</Fa>
+              <Fa>به معلم‌های درسون بپیوندید!</Fa>
             </a>
           </Link>
         </p>
