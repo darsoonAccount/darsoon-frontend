@@ -14,7 +14,7 @@ interface Iprops {
 }
 
 const TextInput = (props: Iprops) => {
-  const { name, labelEn, labelFa, placeholderEn, placeholderFa, isHidden, required } = props;
+  const { name, labelEn, labelFa, placeholderEn, placeholderFa, isHidden, required, ...otherProps } = props;
   const { lang } = useLang();
 
   let placeholder = placeholderFa;
@@ -36,11 +36,11 @@ const TextInput = (props: Iprops) => {
       <input
         className="input"
         type="text"
-        {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
-        name={name || label.toLowerCase()}
+        {...otherProps} // this line should be after type='text' becasue in some cases props overwrite type attribute
+        name={name}
         placeholder={placeholder ? placeholder : label}
       />
-      <label className="label" htmlFor={label.toLowerCase()}>
+      <label className="label" htmlFor={name}>
         {placeholder ? placeholder : label}
       </label>
     </Div>
@@ -63,14 +63,16 @@ const Div = Styled.div`
   font-size: 1.2em;
   padding: 1rem;
   display:block;
-  border: none;
-  outline: 2px solid lightgray;
+  /* border: none; */
+  border: 2px solid ${themeVars.lightGray};
   background: ghostwhite;
   overflow: hidden;
 }
 
-.input:focus { outline: 2px solid ${themeVars.primaryColor}; }
-
+.input:focus { 
+  border: none;
+  outline: 2px solid ${themeVars.primaryColor}; 
+}
 .input::placeholder {
   color: transparent;
 }
@@ -81,7 +83,7 @@ label {
   line-height: 1.2;
   text-align: start;
   pointer-events: none;
-  color:#999; 
+  color: ${themeVars.lightGray}; 
   font-size:1.2em;
   position:absolute;
   inset-inline-start: 1rem;

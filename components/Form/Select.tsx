@@ -1,21 +1,48 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Styled from "styled-components";
+import { useLang } from "../../contexts/LangProvider";
 import { themeVars } from "../../styles/GlobalStyles";
 
+interface Iprops {
+  name: string;
+  labelEn: string;
+  isHidden?: boolean;
+  labelFa: string;
+  placeholderEn?: string;
+  placeholderFa?: string;
+  children: any;
+  [key: string]: any;
+}
+
 const Select = (props) => {
-  const { label, name, placeholder, children } = props;
+  const { name, labelEn, labelFa, placeholderEn, placeholderFa, isHidden, required, children, ...otherProps } = props;
+  const { lang } = useLang();
+  let placeholder = placeholderFa;
+  let label = labelFa;
+
+  if (lang === "en") {
+    placeholder = placeholderEn;
+    label = labelEn;
+  }
+
+  if (required) {
+    label = label + " *";
+    if (placeholder) {
+      placeholder = placeholder + " *";
+    }
+  }
   return (
     <Div>
       <select
         className="input"
         type="text"
-        {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
-        name={name || label.toLowerCase()}
+        {...otherProps} // this line should be after type='text' becasue in some cases props overwrite type attribute
+        name={name}
         placeholder={placeholder ? placeholder : label}
       >
         {children}
       </select>
-      <label className="label" htmlFor={label.toLowerCase()}>
+      <label className="label" htmlFor={name}>
         {placeholder ? placeholder : label}
       </label>
     </Div>
@@ -36,14 +63,16 @@ const Div = Styled.div`
   font-size: 1.2em;
   padding: 1rem;
   display:block;
-  border: none;
-  outline: 2px solid ${themeVars.lightGray};
+  border: 2px solid ${themeVars.lightGray};
   border-radius: 0.5rem;
   background: ghostwhite;
   overflow: hidden;
 }
 
-.input:focus { outline: 2px solid ${themeVars.primaryColor}; }
+.input:focus { 
+  border: none;
+  outline: 2px solid ${themeVars.primaryColor}; 
+}
 
 .input::placeholder {
   color: transparent;
@@ -55,7 +84,7 @@ label {
     line-height: 1.4;
   text-align: start;
   pointer-events: none;
-  color:#999; 
+  color: ${themeVars.lightGray}; 
   font-size:1.2em;
   position:absolute;
   inset-inline-start: 1rem;
