@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ApplicationForm from "../../../components-teacher-applicant/ApplicationForm";
 import ApplicationSubmittedBox from "../../../components-teacher-applicant/ApplicationSubmittedBox";
+import En from "../../../components/translation/En";
+import Fa from "../../../components/translation/Fa";
 
 export default function ApplyPage() {
   const [isSubmitedSuccefully, setIsSubmitedSuccefully] = useState(false);
@@ -18,7 +20,10 @@ export default function ApplyPage() {
         </>
       ) : (
         <>
-          <p>لطفا فرم زیر را پر نمایید</p>
+          <p>
+            <En>Please fill out the form bellow.</En>
+            <Fa>لطفا فرم زیر را پر نمایید</Fa>
+          </p>
           <ApplicationForm handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={true} />
         </>
       )}

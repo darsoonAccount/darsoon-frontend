@@ -2,6 +2,9 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import styled from "styled-components";
+import TT from "../components/translation/TT";
+import Fa from "../components/translation/Fa";
+import En from "../components/translation/En";
 
 export default function Home() {
   return (
@@ -15,12 +18,21 @@ export default function Home() {
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;700;900&display=swap" rel="stylesheet"></link>
       </Head>
       <Div>
-        <h1>Welcome to the new Darsoon Website.</h1>
-        <p className="center-text">Corrently under development.</p>
+        <h1>
+          <Fa>به وبسایت جدید درسون خوش آمدید.</Fa>
+          <En>Welcome to the Darsoon's new website.</En>
+        </h1>
+        <p className="center-text">
+          <Fa>در دست ساخت.</Fa> 
+          <En>Corrently under development.</En>
+        </p>
 
         <p>
           <Link href="/become-a-teacher">
-            <a className="center-item">Join us as a teacher</a>
+            <a className="center-item">
+              <En>Join us as a teacher</En>
+              <Fa>در معلم‌های درسون بپیوندید!</Fa>
+            </a>
           </Link>
         </p>
       </Div>
@@ -29,7 +41,9 @@ export default function Home() {
 }
 
 const Div = styled.div`
-  display: grid;
-  place-items: center;
-  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
 `;
