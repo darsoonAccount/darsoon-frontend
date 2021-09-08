@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import styled from "styled-components";
 import { FiX } from "react-icons/fi";
+import T from "../translation/T";
 
-export default function ToastNotification({ message, type }) {
+interface Iprops {
+  messageFa: string;
+  messageEn: string;
+  type?: string;
+}
+
+export default function ToastNotification({ messageFa, messageEn, type }: Iprops) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
@@ -14,7 +21,9 @@ export default function ToastNotification({ message, type }) {
 
   return (
     <Div className={isVisible ? `${type}` : `${type} hidden`}>
-      <p>{message}</p>
+      <p>
+        <T fa={messageFa} en={messageEn} />
+      </p>
       <button
         className="close-button"
         onClick={() => {
