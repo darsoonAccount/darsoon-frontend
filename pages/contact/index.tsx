@@ -1,10 +1,18 @@
 import React from "react";
 import styled from "styled-components";
+import En from "../../components/translation/En";
+import Fa from "../../components/translation/Fa";
 export default function contactPage() {
   return (
     <Page>
-      <h1>Contact Darsoon</h1>
-      <p>You can contact us from one of ways below</p>
+      <h1>
+        <En>Contact Darsoon</En>
+        <Fa>با درسون تماس بگیرید</Fa>
+      </h1>
+      <p>
+        <En>You can contact us from one of ways below</En>
+        <Fa>شما میتوانید از راه‌های زیر با درسون تماس بگیرید.</Fa>
+      </p>
     </Page>
   );
 }

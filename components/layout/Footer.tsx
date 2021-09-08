@@ -1,32 +1,73 @@
 import React from "react";
 import styled from "styled-components";
 import { themeVars } from "../../styles/GlobalStyles";
+import En from "../translation/En";
+import Fa from "../translation/Fa";
 
 const Footer = () => {
   return (
     <StyledFooter>
-      <h3 className="site-title">Darsoon</h3>
+      <h3 className="site-title">
+        <En>Darsoon</En>
+        <Fa>درسون</Fa>
+      </h3>
       <div className="links-in-footer">
         <div className="flex-column">
-          <h4>About Us</h4>
-          <p>Who we are</p>
-          <p>Our values</p>
+          <h4>
+            <En>About Us</En>
+            <Fa>درباره ما</Fa>
+          </h4>
+          <p>
+            <En>Who we are</En>
+            <Fa>ما که هستیم</Fa>
+          </p>
+          <p>
+            <En>Our values</En>
+            <Fa>ارزش‌های ما</Fa>
+          </p>
         </div>
         <div className="flex-column">
-          <h4>Contact Us</h4>
-          <p>Customer Care</p>
-          <p>Be an instructor</p>
+          <h4>
+            <En>Contact Us</En>
+            <Fa>ارتباط با ما</Fa>
+          </h4>
+          <p>
+            <En>Customer Care</En>
+            <Fa>پشتیبانی مشتریان</Fa>
+          </p>
+          <p>
+            <En>Become a teacher</En>
+            <Fa>معلم شوید</Fa>
+          </p>
         </div>
         <div className="flex-column">
-          <h4>Terms of Service</h4>
-          <p>Privacy Policy</p>
-          <p>Cookies</p>
+          <h4>
+            <En>Terms of Service</En>
+            <Fa>شرایط خدمات</Fa>
+          </h4>
+          <p>
+            <En>Privacy Policy</En>
+            <Fa>سیاست محرمانگی</Fa>
+          </p>
+          <p>
+            <En>Cookies</En>
+            <Fa>کوکی‌ها</Fa>
+          </p>
         </div>
 
         <div className="flex-column">
-          <h4>Social Media</h4>
-          <p>Instagram</p>
-          <p>Twitter</p>
+          <h4>
+            <En>Social Media</En>
+            <Fa>شبکه‌های اجتماعی</Fa>
+          </h4>
+          <p>
+            <En>Instagram</En>
+            <Fa>اینستاگرام</Fa>
+          </p>
+          <p>
+            <En>Twitter</En>
+            <Fa>توییتر</Fa>
+          </p>
         </div>
       </div>
     </StyledFooter>
@@ -79,7 +120,7 @@ const StyledFooter = styled.footer`
   .flex-column {
     h4 {
       padding: 0;
-      text-align: left;
+      text-align: start;
       margin-bottom: 0.5rem;
     }
     display: flex;
