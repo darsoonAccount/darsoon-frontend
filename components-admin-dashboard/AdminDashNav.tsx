@@ -4,7 +4,7 @@ import FaChalkboardTeacher from "react-icons/fa";
 import FiEdit from "react-icons/fi";
 import MdPayment from "react-icons/md";
 import Link from "next/link";
-import { themeVars } from "../components/layout/GlobalStyles";
+import { themeVars } from "../styles/GlobalStyles";
 import Fa from "../components/translation/Fa";
 import En from "../components/translation/En";
 

@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import { CgSpinner } from "react-icons/cg";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 
 const Loading = () => {
   return (

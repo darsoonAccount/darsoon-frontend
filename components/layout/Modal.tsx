@@ -1,5 +1,5 @@
 import Styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 
 const Modal = ({ isVisible, closeHandler, children }) => {
   return (

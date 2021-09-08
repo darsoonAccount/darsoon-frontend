@@ -5,7 +5,7 @@ import TextInput from "./Form/TextInput";
 import { AuthContext } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useNotif } from "../contexts/AppProvider";
-import { themeVars } from "./layout/GlobalStyles";
+import { themeVars } from "../styles/GlobalStyles";
 import T from "./translation/T";
 import En from "./translation/En";
 import Fa from "./translation/Fa";

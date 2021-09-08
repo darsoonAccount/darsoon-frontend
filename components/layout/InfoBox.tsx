@@ -1,7 +1,7 @@
 import React from "react";
 import { FiInfo } from "react-icons/fi";
 import styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 
 export default function InfoBox({ children }) {
   return (

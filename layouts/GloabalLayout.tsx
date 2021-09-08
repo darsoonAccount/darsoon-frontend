@@ -3,7 +3,7 @@ import Footer from "../components/layout/Footer";
 import styled from "styled-components";
 import RTLStyles from "../components/layout/RTLStyles";
 import { useLang } from "../contexts/LangProvider";
-import GlobalStyles from "../components/layout/GlobalStyles";
+import GlobalStyles from "../styles/GlobalStyles";
 import ToastNotification from "../components/layout/ToastNotification";
 import ToastNotifications from "../components/layout/ToastNotifications";
 

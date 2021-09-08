@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import Styled from "styled-components";
 import { useApi, useNotif } from "../../contexts/AppProvider";
-import { themeVars } from "../layout/GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 import Loading from "../layout/Loading";
 import En from "../translation/En";
 import Fa from "../translation/Fa";

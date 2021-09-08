@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { useLang } from "../../contexts/LangProvider";
+import { useLang } from "../contexts/LangProvider";
 
 export const themeVars = {
   primaryColor: "#ff7648",
@@ -17,6 +17,9 @@ export const themeVars = {
 };
 
 export default createGlobalStyle`
+
+
+
 //Resrt Styles ***********************
 
 *,

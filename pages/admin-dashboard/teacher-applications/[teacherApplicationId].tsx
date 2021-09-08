@@ -9,30 +9,10 @@ import AdminDashLayout from "../../../layouts/adminDashLayout";
 import { AdminDashContext } from "../../../contexts/AdminDashContext";
 import Table from "../../../components/Table";
 import Tr from "../../../components-admin-dashboard/Tr";
+import PageWrapper from "../../../components/layout/PageWrapper";
 
 export default function TeacherApplicationPage({ teacherApplication }) {
-  const { applicantUser } = teacherApplication;
-  const { adminDashState } = useContext(AdminDashContext);
-
-  const applicantUserId = teacherApplication.applicantUserId;
-
-  return (
-    <Div>
-      <h2>Teacher Application</h2>
-      <div className="table-panel">
-        <Table>
-          <Tr name="Teacher Application Id" defaultValue={teacherApplication.teacherApplicationId} />
-          <Tr name="Applicant firstname" defaultValue={applicantUser.firstname} />
-          <Tr name="Applicant lastame" defaultValue={applicantUser.lastname} />
-          <Tr name="Application Status" defaultValue={teacherApplication.status} />
-          <Tr name="Admin Reviewed" defaultValue={teacherApplication.adminReviewrId} />
-          <Tr name="Admin Comments" defaultValue={teacherApplication.teacherApplicationId} />
-          <Tr name="Teacher Application" defaultValue={teacherApplication.teacherApplicationId} />
-        </Table>
-      </div>
-      {teacherApplication && <TeacherApplicationTable teacherApplication={teacherApplication} />}
-    </Div>
-  );
+  return <PageWrapper>{teacherApplication && <TeacherApplicationTable teacherApplication={teacherApplication} />}</PageWrapper>;
 }
 
 export async function getServerSideProps(context) {
@@ -55,10 +35,4 @@ const Div = styled.div`
   display: grid;
   grid-template: 1fr / 1fr;
   gap: 2rem;
-
-  .table-panel {
-    overflow: hidden;
-    border-radius: 1.5rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
 `;

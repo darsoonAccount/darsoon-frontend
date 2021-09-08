@@ -2,18 +2,20 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { FiEdit, FiCheck, FiInfo } from "react-icons/fi";
 import { useState } from "react";
-import { themeVars } from "../components/GlobalStyles";
+import { themeVars } from "../styles/GlobalStyles";
 import { AdminDashContext, ADMIN_DASH_ACTIONS } from "../contexts/AdminDashContext";
 import Tr from "./Tr";
 import { AuthContext, useAuth } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useApi, useNotif } from "../contexts/AppProvider";
+import T from "../components/translation/T";
+import Table from "../components/Table";
 
 export default function TeacherApplicationTable({ teacherApplication }: any) {
-  const { appliccantUser } = teacherApplication;
+  const { applicantUser } = teacherApplication;
   const { loggedInUserAdminProfile } = useContext(AuthContext);
   const { api } = useApi();
-  const router = useRouter();
+  // const router = useRouter();
   const { notify } = useNotif();
 
   const [editedTeacherApplication, seteditedTeacherApplication] = useState(teacherApplication);
@@ -72,13 +74,13 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
       const res = await api.patch(`/api/teacherApplication/${id}/update`, teacherApplicationBody);
 
-      notify("Application status in database changed to accepted", "success");
+      notify({ en: "Application status in database changed to accepted", fa: "وضعیت  درخوسواست در دریتابیس به ذیرفته شده تغییر کرد.", type: "success" });
       //if successfull => update state
       adminDashDispatch({
         type: ADMIN_DASH_ACTIONS.ACCEPT_TEACHER_APPLICATION,
         payload: teacherApplicationBody,
       });
-      notify("Teacher Application is updated in the frontend.", "success");
+      notify({ en: "Teacher Application is updated in the frontend.", fa: "درخواست معلم در فرانتاند بروزرسانی شد.", type: "success" });
 
       //preparing accepted teacher to add to database
       const teacherBody = {
@@ -96,7 +98,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //create a teacher profile for applicant user
       const res2 = await api.post("/api/teacher/add", teacherBody);
       const newlyAddedTeacher = res2.data.data;
-      notify("Teacher created in db.", "success");
+      notify({ en: "Teacher profile created in db.", fa: "پروفایل معلم در دیتابیس ساخته شد.", type: "success" });
       // get the teacher by username:
 
       //prepare expertise for the teacher to add to database.
@@ -112,8 +114,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //add the expertise for the teacher
       const json2 = await api.post("/api/expertise/add", expertiseBody);
       const newlyAddedExpertise = json2.data.data;
-      notify("Expertise is created in db.", "success");
-      console.log("nn", newlyAddedExpertise);
+      notify({ en: "Expertise is created in db.", fa: "تخصص در دیتابیس ثبت شد.", type: "success" });
 
       //prepare product object
 
@@ -135,16 +136,28 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //create products  (1 ,5 ,12 ,20 products) for the teacher
       const json3 = await api.post("/api/product/add", productBody);
       const newlyAddedProduct = json3.data;
-      notify("Product is created in db.", "success");
+      notify({ en: "Product is created in db.", fa: "محصول در دیتابیس ایجاد شد.", type: "success" });
     } catch (error) {
       // console.log("Error request:", error.request);
       console.log("Error response:", error.response);
-      notify(`Error ${error.message}`, "error");
+      notify({ en: `Error ${error.message}`, fa: `Error ${error.message}`, type: "error" });
     }
   };
 
   return (
     <Div>
+      <h2>Teacher Application</h2>
+      <div className="table-panel">
+        <Table>
+          <Tr name="Teacher Application Id" defaultValue={teacherApplication.teacherApplicationId} />
+          <Tr name="Applicant firstname" defaultValue={applicantUser.firstname} />
+          <Tr name="Applicant lastame" defaultValue={applicantUser.lastname} />
+          <Tr name="Application Status" defaultValue={teacherApplication.status} />
+          <Tr name="Admin Reviewed" defaultValue={teacherApplication.adminReviewrId} />
+          <Tr name="Admin Comments" defaultValue={teacherApplication.teacherApplicationId} />
+          <Tr name="Teacher Application" defaultValue={teacherApplication.teacherApplicationId} />
+        </Table>
+      </div>
       <form>
         <Tr name="firstname" defaultValue={editedTeacherApplication.firstname} onChange={handleChange} />
         <Tr name="lastname" defaultValue={editedTeacherApplication.lastname} onChange={handleChange} />
@@ -198,6 +211,12 @@ const Div = styled.div`
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: grid;
   grid-template: 1fr/ 1fr;
+
+  .table-panel {
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
 
   .panel {
     padding: 1.5rem;

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 import ProfileInHeader from "../ProfileInHeader";
 import LanguageInHeader from "../LanguageInHeader";
 import { FiMenu } from "react-icons/fi";

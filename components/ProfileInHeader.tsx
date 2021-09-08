@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import Styled from "styled-components";
 import { AppContext, useNotif } from "../contexts/AppProvider";
-import { themeVars } from "./layout/GlobalStyles";
+import { themeVars } from "../styles/GlobalStyles";
 import { useAuth } from "../contexts/AuthProvider";
 import Link from "next/link";
 import Img from "./Img";

@@ -1,6 +1,6 @@
 import React from "react";
 import Styled from "styled-components";
-import { themeVars } from "../layout/GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 
 const Select = (props) => {
   const { label, name, placeholder, children } = props;

@@ -1,7 +1,7 @@
 import React from "react";
 import Styled from "styled-components";
 import { useLang } from "../../contexts/LangProvider";
-import { themeVars } from "../layout/GlobalStyles";
+import { themeVars } from "../../styles/GlobalStyles";
 
 interface Iprops {
   name: string;

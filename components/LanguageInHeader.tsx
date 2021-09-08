@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { useLang } from "../contexts/LangProvider";
-import { themeVars } from "./layout/GlobalStyles";
+import { themeVars } from "../styles/GlobalStyles";
 import T from "./translation/T";
 export default function LanguageInHeader() {
   const { lang, setLangToEnglish, setLangToPersian } = useLang();

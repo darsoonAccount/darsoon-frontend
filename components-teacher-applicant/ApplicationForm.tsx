@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Form from "../components/Form";
-import TextArea from "../components/TextArea";
-import TextInput from "../components/TextInput";
-import Select from "../components/Select";
+import Form from "../components/Form/Form";
+import TextArea from "../components/Form/TextArea";
+import TextInput from "../components/Form/TextInput";
+import Select from "../components/Form/Select";
 import { useAuth } from "../contexts/AuthProvider";
 import { useEffect } from "react";
 import { useApi, useNotif } from "../contexts/AppProvider";
+import T from "../components/translation/T";
+import En from "../components/translation/En";
+import Fa from "../components/translation/Fa";
 
 export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }) {
   const { loggedInUser } = useAuth();
@@ -21,13 +24,16 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
         setTopics(res.data.data);
       })
       .catch((err) => {
-        notify("Something went wrong. please reload the page", "error");
+        notify({ en: "Something went wrong. please reload the page", fa: "خطایی  پیش آمد. لطفا صفحه را بروز کنید.", type: "error" });
       });
   }, []);
 
   return (
-    <Form url="/api/teacherApplication/add" method="POST" handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={isTwoColumns}>
-      <p>اطلاعات کاربری</p>
+    <Form url="/api/teacherApplication/add" handleDataAfterSuccess={handleDataAfterSuccess} isTwoColumns={isTwoColumns}>
+      <p>
+        <En>User Information</En>
+        <Fa>اطلاعات کاربر</Fa>
+      </p>
       <TextInput name="firstnameFa" label="firstnameFa" placeholder="نام" />
       <TextInput name="lastnameFa" label="lastnameFa" placeholder="نام خانوادگی" />
       <TextInput name="firstname" label="firstname" placeholder="نام به انگلیسی" />
@@ -40,7 +46,10 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
       <TextInput label="linkedin" placeholder="صفحه لینکدین" />
       <TextInput label="website" placeholder="وبسایت شخصی" />
       <TextInput name="nameOfRefrencePerson" label="refrence" placeholder="نام معرف" />
-      <p>کلاسی که می‌خواهید درس بدهید</p>
+      <p>
+        <En>Classes you want to teach:</En>
+        <Fa>کلاسی که می‌خواهید درس بدهید</Fa>
+      </p>
 
       <Select name="topics" label="شاخه تخصصی">
         {topics && topics.length > 0 ? (
@@ -50,7 +59,10 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
             })}
           </>
         ) : (
-          <option disabled>در حال بارگزاری... </option>
+          <option disabled>
+            <En>Loading...</En>
+            <Fa>در حال بارگزاری...</Fa>
+          </option>
         )}
       </Select>
       <TextInput name="expertiseName" label="expertiseName" placeholder="موضوع کلاس" />
@@ -60,7 +72,10 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
       <TextInput name="sessionDuration" type="number" step="1" label="sessionDuration" placeholder="طول زمانی هر جلسه (به دقیقه)" />
       <TextInput name="ageGroup" label="ageGroup" placeholder="گروه سنی مناسب" />
 
-      <p>سابقه کاری و تحصیلی شما</p>
+      <p>
+        <En>Education and Experiences</En>
+        <Fa>سابقه کاری و تحصیلی شما</Fa>
+      </p>
       <TextInput name="levelOfEducation" label="levelOfEducation" placeholder="مدرک تحصیلی" />
       <TextInput label="university" placeholder=" دانشگاه محل تحصیل" />
       <TextArea name="inPersonTeachingExperience" label="inPersonTeachingExperience" placeholder="تجربه تدریس حضوری (مثلا پنج سال تدرس در آموزشگاه خوارزمی)" />
@@ -68,6 +83,10 @@ export default function ApplicationForm({ handleDataAfterSuccess, isTwoColumns }
       <TextArea name="abroadTeachingExperience" label="onlineTeachingExperience" placeholder="تجربه تدریس به ایرانیان خارج از کش ور (مثلا شش ماه تدریس گیتار به سه بچه دوزبانه در کانادا)" />
       <TextArea name="applicantNotes" label="applicantNotes" placeholder="هر مطلب دیگری که دانستن آن برای ما مفید است" />
       <TextInput name="applicantUserId" label="applicantUserId" placeholder="applicantUserId" defaultValue={loggedInUser?.userId} isHidden={true} />
+      <button className="button" type="submit">
+        <En>Submit</En>
+        <Fa>ارسال درخواست</Fa>
+      </button>
     </Form>
   );
 }
