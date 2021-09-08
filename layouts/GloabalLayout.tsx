@@ -1,11 +1,11 @@
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer";
 import styled from "styled-components";
-import RTLStyles from "../components/RTLStyles";
+import RTLStyles from "../components/layout/RTLStyles";
 import { useLang } from "../contexts/LangProvider";
-import GlobalStyles from "../components/GlobalStyles";
-import ToastNotification from "../components/ToastNotification";
-import ToastNotifications from "../components/ToastNotifications";
+import GlobalStyles from "../components/layout/GlobalStyles";
+import ToastNotification from "../components/layout/ToastNotification";
+import ToastNotifications from "../components/layout/ToastNotifications";
 
 export default function GloabalLayout({ children }) {
   const { lang } = useLang();

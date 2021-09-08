@@ -1,20 +1,18 @@
 import React from "react";
 import Styled from "styled-components";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "../layout/GlobalStyles";
 
-const Select = (props) => {
-  const { label, name, placeholder, children } = props;
+const TextArea = (props) => {
+  const { label, placeholder, name } = props;
   return (
     <Div>
-      <select
+      <textarea
+        rows="4"
         className="input"
-        type="text"
         {...props} // this line should be after type='text' becasue in some cases props overwrite type attribute
         name={name || label.toLowerCase()}
         placeholder={placeholder ? placeholder : label}
-      >
-        {children}
-      </select>
+      />
       <label className="label" htmlFor={label.toLowerCase()}>
         {placeholder ? placeholder : label}
       </label>
@@ -22,7 +20,7 @@ const Select = (props) => {
   );
 };
 
-export default Select;
+export default TextArea;
 
 const Div = Styled.div`
 
@@ -33,6 +31,8 @@ const Div = Styled.div`
   /* overflow: hidden; */
 
 .input	{
+    resize:vertical;
+    overflow-y: auto;
   font-size: 1.2em;
   padding: 1rem;
   display:block;
@@ -40,7 +40,7 @@ const Div = Styled.div`
   outline: 2px solid ${themeVars.lightGray};
   border-radius: 0.5rem;
   background: ghostwhite;
-  overflow: hidden;
+  
 }
 
 .input:focus { outline: 2px solid ${themeVars.primaryColor}; }
@@ -52,7 +52,8 @@ const Div = Styled.div`
 
 
 label {
-    line-height: 1.4;
+  width: 100%;
+  line-height: 1.4;
   text-align: start;
   pointer-events: none;
   color:#999; 
@@ -64,16 +65,19 @@ label {
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
   overflow: hidden;
+  
 }
 
 .input:not(:placeholder-shown) + label {
   top:-20px;
   font-size:1em;
   color: ${themeVars.accentColor};
-  
+
   overflow: hidden;
   max-width: 35ch;
   text-overflow: ellipsis;
   white-space: nowrap;
-  }
+}
+
+
 `;

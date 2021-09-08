@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { themeVars } from "../components/GlobalStyles";
+import { themeVars } from "../components/layout/GlobalStyles";
 
 export default function Tr(props) {
   const { name, isTextArea } = props;

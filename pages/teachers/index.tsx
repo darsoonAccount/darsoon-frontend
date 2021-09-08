@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Loading from "../../components/Loading";
+import Loading from "../../components/layout/Loading";
 import { useApi } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import TeacherCard from "../../components/TeacherCard";

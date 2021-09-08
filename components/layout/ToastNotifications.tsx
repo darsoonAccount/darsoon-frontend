@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useNotif } from "../contexts/AppProvider";
+import { useNotif } from "../../contexts/AppProvider";
 import ToastNotification from "./ToastNotification";
 
 export default function ToastNotifications() {
@@ -12,7 +12,7 @@ export default function ToastNotifications() {
       {notifs &&
         notifs.length > 0 &&
         notifs.map((notif, index) => {
-          return <ToastNotification key={`toastNotification-${index}`} message={notif.message} type={notif.type} />;
+          return <ToastNotification key={`toastNotification-${index}`} messageFa={notif.messageFa} messageEn={notif.messageEn} type={notif.type} />;
         })}
     </Div>
   );
