@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
-import Form from "./Form";
-import TextInput from "./TextInput";
+import Form from "./Form/Form";
+import TextInput from "./Form/TextInput";
 import { AuthContext } from "../contexts/AuthProvider";
 import { useRouter } from "next/router";
 import { useNotif } from "../contexts/AppProvider";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "./layout/GlobalStyles";
+import T from "./translation/T";
+import En from "./translation/En";
+import Fa from "./translation/Fa";
 
 interface ILoginBox {
   redirectTo?: string;
@@ -21,14 +24,14 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
     const { user, token, expiresIn } = data;
     login({ user, token, expiresIn });
     router.push(redirectTo || "/");
-    notify("Your are logged in.", "success");
+    notify({ fa: "وارد حساب کاربریتان شدید.", en: "Your are logged in.", type: "success" });
   };
 
   const handleDataAfterSuccessfulSignup = (data) => {
     const { user, token, expiresIn } = data;
     login({ user, token, expiresIn });
     router.push(redirectTo || "/");
-    notify("Your are successfully signed up.", "success");
+    notify({ fa: "حساب کاربری شما با موفقیت ساخته شد.", en: "Your are successfully signed up.", type: "success" });
   };
 
   return (
@@ -40,7 +43,7 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
             setTab(() => "login");
           }}
         >
-          Login
+          <T fa="ورود به حساب کاربری" en="Login to your account" />
         </button>
         <button
           className={`button tab ${tab === "signup" ? "active" : ""}`}
@@ -48,25 +51,34 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
             setTab(() => "signup");
           }}
         >
-          Sign Up
+          <T fa="ساختن حساب کاربری" en="Create an account" />
         </button>
       </div>
       {tab === "login" && (
         <>
-          <Form url="/api/login" method="POST" handleDataAfterSuccess={handleDataAfterSuccessfulLogin}>
-            <TextInput label="email" placeholder="Email" required />
-            <TextInput label="password" placeholder="Password" type="password" required />
+          <Form url="/api/login" handleDataAfterSuccess={handleDataAfterSuccessfulLogin}>
+            <TextInput name="email" labelFa="ایمیل" labelEn="Email" required />
+            <TextInput name="password" labelFa="گذرواژه" labelEn="Password" type="password" required />
+            <button className="button" type="submit">
+              <T fa="ورود به حساب" en="Login" />
+            </button>
           </Form>
         </>
       )}
       {tab === "signup" && (
         <>
-          <Form url="/api/register" method="POST" handleDataAfterSuccess={handleDataAfterSuccessfulSignup}>
-            <TextInput label="firstname" placeholder="Firstname" />
-            <TextInput label="Lastname" placeholder="Lastname" />
-            <TextInput label="username" placeholder="username" />
-            <TextInput label="email" placeholder="Email" />
-            <TextInput label="password" placeholder="Password" type="password" />
+          <Form url="/api/register" handleDataAfterSuccess={handleDataAfterSuccessfulSignup}>
+            
+            <TextInput name="firstname" labelFa="نام به انگلیسی" labelEn="Firstname" required />
+            <TextInput name="lastname" labelFa="نام خانوادگی به انکلیسی" labelEn="Lastname" required />
+            <TextInput name="firstnameFa" labelFa="نام به فارسی" labelEn="Firstname in Farsi" required />
+            <TextInput name="lastnameFa" labelFa="نام خانوادگی به فارسی" labelEn="Lastname in Farsi" required />
+            <TextInput name="username" labelFa="نام کاربری" labelEn="username" required />
+            <TextInput name="email" labelFa="ایمیل" labelEn="Email" required />
+            <TextInput name="password" labelFa="گذرواژه" labelEn="Password" type="password" required />
+            <button className="button" type="submit">
+              <T fa="ایجاد حساب" en="Signup" />
+            </button>
           </Form>
         </>
       )}
