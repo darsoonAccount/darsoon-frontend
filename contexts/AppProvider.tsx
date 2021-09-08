@@ -30,8 +30,13 @@ const AppProvider = ({ children }) => {
 
   const [notifs, setNotifs] = useState([]);
 
-  const notify = (message, type) => {
-    setNotifs((notifs) => [...notifs, { message: message, type: type }]);
+  interface InotifyArgs {
+    en: string;
+    fa: string;
+    type?: string;
+  }
+  const notify = ({ en, fa, type }: InotifyArgs) => {
+    setNotifs((notifs) => [...notifs, { messageEn: en, messageFa: fa, type: type }]);
   };
 
   return <AppContext.Provider value={{ api, notify, notifs }}>{children}</AppContext.Provider>;
