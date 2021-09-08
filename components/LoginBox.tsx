@@ -20,12 +20,20 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
   const router = useRouter();
   const { notify } = useNotif();
 
+  // LOGIN Handlers ***************************************
+
   const handleDataAfterSuccessfulLogin = (data) => {
     const { user, token, expiresIn } = data;
     login({ user, token, expiresIn });
     router.push(redirectTo || "/");
     notify({ fa: "وارد حساب کاربریتان شدید.", en: "Your are logged in.", type: "success" });
   };
+
+  const handleLogiFail = (error) => {
+    notify({ en: error.response.data.message, fa: error.response.data.messageFa, type: "error" });
+  };
+
+  // SIGNUP Handlers ***************************************
 
   const handleDataAfterSuccessfulSignup = (data) => {
     const { user, token, expiresIn } = data;
@@ -34,6 +42,11 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
     notify({ fa: "حساب کاربری شما با موفقیت ساخته شد.", en: "Your are successfully signed up.", type: "success" });
   };
 
+  const hadleSignupFail = (error) => {
+    console.log(error.response.data);
+
+    notify({ en: error.response.data.message, fa: error.response.data.messageFa, type: "error" });
+  };
   return (
     <Div>
       <div className="tabs">
@@ -56,7 +69,7 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
       </div>
       {tab === "login" && (
         <>
-          <Form url="/api/login" handleDataAfterSuccess={handleDataAfterSuccessfulLogin}>
+          <Form url="/api/login" handleDataAfterSuccess={handleDataAfterSuccessfulLogin} handleFail={handleLogiFail}>
             <TextInput name="email" labelFa="ایمیل" labelEn="Email" required />
             <TextInput name="password" labelFa="گذرواژه" labelEn="Password" type="password" required />
             <button className="button" type="submit">
@@ -67,14 +80,13 @@ const LoginBox = ({ redirectTo }: ILoginBox) => {
       )}
       {tab === "signup" && (
         <>
-          <Form url="/api/register" handleDataAfterSuccess={handleDataAfterSuccessfulSignup}>
-            
+          <Form url="/api/register" handleDataAfterSuccess={handleDataAfterSuccessfulSignup} handleFail={hadleSignupFail}>
             <TextInput name="firstname" labelFa="نام به انگلیسی" labelEn="Firstname" required />
             <TextInput name="lastname" labelFa="نام خانوادگی به انکلیسی" labelEn="Lastname" required />
             <TextInput name="firstnameFa" labelFa="نام به فارسی" labelEn="Firstname in Farsi" required />
             <TextInput name="lastnameFa" labelFa="نام خانوادگی به فارسی" labelEn="Lastname in Farsi" required />
             <TextInput name="username" labelFa="نام کاربری" labelEn="username" required />
-            <TextInput name="email" labelFa="ایمیل" labelEn="Email" required />
+            <TextInput name="email" labelFa="ایمیل" labelEn="Email" type="email" required />
             <TextInput name="password" labelFa="گذرواژه" labelEn="Password" type="password" required />
             <button className="button" type="submit">
               <T fa="ایجاد حساب" en="Signup" />
