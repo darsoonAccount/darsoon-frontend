@@ -7,13 +7,13 @@ export const themeVars = {
   accent2Color: "#fbe4b1",
   accent3Color: "#f7ca65",
   darkColor: "#291b3d",
-  lightGray: "#636f79",
+  lightGray: "#818181",
   borderRadius: "10px",
   boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
   boxShadowHover: "rgba(100, 100, 111, 0.8) 0px 7px 29px 0px",
 
-  headingFont: "Poppins, iransans,'Permanent Marker', Arial, Helvetica, sans-serif",
-  contentFont: "Poppins, iransans,'Kosugi', Arial, Helvetica, sans-serif",
+  headingFont: "IRANSans,'Permanent Marker', Arial, Helvetica, sans-serif",
+  contentFont: "IRANSans,'Kosugi', Arial, Helvetica, sans-serif",
 };
 
 export default createGlobalStyle`
@@ -23,13 +23,13 @@ export default createGlobalStyle`
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 900;
-	src: url('../public/fonts/woff2/IRANSansWeb_Black.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+	src: url('/fonts/woff2/IRANSansWeb_Black.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 }
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: bold;
-	src: url('../public/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+	src: url('/fonts/woff2/IRANSansWeb_Bold.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 		 
 		 
 }
@@ -37,29 +37,25 @@ export default createGlobalStyle`
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 500;
-	src: url('../public/fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+	src: url('/fonts/woff2/IRANSansWeb_Medium.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 }
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 300;
-	src: url('../public/fonts/woff2/IRANSansWeb_Light.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+	src: url('/fonts/woff2/IRANSansWeb_Light.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 }
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: 200;
-	src: url('../public/fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
+	src: url('/fonts/woff2/IRANSansWeb_UltraLight.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 }
 @font-face {
 	font-family: IRANSans;
 	font-style: normal;
 	font-weight: normal;
-	src: url('../public/fonts/eot/IRANSansWeb.eot');
-	src: url('../public/fonts/eot/IRANSansWeb.eot?#iefix') format('embedded-opentype'),  /* IE6-8 */
-		 url('../public/fonts/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
-		 url('../public/fonts/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
-		 url('../public/fonts/ttf/IRANSansWeb.ttf') format('truetype');
+	src: url('/fonts/woff2/IRANSansWeb.woff2') format('woff2');  /* FF39+,Chrome36+, Opera24+*/
 }
 
 
