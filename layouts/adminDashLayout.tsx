@@ -2,7 +2,9 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import AdminDahshProvider from "../contexts/AdminDashContext";
-import AdminDashNav from "./AdminDashNav";
+import AdminDashNav from "../components-admin-dashboard/AdminDashNav";
+import En from "../components/translation/En";
+import Fa from "../components/translation/Fa";
 
 export default function AdminDashLayout({ children }) {
   return (
@@ -10,7 +12,12 @@ export default function AdminDashLayout({ children }) {
       <Div>
         <div className="dashboard-head">
           <h1>
-            <Link href="/admin-dashboard">Admin Dashboard</Link>
+            <Link href="/admin-dashboard">
+              <a>
+                <Fa>داشبورد ادمین</Fa>
+                <En>Admin Dashboard</En>
+              </a>
+            </Link>
           </h1>
         </div>
         <div className="dashboard-body">

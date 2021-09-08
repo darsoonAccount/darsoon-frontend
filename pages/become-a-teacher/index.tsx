@@ -3,14 +3,16 @@ import styled from "styled-components";
 
 import { useAuth } from "../../contexts/AuthProvider";
 import LoginBox from "../../components/LoginBox";
-import InfoBox from "../../components/InfoBox";
+import InfoBox from "../../components/layout/InfoBox";
 import { useRouter } from "next/router";
 import { useApi } from "../../contexts/AppProvider";
-import Loading from "../../components/Loading";
-import Row from "../../components/Row";
+import Loading from "../../components/layout/Loading";
+import Row from "../../components/layout/Row";
 import Link from "next/link";
-import Panel from "../../components/Panel";
-import Rows from "../../components/Rows";
+import Panel from "../../components/layout/Panel";
+import Rows from "../../components/layout/Rows";
+import En from "../../components/translation/En";
+import Fa from "../../components/translation/Fa";
 
 export default function BecomeATeacherPage() {
   const { loggedInUser } = useAuth();
@@ -41,13 +43,19 @@ export default function BecomeATeacherPage() {
     <Page>
       {!loggedInUser ? (
         <>
-          <InfoBox>Please create an account first. If you allready have an account, Log in to your account.</InfoBox>
+          <InfoBox>
+            <En>Please create an account first. If you allready have an account, Log in to your account.</En>
+            <Fa>لطفا ابتدا یک حساب کاربری بسازید. اگر از قبل حساب کاربرری دارد وارد آن شوید.</Fa>
+          </InfoBox>
           <LoginBox redirectTo="/become-a-teacher" />
         </>
       ) : (
         <>
           <Panel>
-            <h2>درخواست‌های پیشین</h2>
+            <h2>
+              <En>Your Previous Applicatuons</En>
+              <Fa>درخواست‌های پیشین شما</Fa>
+            </h2>
             {isLoading ? (
               <Loading />
             ) : (
@@ -57,22 +65,39 @@ export default function BecomeATeacherPage() {
                     {previousApplications.map((application, index) => {
                       return (
                         <Row key={`previousTeacherApplication-${index}`}>
-                          <p>firstname: {application.firstname}</p>
-                          <p>lastname: {application.lastname}</p>
-                          <p>status: {application.status}</p>
+                          <p>
+                            <En>firstname: {application.firstname}</En>
+                            <Fa>نام: {application.firstnameFa}</Fa>
+                          </p>
+                          <p>
+                            <En>lastname: {application.lastname}</En>
+                            <Fa>
+                              <Fa>نام خانوادگی: {application.lastnameFa}</Fa>
+                            </Fa>
+                          </p>
+                          <p>
+                            <En>status: {application.status}</En>
+                            <Fa>وضعیت: {application.status}</Fa>
+                          </p>
                         </Row>
                       );
                     })}
                   </Rows>
                 ) : (
-                  <p>شما تا کنون درخواستی صبت نکرده‌اید</p>
+                  <p>
+                    <En>You have not applied before.</En>
+                    <Fa>شما تا کنون درخواستی ثبت نکرده‌اید</Fa>
+                  </p>
                 )}
               </>
             )}
           </Panel>
-            <Link href="/become-a-teacher/apply">
-              <a className="primary-button">ایجاد درخواست جدید</a>
-            </Link>
+          <Link href="/become-a-teacher/apply">
+            <a className="primary-button">
+              <En>Fill a new applications</En>
+              <Fa>ایجاد درخواست جدید</Fa>
+            </a>
+          </Link>
         </>
       )}
     </Page>
