@@ -2,7 +2,8 @@ import React from "react";
 import { useContext } from "react";
 import styled from "styled-components";
 import { useLang } from "../contexts/LangProvider";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "./layout/GlobalStyles";
+import T from "./translation/T";
 export default function LanguageInHeader() {
   const { lang, setLangToEnglish, setLangToPersian } = useLang();
 
@@ -23,8 +24,12 @@ export default function LanguageInHeader() {
 
   return (
     <Select onChange={handleChange}>
-      <option value="en">English</option>
-      <option value="fa">فارسی</option>
+      <option value="fa">
+        <T fa="فارسی" en="فارسی" />
+      </option>
+      <option value="en">
+        <T fa="English" en="English" />
+      </option>
     </Select>
   );
 }

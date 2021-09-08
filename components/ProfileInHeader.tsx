@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
 import Styled from "styled-components";
 import { AppContext, useNotif } from "../contexts/AppProvider";
-import { themeVars } from "./GlobalStyles";
+import { themeVars } from "./layout/GlobalStyles";
 import { useAuth } from "../contexts/AuthProvider";
 import Link from "next/link";
 import Img from "./Img";
+import T from "./translation/T";
+import Fa from "./translation/Fa";
+import En from "./translation/En";
 
 const ProfileInHeader = () => {
   const { loggedInUser, logOut } = useAuth();
@@ -18,7 +21,7 @@ const ProfileInHeader = () => {
 
   const handleLogOut = () => {
     logOut();
-    notify("You are logged out.");
+    notify({ fa: "از حساب کاربریتان خارج شدید", en: "You are logged out of you account." });
   };
 
   const showProfileMenu = () => {
@@ -44,26 +47,47 @@ const ProfileInHeader = () => {
       {loggedInUser ? (
         <>
           <div>
-            <p className="greeting">Hi, {loggedInUser.firstname}</p>
+            <p className="greeting">
+              <Fa>سلام {loggedInUser.firstnameFa}</Fa>
+              <En>Hi, {loggedInUser.firstname}</En>
+            </p>
           </div>
           <button className="button profile-button" onClick={showProfileMenu}>
             <Img className="avatar" src="/avatar.png" alt="Profile Picture" />
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
-              <Link href="/teacher-dashboard">Teacher Dashboard</Link>
-              <Link href="/admin-dashboard">Admin Dashboard</Link>
-              <Link href="/payer-dashboard">Payer Dashboard</Link>
-              <Link href="/student-dashboard">Student Dashboard</Link>
+              <Link href="/teacher-dashboard">
+                <a>
+                  <T fa="داشبورد معلم" en="Teacher Dashboard" />
+                </a>
+              </Link>
+              <Link href="/admin-dashboard">
+                <a>
+                  <T fa="داشبورد ادمین" en="Admin Dashboard" />
+                </a>
+              </Link>
+              <Link href="/payer-dashboard">
+                <a>
+                  <T fa="داشبورد پرداخت کننده" en="Payer Dashboard" />
+                </a>
+              </Link>
+              <Link href="/student-dashboard">
+                <a>
+                  <T fa="داشبورد دانش آموز" en="Student Dashboard" />
+                </a>
+              </Link>
               <button className="log-out-button" onClick={handleLogOut}>
-                Log Out
+                <T fa="خروج از حساب" en="Logout" />
               </button>
             </div>
           )}
         </>
       ) : (
         <Link href="/login">
-          <a className="login">Login</a>
+          <a className="login">
+            <T fa="ورود به حساب" en="Login" />
+          </a>
         </Link>
       )}
     </Div>
@@ -82,6 +106,7 @@ gap: 1rem;
 
 .greeting {
   font-weight: 700;
+  font-size: 1.3rem;
 }
 
 

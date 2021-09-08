@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { themeVars } from "./GlobalStyles";
-import ProfileInHeader from "./ProfileInHeader";
-import LanguageInHeader from "./LanguageInHeader";
+import ProfileInHeader from "../ProfileInHeader";
+import LanguageInHeader from "../LanguageInHeader";
 import { FiMenu } from "react-icons/fi";
+import T from "../translation/T";
 
 // import ProfileInHeader from "./auth/ProfileInHeader";
 // import { AppContext } from "./AppProvider";
@@ -18,13 +19,33 @@ const Header = () => {
       <StyledHeader>
         <input className="checkbox" id="checkbox" type="checkbox" />
         <span className="logo">
-          <Link href="/">Darsoon</Link>
+          <Link href="/">
+            <a>
+              <T fa="درسون" en="Darsoon" />
+            </a>
+          </Link>
         </span>
         <nav className="nav">
-          <Link href="/teachers">Teachers</Link>
-          <Link href="/classes">Classes</Link>
-          <Link href="/about">About</Link>
-          <Link href="/contact">Contact</Link>
+          <Link href="/teachers">
+            <a>
+              <T fa="معلم‌ها" en="Teachers" />
+            </a>
+          </Link>
+          <Link href="/classes">
+            <a>
+              <T fa="کلاس‌ها" en="Classes" />
+            </a>
+          </Link>
+          <Link href="/about">
+            <a>
+              <T fa="درباره ما" en="About us" />
+            </a>
+          </Link>
+          <Link href="/contact">
+            <a>
+              <T fa="تماس با ما" en="Contact" />
+            </a>
+          </Link>
           <LanguageInHeader />
           <ProfileInHeader />
         </nav>
@@ -48,14 +69,14 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 118, 72, 0.9);
-  backdrop-filter: blur(0.3rem);
+  /* backdrop-filter: blur(0.3rem); */ //remove for Chrome compatibality
   box-shadow: ${themeVars.boxShadow};
 
   .logo {
     height: 100%;
     display: flex;
     align-items: center;
-    font-size: 24px;
+    font-size: 1.7rem;
     font-weight: 900;
     color: #fff;
   }
@@ -119,7 +140,7 @@ const StyledHeader = styled.header`
       transition: all 0.3s ease-in-out;
     }
     .nav a {
-      font-size: 20px;
+      font-size: 1rem;
     }
     .checkbox:checked ~ .nav {
       bottom: 0;
