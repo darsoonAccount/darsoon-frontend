@@ -62,6 +62,8 @@ const adminDashReducer = (state, action) => {
 const AdminDahshProvider = (props) => {
   const { children, teacherApplications } = props;
 
+  const { notify } = useNotif();
+
   const initialState = {
     teacherApplications,
   };
@@ -76,7 +78,9 @@ const AdminDahshProvider = (props) => {
       .then((res) => {
         adminDashDispatch({ type: ADMIN_DASH_ACTIONS.SET_TEACHER_APPLICATIONS, payload: res.data.data });
       })
-      .catch((err) => alert("AdminDashContext fetch error" + err.response.status));
+      .catch((err) => {
+        notify({ en: "AdminDashContext fetch error" + err.response.status, fa: "AdminDashContext fetch error" + err.response.status, type: "error" });
+      });
   }, []);
 
   return <AdminDashContext.Provider value={{ adminDashState, adminDashDispatch }}>{children}</AdminDashContext.Provider>;
