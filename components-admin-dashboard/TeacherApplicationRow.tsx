@@ -1,30 +1,44 @@
 import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import En from "../components/translation/En";
+import Fa from "../components/translation/Fa";
 
 export default function TeacherApplicationRow({ teacherApplication }: any) {
   const { teacherApplicationId, status, applicantUser } = teacherApplication;
-  console.log(teacherApplication);
-  
 
   return (
     <Div>
       <div className="preview">
         <p>
-          <span className="label">Id: </span>
-          {teacherApplicationId}
+          <span className="label">
+            <En>Firstname:</En>
+            <Fa>نام:</Fa>
+          </span>
+          <En>{applicantUser.firstname}</En>
+          <Fa>{applicantUser.firstnameFa}</Fa>
         </p>
         <p>
-          <span className="label">Firstname: </span> {applicantUser.firstname}
+          <span className="label">
+            <En>Lastname:</En>
+            <Fa>نام خانوادگی:</Fa>
+          </span>
+          <En>{applicantUser.lastname}</En>
+          <Fa>{applicantUser.lastnameFa}</Fa>
         </p>
         <p>
-          <span className="label">Lastname: </span> {applicantUser.lastname}
-        </p>
-        <p>
-          <span className="label">Status: </span> {status}
+          <span className="label">
+            <En>Status:</En>
+            <Fa>وضعیت:</Fa>
+          </span>
+          <En>{status}</En>
+          <Fa>{status}</Fa>
         </p>
         <Link href={`/admin-dashboard/teacher-applications/${teacherApplicationId}`}>
-          <a className="small-button">Open</a>
+          <a className="small-button">
+            <En>Open</En>
+            <Fa>باز کنید</Fa>
+          </a>
         </Link>
       </div>
     </Div>

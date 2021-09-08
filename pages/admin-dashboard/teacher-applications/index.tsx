@@ -4,17 +4,29 @@ import styled from "styled-components";
 import { AdminDashContext, ADMIN_DASH_ACTIONS } from "../../../contexts/AdminDashContext";
 import AdminDashLayout from "../../../layouts/adminDashLayout";
 import TeacherApplicationRow from "../../../components-admin-dashboard/TeacherApplicationRow";
+import En from "../../../components/translation/En";
+import Fa from "../../../components/translation/Fa";
 
 export default function TeacehrApplications() {
   const { adminDashDispatch, adminDashState } = useContext(AdminDashContext);
 
-
   return (
     <Div>
-      <h2>Teacher Applications</h2>
-      <p>Here are all teacher applications</p>
+      <h2>
+        <En>Teacher Applications</En>
+        <Fa>درخواست‌های معلم شدن</Fa>
+      </h2>
+      <p>
+        <En>Here are all teacher applications</En>
+        <Fa>اینجا تمام درخواست‌ها را می‌بینید:</Fa>
+      </p>
       <div className="teacher-applications">
-        {!adminDashState.teacherApplications && <p>Currently there is no application</p>}
+        {!adminDashState.teacherApplications && (
+          <p>
+            <En>Currently there is no application</En>
+            <Fa>در حال حاضر هیچ اپلیکیشنی موجود نیست.</Fa>
+          </p>
+        )}
         {adminDashState.teacherApplications &&
           adminDashState.teacherApplications.map((item, index) => {
             return <TeacherApplicationRow key={`teacherApplication-${index}`} teacherApplication={item} />;
