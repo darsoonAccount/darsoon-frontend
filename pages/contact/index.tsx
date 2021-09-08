@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import PageWrapper from "../../components/layout/PageWrapper";
 import En from "../../components/translation/En";
 import Fa from "../../components/translation/Fa";
 export default function contactPage() {
   return (
-    <Page>
+    <PageWrapper>
       <h1>
         <En>Contact Darsoon</En>
         <Fa>با درسون تماس بگیرید</Fa>
@@ -13,7 +14,7 @@ export default function contactPage() {
         <En>You can contact us from one of ways below</En>
         <Fa>شما میتوانید از راه‌های زیر با درسون تماس بگیرید.</Fa>
       </p>
-    </Page>
+    </PageWrapper>
   );
 }
 const Page = styled.div`
