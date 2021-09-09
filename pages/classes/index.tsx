@@ -10,8 +10,8 @@ export default function ClassesPage({ products }) {
       <h1>Here is a list of classes</h1>
       <Cards>
         {products &&
-          products.map((product) => {
-            return <ClassCard product={product} />;
+          products.map((product, index) => {
+            return <ClassCard key={`class-${index}`} product={product} />;
           })}
       </Cards>
     </StyledPageWrapper>

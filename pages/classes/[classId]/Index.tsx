@@ -6,7 +6,7 @@ import { useApi } from "../../../contexts/AppProvider";
 
 export default function ClassPage({product}) {
 
-  console.log('producs:', products);
+  console.log('producs:', product);
   
   const router = useRouter();
   const { classId } = router.query;

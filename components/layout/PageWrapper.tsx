@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function PageWrapper({ children, className }) {
+interface Iprops {
+  children: any;
+  className?: string;
+}
+
+export default function PageWrapper({ children, className }: Iprops) {
   return <StyledPageWrapper className={className}>{children}</StyledPageWrapper>;
 }
 const StyledPageWrapper = styled.div`
