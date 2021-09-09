@@ -2,19 +2,30 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import Img from "./Img";
+import En from "./translation/En";
+import Fa from "./translation/Fa";
 export default function TeacherCard({ teacher }) {
-  const { username, firstname, lastname } = teacher;
-  console.log("techer", teacher);
+  // console.log(teacher);
+
+  const { username, firstname, lastname, firstnameFa, lastnameFa } = teacher;
+
   return (
     <Div>
       <Link href={`/teachers/${username}`}>
         <a className="link-wrapper">
           <Img className="avatar" alt="teacher-profile" src="/avatar.png" />
           <p className="bold">
-            {firstname} {lastname}
+            <En>
+              {firstname} {lastname}
+            </En>
+            <Fa>
+              {firstnameFa} {lastnameFa}
+            </Fa>
           </p>
-          <p>Speciality: </p>
-          <p>a little bit about this teaceher and how he/she teaches</p>
+          <p>
+            <En>Specialities:</En>
+            <Fa>تخصص‌ها: </Fa>
+          </p>
         </a>
       </Link>
     </Div>
