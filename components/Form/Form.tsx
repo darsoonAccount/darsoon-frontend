@@ -67,7 +67,7 @@ export default function Form({ children, url, handleDataAfterSuccess, handleFail
   return (
     <>
       <StyledFrom onSubmit={submitHandler} className={isTwoColumns ? "two-columns" : "one-column"}>
-        <div className="inputs">{children}</div>
+        <div className="children">{children}</div>
         <p>
           <En>* Fields with start must be filled.</En>
           <Fa>* فیلدهای ستاره‌دار الزامی هستند.</Fa>
@@ -104,11 +104,17 @@ align-items:center;
 width: 100%; 
  gap: 2rem;
 
-.inputs {
+.children {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 2rem;
+}
+
+.children .span {
+grid-column: 1/3;
+display:grid;
+place-items: center;
 }
 
 .inputs {
