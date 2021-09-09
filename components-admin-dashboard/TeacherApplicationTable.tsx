@@ -41,7 +41,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
     //prepare updates for rejected applications. (only fields that are supposed to be changed in body)
     const body = {
       reviewerAdminId: loggedInUserAdminProfile.adminId,
-      reviewerComment: eta?.reviewerComment,
+      reviewerComments: eta?.reviewerComment,
       status: "rejected",
     };
 
@@ -152,6 +152,8 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
     }
   };
 
+  console.log(ta);
+
   return (
     <Div>
       <h2 className="page-title">
@@ -170,18 +172,18 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
           <Tr name="appliacntFirstnameFa" labelFa="نام (به فارسی)" labelEn="Applicant Firstname (in Persian)" defaultValue={applicantUser.firstnameFa} />
           <Tr name="applicantLastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="Applicant lastname (in Persian)" defaultValue={applicantUser.lastnameFa} />
           <Tr name="Applicant Status" labelFa="وضعیت درخواست" labelEn="Application Status" defaultValue={ta.status} />
-          <Tr name="adminReviewd" labelFa="ادمین بررسی‌کننده" labelEn="Admin Reviewed" defaultValue={ta.adminReviewrId} />
-          <Tr name="adminComment" labelFa="نظر بررسی کننده" labelEn="Admin Comment" defaultValue={ta.adminComment} />
+          <Tr name="adminReviewd" labelFa="ادمین بررسی‌کننده" labelEn="Admin Reviewed" defaultValue={ta.reviewerAdminId} />
+          <Tr name="adminComment" labelFa="نظر بررسی کننده" labelEn="Admin Comment" defaultValue={ta.reviewerComments} />
           <h2>
             <En>Applicant Info</En>
             <Fa>مشخصات درخواست‌کننده</Fa>
           </h2>
-          <Tr name="firstname" labelFa="نام" labelEn="firstname" defaultValue={eta.firstname} onChange={handleChange} />
-          <Tr name="lastname" labelFa="نام خانوادگی" labelEn="lastname" defaultValue={eta.lastname} onChange={handleChange} />
-          <Tr name="firstnameFa" labelFa="نام (به فارسی)" labelEn="firstnameFa" defaultValue={eta.firstnameFa} onChange={handleChange} />
-          <Tr name="lastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="lastnameFa" defaultValue={eta.lastnameFa} onChange={handleChange} />
+          <Tr name="firstname" labelFa="نام" labelEn="firstname" defaultValue={applicantUser.firstname} onChange={handleChange} />
+          <Tr name="lastname" labelFa="نام خانوادگی" labelEn="lastname" defaultValue={applicantUser.lastname} onChange={handleChange} />
+          <Tr name="firstnameFa" labelFa="نام (به فارسی)" labelEn="firstnameFa" defaultValue={applicantUser.firstnameFa} onChange={handleChange} />
+          <Tr name="lastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="lastnameFa" defaultValue={applicantUser.lastnameFa} onChange={handleChange} />
           <Tr name="whatsappNumber" labelFa="شماره واتس‌اپ" labelEn="whatsappNumber" defaultValue={eta.whatsappNumber} onChange={handleChange} />
-          <Tr name="email" labelFa="ایمیل" labelEn="email" defaultValue={eta.email} onChange={handleChange} />
+          <Tr name="email" labelFa="ایمیل" labelEn="email" defaultValue={applicantUser.email} onChange={handleChange} />
           <Tr name="city" labelFa="شهر" labelEn="city" defaultValue={eta.city} onChange={handleChange} />
           <Tr name="country" labelFa="کشور" labelEn="country" defaultValue={eta.country} onChange={handleChange} />
           <h2>
@@ -189,7 +191,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
             <En>Expertise</En>
             <Fa>تخصص</Fa>
           </h2>
-          <Tr name="topicId" labelFa="شناسه شاخه تخصصی" labelEn="topicId" defaultValue={eta.topicId} onChange={handleChange} />
+          <Tr name="topicId" labelFa="شناسه شاخه تخصصی" labelEn="topicId" defaultValue={eta.topic} onChange={handleChange} />
           <Tr name="expertiseName" labelFa="نام تخصص" labelEn="expertiseName" defaultValue={eta.expertiseName} onChange={handleChange} />
           <h2>
             {" "}
