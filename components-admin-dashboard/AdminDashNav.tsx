@@ -29,6 +29,24 @@ export default function AdminDashNav() {
           <En> Teachers Profile Changes</En>
         </a>
       </Link>
+      <Link href="/admin-dashboard/admins">
+        <a>
+          <Fa>ادمین‌ها</Fa>
+          <En>Teachers</En>
+        </a>
+      </Link>
+      <Link href="/admin-dashboard/payers">
+        <a>
+          <Fa>پرداخت‌کننده‌ها</Fa>
+          <En>Payers</En>
+        </a>
+      </Link>
+      <Link href="/admin-dashboard/students">
+        <a>
+          <Fa>دانش‌آموزها</Fa>
+          <En>Students</En>
+        </a>
+      </Link>
       <Link href="/admin-dashboard/payments">
         <a>
           <Fa>پرداخت‌ها</Fa>
