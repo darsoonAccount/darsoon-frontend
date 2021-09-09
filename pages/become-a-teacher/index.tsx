@@ -63,16 +63,17 @@ export default function BecomeATeacherPage() {
                 {previousApplications && previousApplications.length > 0 ? (
                   <Rows>
                     {previousApplications.map((application, index) => {
+                      const applicantUser = application.applicantUser;
                       return (
                         <Row key={`previousTeacherApplication-${index}`}>
                           <p>
-                            <En>firstname: {application.firstname}</En>
-                            <Fa>نام: {application.firstnameFa}</Fa>
+                            <En>firstname: {applicantUser.firstname}</En>
+                            <Fa>نام: {applicantUser.firstnameFa}</Fa>
                           </p>
                           <p>
-                            <En>lastname: {application.lastname}</En>
+                            <En>lastname: {applicantUser.lastname}</En>
                             <Fa>
-                              <Fa>نام خانوادگی: {application.lastnameFa}</Fa>
+                              <Fa>نام خانوادگی: {applicantUser.lastnameFa}</Fa>
                             </Fa>
                           </p>
                           <p>
