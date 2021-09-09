@@ -44,7 +44,13 @@ const AuthProvider = ({ children }) => {
     // router.push("/");
   };
 
-  const login = ({ user, token, expiresIn }) => {
+  interface loginInteface {
+    user: object;
+    token: string;
+    expiresIn: string;
+  }
+
+  const login = ({ user, token, expiresIn }: loginInteface) => {
     localStorage.setItem("loggedInUser", JSON.stringify(user));
     localStorage.setItem("token", token);
     localStorage.setItem("expiresIn", expiresIn);
@@ -68,6 +74,7 @@ const AuthProvider = ({ children }) => {
     const handleErrors = (error: any) => {
       if (!error.response || error.response.status >= 500) {
         alert(error.message + " | An error happend.");
+        console.log("Error while Loging in:", error.response.data);
       }
     };
 
@@ -110,7 +117,7 @@ const AuthProvider = ({ children }) => {
       });
     }
 
-    //if the auth data in local storage is not complete, log out.
+    //if the auth data in local storage is missing or in corect shape, log out.
     if (!localStorage.getItem("loggedInUser") || !localStorage.getItem("token") || !localStorage.getItem("expiresIn")) {
       logOut();
     }
