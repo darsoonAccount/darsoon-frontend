@@ -10,25 +10,30 @@ import { useRouter } from "next/router";
 import { useApi, useNotif } from "../contexts/AppProvider";
 import T from "../components/translation/T";
 import Table from "../components/Table";
+import Fa from "../components/translation/Fa";
+import En from "../components/translation/En";
 
 export default function TeacherApplicationTable({ teacherApplication }: any) {
+  const ta = teacherApplication;
   const { applicantUser } = teacherApplication;
+  const au = applicantUser;
   const { loggedInUserAdminProfile } = useContext(AuthContext);
   const { api } = useApi();
   // const router = useRouter();
   const { notify } = useNotif();
 
-  const [editedTeacherApplication, seteditedTeacherApplication] = useState(teacherApplication);
+  //eta = editedTeacherApplication
+  const [eta, setEta] = useState(teacherApplication);
   const { adminDashState, adminDashDispatch } = useContext(AdminDashContext);
 
   const handleChange = (event) => {
-    const key = event.target.name;
+    const key = event.target.labelEn;
     let value = event.target.value;
     if (event.target.type === "number") {
       value = Number(event.target.value);
     }
-    seteditedTeacherApplication(() => {
-      return { ...editedTeacherApplication, [key]: value };
+    setEta(() => {
+      return { ...eta, [key]: value };
     });
   };
 
@@ -36,7 +41,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
     //prepare updates for rejected applications. (only fields that are supposed to be changed in body)
     const body = {
       reviewerAdminId: loggedInUserAdminProfile.adminId,
-      reviewerComment: editedTeacherApplication?.reviewerComment,
+      reviewerComment: eta?.reviewerComment,
       status: "rejected",
     };
 
@@ -52,8 +57,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
         // router.reload();
       })
       .catch((err) => {
-        alert(err.response.status);
-        console.log(err.response);
+        notify({ en: err.message, fa: err.message, type: "error" });
       });
   };
 
@@ -63,11 +67,11 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
     //prepare accepted teacher application.
     try {
       const teacherApplicationBody = {
-        ...editedTeacherApplication,
-        pricePerSession: Number(editedTeacherApplication.pricePerSession),
-        sessionDuration: Number(editedTeacherApplication.sessionDuration),
+        ...eta,
+        pricePerSession: Number(eta.pricePerSession),
+        sessionDuration: Number(eta.sessionDuration),
         reviewerAdminId: loggedInUserAdminProfile.adminId,
-        reviewerComment: editedTeacherApplication?.reviewerComment,
+        reviewerComment: eta?.reviewerComment,
         status: "accepted",
       };
       delete teacherApplicationBody.applicantUser;
@@ -84,14 +88,14 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
       //preparing accepted teacher to add to database
       const teacherBody = {
-        userId: editedTeacherApplication.applicantUserId,
-        instagram: editedTeacherApplication.instagram,
-        linkedin: editedTeacherApplication.linkedin,
-        website: editedTeacherApplication.website,
-        englishFluency: editedTeacherApplication.englishFluency,
-        levelOfEducation: editedTeacherApplication.levelOfEducation,
-        university: editedTeacherApplication.university,
-        fieldOfStudy: editedTeacherApplication.fieldOfStudy,
+        userId: eta.applicantUserId,
+        instagram: eta.instagram,
+        linkedin: eta.linkedin,
+        website: eta.website,
+        englishFluency: eta.englishFluency,
+        levelOfEducation: eta.levelOfEducation,
+        university: eta.university,
+        fieldOfStudy: eta.fieldOfStudy,
         status: "published",
       };
 
@@ -104,11 +108,11 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //prepare expertise for the teacher to add to database.
       let expertiseBody = {
         teacherId: newlyAddedTeacher.teacherId,
-        topicId: editedTeacherApplication.topicId,
-        name: editedTeacherApplication.expertiseName,
-        nameFa: editedTeacherApplication.expertiseNameFa,
-        description: editedTeacherApplication.expertiseDescription,
-        descriptionFa: editedTeacherApplication.expertiseDescriptionFa,
+        topicId: eta.topicId,
+        name: eta.expertiseName,
+        nameFa: eta.expertiseNameFa,
+        description: eta.expertiseDescription,
+        descriptionFa: eta.expertiseDescriptionFa,
       };
 
       //add the expertise for the teacher
@@ -120,18 +124,18 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
       const productBody = {
         expertiseId: newlyAddedExpertise.expertiseId,
-        pricePerParticipant: Number(editedTeacherApplication.pricePerSession),
+        pricePerParticipant: Number(eta.pricePerSession),
         startDate: "1900-10-10", //to be dynamiclly get todays date.
-        name: editedTeacherApplication.productName,
-        nameFa: editedTeacherApplication.productNameFa,
-        description: editedTeacherApplication.productDescription,
-        descriptionFa: editedTeacherApplication.productDescriptionFa,
-        extraFamilyMemberCharge: Number(editedTeacherApplication.productExtraFamilyMemberCharge),
+        name: eta.productName,
+        nameFa: eta.productNameFa,
+        description: eta.productDescription,
+        descriptionFa: eta.productDescriptionFa,
+        extraFamilyMemberCharge: Number(eta.productExtraFamilyMemberCharge),
         isGroupClass: 0,
-        maxNumberOfStudents: Number(editedTeacherApplication.productMaxNumberOfStudents),
-        introductionFee: Number(editedTeacherApplication.productIntroductionFee),
-        sessionDuration: Number(editedTeacherApplication.sessionDuration),
-        numberOfSessions: Number(editedTeacherApplication.productNumebrOfSessions),
+        maxNumberOfStudents: Number(eta.productMaxNumberOfStudents),
+        introductionFee: Number(eta.productIntroductionFee),
+        sessionDuration: Number(eta.sessionDuration),
+        numberOfSessions: Number(eta.productNumebrOfSessions),
       };
       //create products  (1 ,5 ,12 ,20 products) for the teacher
       const json3 = await api.post("/api/product/add", productBody);
@@ -146,45 +150,51 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
   return (
     <Div>
-      <h2>Teacher Application</h2>
+      <h2>
+        <En>Teacher Application</En>
+        <Fa>درخواست</Fa>
+      </h2>
       <div className="table-panel">
         <Table>
-          <Tr name="Teacher Application Id" defaultValue={teacherApplication.teacherApplicationId} />
-          <Tr name="Applicant firstname" defaultValue={applicantUser.firstname} />
-          <Tr name="Applicant lastame" defaultValue={applicantUser.lastname} />
-          <Tr name="Application Status" defaultValue={teacherApplication.status} />
-          <Tr name="Admin Reviewed" defaultValue={teacherApplication.adminReviewrId} />
-          <Tr name="Admin Comments" defaultValue={teacherApplication.teacherApplicationId} />
-          <Tr name="Teacher Application" defaultValue={teacherApplication.teacherApplicationId} />
+          <Tr name="teacherApplicationId" labelFa="شناسه درخواست" labelEn="Teacher Application Id" defaultValue={ta.teacherApplicationId} />
+          <Tr name="applicantFirstname" labelFa="نام (به انگلیسی)" labelEn="Applicant Firstname (In English)" defaultValue={applicantUser.firstname} />
+          <Tr name="applicantLastname" labelFa="نام خانوادگی (به انگلیسی)" labelEn="Applicant lastname (in English)" defaultValue={applicantUser.lastname} />
+          <Tr name="appliacntFirstnameFa" labelFa="نام (به فارسی)" labelEn="Applicant Firstname (in Persian)" defaultValue={applicantUser.firstnameFa} />
+          <Tr name="applicantLastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="Applicant lastname (in Persian)" defaultValue={applicantUser.lastnameFa} />
+          <Tr name="Applicant Status" labelFa="وضعیت درخواست" labelEn="Application Status" defaultValue={ta.status} />
+          <Tr name="adminReviewd" labelFa="ادمین بررسی‌کننده" labelEn="Admin Reviewed" defaultValue={ta.adminReviewrId} />
+          <Tr name="adminComment" labelFa="نظر بررسی کننده" labelEn="Admin Comment" defaultValue={ta.adminComment} />
         </Table>
       </div>
-      <form>
-        <Tr name="firstname" defaultValue={editedTeacherApplication.firstname} onChange={handleChange} />
-        <Tr name="lastname" defaultValue={editedTeacherApplication.lastname} onChange={handleChange} />
-        <Tr name="firstnameFa" defaultValue={editedTeacherApplication.firstnameFa} onChange={handleChange} />
-        <Tr name="lastnameFa" defaultValue={editedTeacherApplication.lastnameFa} onChange={handleChange} />
-        <Tr name="whatsappNumber" defaultValue={editedTeacherApplication.whatsappNumber} onChange={handleChange} />
-        <Tr name="email" defaultValue={editedTeacherApplication.email} onChange={handleChange} />
-        <Tr name="topicId" defaultValue={editedTeacherApplication.topicId} onChange={handleChange} />
-        <Tr name="expertiseName" defaultValue={editedTeacherApplication.expertiseName} onChange={handleChange} />
-        <Tr name="productName" defaultValue={editedTeacherApplication.productName} onChange={handleChange} />
-        <Tr name="city" defaultValue={editedTeacherApplication.city} onChange={handleChange} />
-        <Tr name="country" defaultValue={editedTeacherApplication.country} onChange={handleChange} />
-        <Tr name="englishFluency" defaultValue={editedTeacherApplication.englishFluency} onChange={handleChange} />
-        <Tr name="classesToTeach" defaultValue={editedTeacherApplication.classesToTeach} onChange={handleChange} />
-        <Tr name="sessionDuration" type="number" step="5" min="0" defaultValue={editedTeacherApplication.sessionDuration} onChange={handleChange} />
-        <Tr name="pricePerSession" type="number" step="1" min="0" defaultValue={editedTeacherApplication.pricePerSession} onChange={handleChange} />
-        <Tr name="ageGroup" defaultValue={editedTeacherApplication.ageGroup} onChange={handleChange} />
-        <Tr name="levelOfEducation" defaultValue={editedTeacherApplication.levelOfEducation} onChange={handleChange} />
-        <Tr name="university" defaultValue={editedTeacherApplication.university} onChange={handleChange} />
-        <Tr name="inPersonTeachingExperience" isTextArea={true} defaultValue={editedTeacherApplication.inPersonTeachingExperience} onChange={handleChange} />
-        <Tr name="onlineTeachingExperience" defaultValue={editedTeacherApplication.onlineTeachingExperience} onChange={handleChange} />
-        <Tr name="abroadTeachingExperience" defaultValue={editedTeacherApplication.abroadTeachingExperience} onChange={handleChange} />
-        <Tr name="applicantNotes" defaultValue={editedTeacherApplication.applicantNotes} onChange={handleChange} />
-        <Tr name="instagram" defaultValue={editedTeacherApplication.instagram} onChange={handleChange} />
-        <Tr name="linkedin" defaultValue={editedTeacherApplication.linkedin} onChange={handleChange} />
-        <Tr name="website" defaultValue={editedTeacherApplication.linkedin} onChange={handleChange} />
-      </form>
+      <div className="table-panel">
+        <Table>
+          <Tr name="firstname" labelFa="نام" labelEn="firstname" defaultValue={eta.firstname} onChange={handleChange} />
+          <Tr name="lastname" labelFa="نام خانوادگی" labelEn="lastname" defaultValue={eta.lastname} onChange={handleChange} />
+          <Tr name="firstnameFa" labelFa="نام (به فارسی)" labelEn="firstnameFa" defaultValue={eta.firstnameFa} onChange={handleChange} />
+          <Tr name="lastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="lastnameFa" defaultValue={eta.lastnameFa} onChange={handleChange} />
+          <Tr name="whatsappNumber" labelFa="شماره واتس‌اپ" labelEn="whatsappNumber" defaultValue={eta.whatsappNumber} onChange={handleChange} />
+          <Tr name="email" labelFa="ایمیل" labelEn="email" defaultValue={eta.email} onChange={handleChange} />
+          <Tr name="topicId" labelFa="شناسه شاخه تخصصی" labelEn="topicId" defaultValue={eta.topicId} onChange={handleChange} />
+          <Tr name="expertiseName" labelFa="نام تخصص" labelEn="expertiseName" defaultValue={eta.expertiseName} onChange={handleChange} />
+          <Tr name="productName" labelFa="نام محصول (کلاس)" labelEn="productName" defaultValue={eta.productName} onChange={handleChange} />
+          <Tr name="city" labelFa="شهر" labelEn="city" defaultValue={eta.city} onChange={handleChange} />
+          <Tr name="country" labelFa="کشور" labelEn="country" defaultValue={eta.country} onChange={handleChange} />
+          <Tr name="englishFluency" labelFa="تسلط به زبان انگلیسی" labelEn="englishFluency" defaultValue={eta.englishFluency} onChange={handleChange} />
+          <Tr name="classesToTeach" labelFa="کلاس مورد نظر برای تدریس" labelEn="classesToTeach" defaultValue={eta.classesToTeach} onChange={handleChange} />
+          <Tr name="sessionDuration" labelFa="مدت کلاس" labelEn="sessionDuration" type="number" step="5" min="0" defaultValue={eta.sessionDuration} onChange={handleChange} />
+          <Tr name="pricePerSession" labelFa="هزینه هر جلسه" labelEn="pricePerSession" type="number" step="1" min="0" defaultValue={eta.pricePerSession} onChange={handleChange} />
+          <Tr name="ageGroup" labelFa="گروه سنی" labelEn="ageGroup" defaultValue={eta.ageGroup} onChange={handleChange} />
+          <Tr name="levelOfEducation" labelFa="تحصیلات" labelEn="levelOfEducation" defaultValue={eta.levelOfEducation} onChange={handleChange} />
+          <Tr name="university" labelFa="دانشگاه" labelEn="university" defaultValue={eta.university} onChange={handleChange} />
+          <Tr name="inPersonTeachingExperience" labelFa="تجربه تدریس به فارسی" labelEn="inPersonTeachingExperience" isTextArea={true} defaultValue={eta.inPersonTeachingExperience} onChange={handleChange} />
+          <Tr name="onlineTeachingExperience" labelFa="تجربه تدریس به انگلیسی" labelEn="onlineTeachingExperience" defaultValue={eta.onlineTeachingExperience} onChange={handleChange} />
+          <Tr name="abroadTeachingExperience" labelFa="تجربه تدریس خارج از ایران" labelEn="abroadTeachingExperience" defaultValue={eta.abroadTeachingExperience} onChange={handleChange} />
+          <Tr name="applicantNotes" labelFa="یادداشت درخواست کننده" labelEn="Applicant Notes" defaultValue={eta.applicantNotes} onChange={handleChange} />
+          <Tr name="instagram" labelFa="اینستاگرام" labelEn="instagram" defaultValue={eta.instagram} onChange={handleChange} />
+          <Tr name="linkedin" labelFa="لینکدین" labelEn="linkedin" defaultValue={eta.linkedin} onChange={handleChange} />
+          <Tr name="website" labelFa="وبسایت شخصی" labelEn="website" defaultValue={eta.linkedin} onChange={handleChange} />
+        </Table>
+      </div>
       <div className="panel">
         <p className="info">
           <FiInfo /> You can edit some fields before accepting teacher application. Uss Edit button at the top. Edit will be undone if you close the window.
@@ -205,15 +215,20 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 // STYLES **************************************
 
 const Div = styled.div`
-  overflow: hidden;
-  border-radius: 1.5rem;
   background: ghostwhite;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  display: grid;
-  grid-template: 1fr/ 1fr;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  & > * {
+    width: 100%;
+  }
+
+  gap: 2rem;
 
   .table-panel {
     overflow: hidden;
+    padding: 1rem;
     border-radius: 1.5rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
