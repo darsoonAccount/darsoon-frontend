@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function PageWrapper({ children }) {
-  return <StyledPageWrapper>{children}</StyledPageWrapper>;
+export default function PageWrapper({ children, className }) {
+  return <StyledPageWrapper className={className}>{children}</StyledPageWrapper>;
 }
 const StyledPageWrapper = styled.div`
   padding-inline: min(10vw, 2rem);
