@@ -98,8 +98,11 @@ const StyledFooter = styled.footer`
 
   .links-in-footer {
     width: 100%;
-    padding-block: 1rem;
+    padding-block: 4rem;
     padding-inline: 2rem;
+    display: grid;
+    grid-template-columns: repeat( auto-fit, minmax(200px , 1fr));
+    gap: 4rem;
   }
 
   h3 {
