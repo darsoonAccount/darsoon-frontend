@@ -29,9 +29,8 @@ export default function AdminDashLayout({ children }) {
   );
 }
 const Div = styled.div`
-  margin: 2rem;
+
   overflow: hidden;
-  border-radius: 1.5rem;
   background: gainsboro;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   display: grid;
@@ -39,12 +38,13 @@ const Div = styled.div`
 
   .dashboard-head {
     padding: 0.5rem;
-    background: ghostwhite;
+    background: rebeccapurple;
     display: grid;
     place-items: center;
     gap: 1rem;
     h1 {
       font-size: 1rem;
+      color: white;
       margin: 0;
     }
   }

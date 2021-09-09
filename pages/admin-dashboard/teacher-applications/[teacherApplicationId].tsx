@@ -30,7 +30,7 @@ export async function getServerSideProps(context) {
 TeacherApplicationPage.Layout = AdminDashLayout;
 
 const Page = styled.div`
-  padding: 1.5rem;
+  padding: 2rem;
   background: ghostwhite;
   display: grid;
   grid-template: 1fr / 1fr;

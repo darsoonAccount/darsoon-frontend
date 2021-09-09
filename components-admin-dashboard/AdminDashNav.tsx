@@ -66,7 +66,7 @@ const Nav = styled.nav`
     color: white;
     display: grid;
     place-items: center start;
-    padding: 2em;
+    padding: 1.5rem 2rem;
     line-height: 1.4;
     font-weight: 700;
     border-bottom: 1px solid white;
