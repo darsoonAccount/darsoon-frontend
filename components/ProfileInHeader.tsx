@@ -10,7 +10,7 @@ import Fa from "./translation/Fa";
 import En from "./translation/En";
 
 const ProfileInHeader = () => {
-  const { loggedInUser, logOut } = useAuth();
+  const { loggedInUser, logOut, loggedInUserPayerProfile, loggedInUserStudentProfile, loggedInUserTeacherProfile, loggedInUserAdminProfile } = useAuth();
   const { notify } = useNotif();
 
   const [isProfileMenuVisible, setIsProfileMenuVisible] = useState(false);
@@ -57,26 +57,34 @@ const ProfileInHeader = () => {
           </button>
           {isProfileMenuVisible && (
             <div className="profile-menu">
-              <Link href="/teacher-dashboard">
-                <a>
-                  <T fa="داشبورد معلم" en="Teacher Dashboard" />
-                </a>
-              </Link>
-              <Link href="/admin-dashboard">
-                <a>
-                  <T fa="داشبورد ادمین" en="Admin Dashboard" />
-                </a>
-              </Link>
-              <Link href="/payer-dashboard">
-                <a>
-                  <T fa="داشبورد پرداخت کننده" en="Payer Dashboard" />
-                </a>
-              </Link>
-              <Link href="/student-dashboard">
-                <a>
-                  <T fa="داشبورد دانش آموز" en="Student Dashboard" />
-                </a>
-              </Link>
+              {loggedInUserTeacherProfile && (
+                <Link href="/teacher-dashboard">
+                  <a>
+                    <T fa="داشبورد معلم" en="Teacher Dashboard" />
+                  </a>
+                </Link>
+              )}
+              {loggedInUserAdminProfile && (
+                <Link href="/admin-dashboard">
+                  <a>
+                    <T fa="داشبورد ادمین" en="Admin Dashboard" />
+                  </a>
+                </Link>
+              )}
+              {loggedInUserPayerProfile && (
+                <Link href="/payer-dashboard">
+                  <a>
+                    <T fa="داشبورد پرداخت کننده" en="Payer Dashboard" />
+                  </a>
+                </Link>
+              )}
+              {loggedInUserStudentProfile && (
+                <Link href="/student-dashboard">
+                  <a>
+                    <T fa="داشبورد دانش آموز" en="Student Dashboard" />
+                  </a>
+                </Link>
+              )}
               <button className="log-out-button" onClick={handleLogOut}>
                 <T fa="خروج از حساب" en="Logout" />
               </button>
