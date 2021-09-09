@@ -12,7 +12,7 @@ import Tr from "../../../components-admin-dashboard/Tr";
 import PageWrapper from "../../../components/layout/PageWrapper";
 
 export default function TeacherApplicationPage({ teacherApplication }) {
-  return <PageWrapper>{teacherApplication && <TeacherApplicationTable teacherApplication={teacherApplication} />}</PageWrapper>;
+  return <Page>{teacherApplication && <TeacherApplicationTable teacherApplication={teacherApplication} />}</Page>;
 }
 
 export async function getServerSideProps(context) {
@@ -29,7 +29,7 @@ export async function getServerSideProps(context) {
 
 TeacherApplicationPage.Layout = AdminDashLayout;
 
-const Div = styled.div`
+const Page = styled.div`
   padding: 1.5rem;
   background: ghostwhite;
   display: grid;
