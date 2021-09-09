@@ -20,15 +20,7 @@ export default TeachersPage;
 
 TeachersPage.Layout = AdminDashLayout;
 
-export const getServerSideProps = async () => {
-  const res = await fetch("https://darsoon.uc.r.appspot.com/api/p/teacher");
-  const json = await res.json();
-  const teachers = json.data;
 
-  return {
-    props: { teachers },
-  };
-};
 const Div = styled.div`
   padding: 1.5rem;
   background: ghostwhite;
@@ -43,3 +35,14 @@ const Div = styled.div`
     gap: 1rem;
   }
 `;
+
+
+export const getServerSideProps = async () => {
+  const res = await fetch("https://darsoon.uc.r.appspot.com/api/p/teacher");
+  const json = await res.json();
+  const teachers = json.data;
+
+  return {
+    props: { teachers },
+  };
+};

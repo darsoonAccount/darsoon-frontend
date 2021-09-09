@@ -144,6 +144,8 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       const newlyAddedProduct = json3.data;
       notify({ en: "Product is created in db.", fa: "کلاس (محصول) این معلم در دیتابیس ایجاد شد.", type: "success" });
     } catch (error) {
+      //try to revert all changes if one of them failed.
+
       // console.log("Error request:", error.request);
       console.log("Error response:", error.response);
       notify({ en: `Error ${error.message}`, fa: `Error ${error.message}`, type: "error" });
