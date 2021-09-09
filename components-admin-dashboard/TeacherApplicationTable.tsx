@@ -19,12 +19,12 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
   const au = applicantUser;
   const { loggedInUserAdminProfile } = useContext(AuthContext);
   const { api } = useApi();
-  // const router = useRouter();
+  const router = useRouter();
   const { notify } = useNotif();
 
   //eta = editedTeacherApplication
   const [eta, setEta] = useState(teacherApplication);
-  const { adminDashState, adminDashDispatch } = useContext(AdminDashContext);
+  const { adminDashDispatch } = useContext(AdminDashContext);
 
   const handleChange = (event) => {
     const key = event.target.labelEn;
@@ -45,6 +45,8 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       status: "rejected",
     };
 
+    console.log("reject changes ready");
+
     const id = teacherApplication.teacherApplicationId;
     api
       .patch(`/api/teacherApplication/${id}/update`, body)
@@ -54,7 +56,8 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
           type: ADMIN_DASH_ACTIONS.REJECT_TEACHER_APPLICATION,
           payload: { ...teacherApplication, reviewerAdminId: loggedInUserAdminProfile.adminId, status: "rejected" },
         });
-        // router.reload();
+        notify({ en: "Application has been rejected.", fa: "درخوسات رد شد." });
+        router.push("/admin-dashboard/teacher-applications/");
       })
       .catch((err) => {
         notify({ en: err.message, fa: err.message, type: "error" });
@@ -78,13 +81,12 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
       const res = await api.patch(`/api/teacherApplication/${id}/update`, teacherApplicationBody);
 
-      notify({ en: "Application status in database changed to accepted", fa: "وضعیت  درخوسواست در دریتابیس به ذیرفته شده تغییر کرد.", type: "success" });
       //if successfull => update state
       adminDashDispatch({
         type: ADMIN_DASH_ACTIONS.ACCEPT_TEACHER_APPLICATION,
         payload: teacherApplicationBody,
       });
-      notify({ en: "Teacher Application is updated in the frontend.", fa: "درخواست معلم در فرانتاند بروزرسانی شد.", type: "success" });
+      notify({ en: "Application status in database changed to accepted", fa: "وضعیت  درخواست در دریتابیس به پذیرفته شده تغییر کرد.", type: "success" });
 
       //preparing accepted teacher to add to database
       const teacherBody = {
@@ -118,7 +120,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //add the expertise for the teacher
       const json2 = await api.post("/api/expertise/add", expertiseBody);
       const newlyAddedExpertise = json2.data.data;
-      notify({ en: "Expertise is created in db.", fa: "تخصص در دیتابیس ثبت شد.", type: "success" });
+      notify({ en: "Expertise is created in db.", fa: "تخصص معلم در دیتابیس ثبت شد.", type: "success" });
 
       //prepare product object
 
@@ -140,7 +142,7 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       //create products  (1 ,5 ,12 ,20 products) for the teacher
       const json3 = await api.post("/api/product/add", productBody);
       const newlyAddedProduct = json3.data;
-      notify({ en: "Product is created in db.", fa: "محصول در دیتابیس ایجاد شد.", type: "success" });
+      notify({ en: "Product is created in db.", fa: "کلاس (محصول) این معلم در دیتابیس ایجاد شد.", type: "success" });
     } catch (error) {
       // console.log("Error request:", error.request);
       console.log("Error response:", error.response);
@@ -150,12 +152,16 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
 
   return (
     <Div>
-      <h2>
+      <h2 className="page-title">
         <En>Teacher Application</En>
-        <Fa>درخواست</Fa>
+        <Fa>درخواست معلم شدن</Fa>
       </h2>
       <div className="table-panel">
         <Table>
+          <h2>
+            <En>Applicantion Info</En>
+            <Fa>مشخصات درخواست‌</Fa>
+          </h2>
           <Tr name="teacherApplicationId" labelFa="شناسه درخواست" labelEn="Teacher Application Id" defaultValue={ta.teacherApplicationId} />
           <Tr name="applicantFirstname" labelFa="نام (به انگلیسی)" labelEn="Applicant Firstname (In English)" defaultValue={applicantUser.firstname} />
           <Tr name="applicantLastname" labelFa="نام خانوادگی (به انگلیسی)" labelEn="Applicant lastname (in English)" defaultValue={applicantUser.lastname} />
@@ -164,48 +170,72 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
           <Tr name="Applicant Status" labelFa="وضعیت درخواست" labelEn="Application Status" defaultValue={ta.status} />
           <Tr name="adminReviewd" labelFa="ادمین بررسی‌کننده" labelEn="Admin Reviewed" defaultValue={ta.adminReviewrId} />
           <Tr name="adminComment" labelFa="نظر بررسی کننده" labelEn="Admin Comment" defaultValue={ta.adminComment} />
-        </Table>
-      </div>
-      <div className="table-panel">
-        <Table>
+          <h2>
+            <En>Applicant Info</En>
+            <Fa>مشخصات درخواست‌کننده</Fa>
+          </h2>
           <Tr name="firstname" labelFa="نام" labelEn="firstname" defaultValue={eta.firstname} onChange={handleChange} />
           <Tr name="lastname" labelFa="نام خانوادگی" labelEn="lastname" defaultValue={eta.lastname} onChange={handleChange} />
           <Tr name="firstnameFa" labelFa="نام (به فارسی)" labelEn="firstnameFa" defaultValue={eta.firstnameFa} onChange={handleChange} />
           <Tr name="lastnameFa" labelFa="نام خانوادگی (به فارسی)" labelEn="lastnameFa" defaultValue={eta.lastnameFa} onChange={handleChange} />
           <Tr name="whatsappNumber" labelFa="شماره واتس‌اپ" labelEn="whatsappNumber" defaultValue={eta.whatsappNumber} onChange={handleChange} />
           <Tr name="email" labelFa="ایمیل" labelEn="email" defaultValue={eta.email} onChange={handleChange} />
-          <Tr name="topicId" labelFa="شناسه شاخه تخصصی" labelEn="topicId" defaultValue={eta.topicId} onChange={handleChange} />
-          <Tr name="expertiseName" labelFa="نام تخصص" labelEn="expertiseName" defaultValue={eta.expertiseName} onChange={handleChange} />
-          <Tr name="productName" labelFa="نام محصول (کلاس)" labelEn="productName" defaultValue={eta.productName} onChange={handleChange} />
           <Tr name="city" labelFa="شهر" labelEn="city" defaultValue={eta.city} onChange={handleChange} />
           <Tr name="country" labelFa="کشور" labelEn="country" defaultValue={eta.country} onChange={handleChange} />
-          <Tr name="englishFluency" labelFa="تسلط به زبان انگلیسی" labelEn="englishFluency" defaultValue={eta.englishFluency} onChange={handleChange} />
+          <h2>
+            {" "}
+            <En>Expertise</En>
+            <Fa>تخصص</Fa>
+          </h2>
+          <Tr name="topicId" labelFa="شناسه شاخه تخصصی" labelEn="topicId" defaultValue={eta.topicId} onChange={handleChange} />
+          <Tr name="expertiseName" labelFa="نام تخصص" labelEn="expertiseName" defaultValue={eta.expertiseName} onChange={handleChange} />
+          <h2>
+            {" "}
+            <En>Class to Teach</En>
+            <Fa>کلاس مورد نظر برای تدریس</Fa>
+          </h2>
+          <Tr name="productName" labelFa="نام کلاس (محصول)" labelEn="productName" defaultValue={eta.productName} onChange={handleChange} />
           <Tr name="classesToTeach" labelFa="کلاس مورد نظر برای تدریس" labelEn="classesToTeach" defaultValue={eta.classesToTeach} onChange={handleChange} />
           <Tr name="sessionDuration" labelFa="مدت کلاس" labelEn="sessionDuration" type="number" step="5" min="0" defaultValue={eta.sessionDuration} onChange={handleChange} />
           <Tr name="pricePerSession" labelFa="هزینه هر جلسه" labelEn="pricePerSession" type="number" step="1" min="0" defaultValue={eta.pricePerSession} onChange={handleChange} />
           <Tr name="ageGroup" labelFa="گروه سنی" labelEn="ageGroup" defaultValue={eta.ageGroup} onChange={handleChange} />
+          <h2>
+            {" "}
+            <En>Applicant Experiences</En>
+            <Fa>تجربه‌ها</Fa>
+          </h2>
+          <Tr name="englishFluency" labelFa="تسلط به زبان انگلیسی" labelEn="englishFluency" defaultValue={eta.englishFluency} onChange={handleChange} />
           <Tr name="levelOfEducation" labelFa="تحصیلات" labelEn="levelOfEducation" defaultValue={eta.levelOfEducation} onChange={handleChange} />
           <Tr name="university" labelFa="دانشگاه" labelEn="university" defaultValue={eta.university} onChange={handleChange} />
           <Tr name="inPersonTeachingExperience" labelFa="تجربه تدریس به فارسی" labelEn="inPersonTeachingExperience" isTextArea={true} defaultValue={eta.inPersonTeachingExperience} onChange={handleChange} />
           <Tr name="onlineTeachingExperience" labelFa="تجربه تدریس به انگلیسی" labelEn="onlineTeachingExperience" defaultValue={eta.onlineTeachingExperience} onChange={handleChange} />
           <Tr name="abroadTeachingExperience" labelFa="تجربه تدریس خارج از ایران" labelEn="abroadTeachingExperience" defaultValue={eta.abroadTeachingExperience} onChange={handleChange} />
           <Tr name="applicantNotes" labelFa="یادداشت درخواست کننده" labelEn="Applicant Notes" defaultValue={eta.applicantNotes} onChange={handleChange} />
+          <h2>
+            {" "}
+            <En>Applicant Social Media</En>
+            <Fa>شبکه‌های اجتماعی</Fa>
+          </h2>
           <Tr name="instagram" labelFa="اینستاگرام" labelEn="instagram" defaultValue={eta.instagram} onChange={handleChange} />
           <Tr name="linkedin" labelFa="لینکدین" labelEn="linkedin" defaultValue={eta.linkedin} onChange={handleChange} />
           <Tr name="website" labelFa="وبسایت شخصی" labelEn="website" defaultValue={eta.linkedin} onChange={handleChange} />
         </Table>
-      </div>
-      <div className="panel">
-        <p className="info">
-          <FiInfo /> You can edit some fields before accepting teacher application. Uss Edit button at the top. Edit will be undone if you close the window.
-        </p>
-        <div className="buttons">
-          <button className="reject small-button" onClick={handleReject}>
-            Reject
-          </button>
-          <button className="accept small-button" onClick={handleAccept}>
-            Accept
-          </button>
+        <div className="panel">
+          <p className="info">
+            <FiInfo />
+            <En>You can edit some fields before accepting teacher application. Uss Edit button at the top. Edit will be undone if you close the window.</En>
+            <Fa>پیش از پذیرفتن به عنوان معلم می‌توانید برخی فیلدها را ویرایش نمایید. اگر پس از ویرایش ثبت نکنید ویرایش‌ها ذخیره نخواهند شد.</Fa>
+          </p>
+          <div className="buttons">
+            <button className="reject small-button" onClick={handleReject}>
+              <En>Reject</En>
+              <Fa>رد کردن</Fa>
+            </button>
+            <button className="accept small-button" onClick={handleAccept}>
+              <En>Edit and Accept</En>
+              <Fa>ویرایش و سپس پذیرفتن به عنوان معلم</Fa>
+            </button>
+          </div>
         </div>
       </div>
     </Div>
@@ -222,6 +252,10 @@ const Div = styled.div`
   align-items: center;
   & > * {
     width: 100%;
+  }
+
+  .page-title {
+    text-align: start;
   }
 
   gap: 2rem;
