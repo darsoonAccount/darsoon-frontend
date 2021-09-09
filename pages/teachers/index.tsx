@@ -4,6 +4,8 @@ import Loading from "../../components/layout/Loading";
 import { useApi } from "../../contexts/AppProvider";
 import { useAuth } from "../../contexts/AuthProvider";
 import TeacherCard from "../../components/TeacherCard";
+import En from "../../components/translation/En";
+import Fa from "../../components/translation/Fa";
 
 export default function Teachers() {
   const [teachers, setTeachers] = useState(null);
@@ -19,8 +21,14 @@ export default function Teachers() {
 
   return (
     <Page>
-      <h2>Teachers</h2>
-      <p>Here are all teachers</p>
+      <h2>
+        <En>Teachers</En>
+        <Fa>معلم‌ها</Fa>
+      </h2>
+      <p>
+        <En>Here are all teachers</En>
+        <Fa>همه معلم‌ها درسون را می‌توانید اینجا ببینید:</Fa>
+      </p>
       {!teachers && <Loading />}
       {teachers && teachers.length && (
         <div className="card-grid">
