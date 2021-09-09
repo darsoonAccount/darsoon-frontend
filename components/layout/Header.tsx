@@ -128,7 +128,7 @@ const StyledHeader = styled.header`
       z-index: 9;
       inset-inline-start: 0;
       inset-inline-end: 0;
-      top: 100px;
+      top: 4.95rem;
       bottom: 100%;
       width: auto;
       height: auto;
@@ -139,9 +139,7 @@ const StyledHeader = styled.header`
       box-sizing: border-box;
       transition: all 0.3s ease-in-out;
     }
-    .nav a {
-      font-size: 1rem;
-    }
+    
     .checkbox:checked ~ .nav {
       bottom: 0;
     }
