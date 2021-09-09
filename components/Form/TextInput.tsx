@@ -59,9 +59,9 @@ const Div = Styled.div`
   
   
   .input	{
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   font-size: 1.2em;
-  padding: 1rem;
+  padding: 0.8rem;
   display:block;
   /* border: none; */
   border: 2px solid ${themeVars.lightGray};
@@ -70,8 +70,8 @@ const Div = Styled.div`
 }
 
 .input:focus { 
-  border: none;
-  outline: 2px solid ${themeVars.primaryColor}; 
+  outline: none;
+  border: 2px solid ${themeVars.primaryColor}; 
 }
 .input::placeholder {
   color: transparent;

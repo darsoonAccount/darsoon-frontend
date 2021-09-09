@@ -120,7 +120,7 @@ gap: 1rem;
 }
 
 .avatar {
-  outline: 3px solid white;
+  border: 3px solid white;
   width: 35px; 
   aspect-ratio: 1/1;
   border-radius: 100px;
