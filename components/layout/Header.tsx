@@ -69,7 +69,7 @@ const StyledHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   background-color: rgba(255, 118, 72, 0.9);
-  /* backdrop-filter: blur(0.3rem); */ //remove for Chrome compatibality
+  backdrop-filter: blur(0.3rem);
   box-shadow: ${themeVars.boxShadow};
 
   .logo {
@@ -139,7 +139,7 @@ const StyledHeader = styled.header`
       box-sizing: border-box;
       transition: all 0.3s ease-in-out;
     }
-    
+
     .checkbox:checked ~ .nav {
       bottom: 0;
     }
