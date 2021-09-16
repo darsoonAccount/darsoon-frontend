@@ -41,7 +41,7 @@ const AuthProvider = ({ children }) => {
 
     //redirect to homepage
 
-    // router.push("/");
+    router.push("/");
   };
 
   interface loginInteface {
@@ -110,6 +110,8 @@ const AuthProvider = ({ children }) => {
   //when user revisit website, get loggedInUser, token and expiresIn from LocalStorage If available, and login with them.
   useEffect(() => {
     if ((!loggedInUser || !token || !expiresIn) && localStorage.getItem("loggedInUser") && localStorage.getItem("token") && localStorage.getItem("expiresIn")) {
+      //it is better to check the data and see if such a user with those attributes exists in the db.
+
       login({
         user: JSON.parse(localStorage.getItem("loggedInUser")),
         token: localStorage.getItem("token"),
