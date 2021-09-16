@@ -14,10 +14,12 @@ import Fa from "../components/translation/Fa";
 import En from "../components/translation/En";
 
 export default function TeacherApplicationTable({ teacherApplication }: any) {
-  const ta = teacherApplication;
-  const { applicantUser } = teacherApplication;
+  
+  const { applicantUser, ...ta } = teacherApplication;
+ 
+  
   const au = applicantUser;
-  const { loggedInUserAdminProfile } = useContext(AuthContext);
+  const { loggedInUserAdminProfile } = useAuth();
   const { api } = useApi();
   const router = useRouter();
   const { notify } = useNotif();
@@ -45,8 +47,6 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
       status: "rejected",
     };
 
-    console.log("reject changes ready");
-
     const id = teacherApplication.teacherApplicationId;
     api
       .patch(`/api/teacherApplication/${id}/update`, body)
@@ -54,12 +54,13 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
         //if successfull => update state
         adminDashDispatch({
           type: ADMIN_DASH_ACTIONS.REJECT_TEACHER_APPLICATION,
-          payload: { ...teacherApplication, reviewerAdminId: loggedInUserAdminProfile.adminId, status: "rejected" },
+          payload: { ...ta, ...body },
         });
         notify({ en: "Application has been rejected.", fa: "درخوسات رد شد." });
         router.push("/admin-dashboard/teacher-applications/");
       })
       .catch((err) => {
+        console.log(err.response);
         notify({ en: err.message, fa: err.message, type: "error" });
       });
   };
@@ -152,7 +153,6 @@ export default function TeacherApplicationTable({ teacherApplication }: any) {
     }
   };
 
-  console.log(ta);
 
   return (
     <Div>
