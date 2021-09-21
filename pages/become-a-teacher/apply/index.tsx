@@ -4,8 +4,9 @@ import ApplicationForm from "../../../components-teacher-applicant/ApplicationFo
 import ApplicationSubmittedBox from "../../../components-teacher-applicant/ApplicationSubmittedBox";
 import En from "../../../components/translation/En";
 import Fa from "../../../components/translation/Fa";
+import withUserAuth from "../../../HOC/WithUserAuth";
 
-export default function ApplyPage() {
+const ApplyPage = () => {
   const [isSubmitedSuccefully, setIsSubmitedSuccefully] = useState(false);
 
   const handleDataAfterSuccess = (data) => {
@@ -29,7 +30,10 @@ export default function ApplyPage() {
       )}
     </Div>
   );
-}
+};
+
+export default withUserAuth(ApplyPage);
+
 const Div = styled.div`
   padding: 1.5rem;
   border-radius: 1.5rem;

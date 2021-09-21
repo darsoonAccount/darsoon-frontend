@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
-import { useAuth } from "../../contexts/AuthProvider";
-import LoginBox from "../../components/LoginBox";
-import InfoBox from "../../components/layout/InfoBox";
-import { useRouter } from "next/router";
-import { useApi } from "../../contexts/AppProvider";
-import Loading from "../../components/layout/Loading";
-import Row from "../../components/layout/Row";
-import Link from "next/link";
-import Panel from "../../components/layout/Panel";
-import Rows from "../../components/layout/Rows";
-import En from "../../components/translation/En";
-import Fa from "../../components/translation/Fa";
+import { useAuth } from '../../contexts/AuthProvider';
+import LoginBox from '../../components/LoginBox';
+import InfoBox from '../../components/layout/InfoBox';
+import { useRouter } from 'next/router';
+import { useApi } from '../../contexts/AppProvider';
+import Loading from '../../components/layout/Loading';
+import Row from '../../components/layout/Row';
+import Link from 'next/link';
+import Panel from '../../components/layout/Panel';
+import Rows from '../../components/layout/Rows';
+import En from '../../components/translation/En';
+import Fa from '../../components/translation/Fa';
+import WithUserAuth from '../../HOC/WithUserAuth';
 
-export default function BecomeATeacherPage() {
+const BecomeATeacherPage = () => {
   const { loggedInUser } = useAuth();
   const { api } = useApi();
   const [previousApplications, setPreviousApplications] = useState(null);
@@ -27,12 +28,12 @@ export default function BecomeATeacherPage() {
       api
         .get(`api/j/teacherApplication?applicantUserId=${userId}`)
         .then((res) => {
-          console.log("here res", res);
+          console.log('here res', res);
           setPreviousApplications(res.data.data);
           setIsLoading(false);
         })
         .catch((err) => {
-          console.log("here err", err);
+          console.log('here err', err);
           setPreviousApplications(null);
           setIsLoading(false);
         });
@@ -44,10 +45,16 @@ export default function BecomeATeacherPage() {
       {!loggedInUser ? (
         <>
           <InfoBox>
-            <En>Please create an account first. If you allready have an account, Log in to your account.</En>
-            <Fa>لطفا ابتدا یک حساب کاربری بسازید. اگر از قبل حساب کاربرری دارد وارد آن شوید.</Fa>
+            <En>
+              Please create an account first. If you allready have an account,
+              Log in to your account.
+            </En>
+            <Fa>
+              لطفا ابتدا یک حساب کاربری بسازید. اگر از قبل حساب کاربرری دارد
+              وارد آن شوید.
+            </Fa>
           </InfoBox>
-          <LoginBox redirectTo="/become-a-teacher" />
+          <LoginBox redirectTo='/become-a-teacher' />
         </>
       ) : (
         <>
@@ -93,8 +100,8 @@ export default function BecomeATeacherPage() {
               </>
             )}
           </Panel>
-          <Link href="/become-a-teacher/apply">
-            <a className="primary-button">
+          <Link href='/become-a-teacher/apply'>
+            <a className='primary-button'>
               <En>Fill a new applications</En>
               <Fa>ایجاد درخواست جدید</Fa>
             </a>
@@ -103,7 +110,10 @@ export default function BecomeATeacherPage() {
       )}
     </Page>
   );
-}
+};
+
+export default WithUserAuth(BecomeATeacherPage);
+
 const Page = styled.div`
   padding: 2rem;
   margin: 0 auto;
